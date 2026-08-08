@@ -4,12 +4,22 @@ on:
   push:
     paths:
       - "data/world/**"
+      - "data/canon/**"
+      - "docs/canon/**"
+      - "CODEX.md"
+      - "README.md"
       - "tools/validate_world_data.py"
+      - "tools/validate_canon_registry.py"
       - ".github/workflows/validate-canon.yml"
   pull_request:
     paths:
       - "data/world/**"
+      - "data/canon/**"
+      - "docs/canon/**"
+      - "CODEX.md"
+      - "README.md"
       - "tools/validate_world_data.py"
+      - "tools/validate_canon_registry.py"
       - ".github/workflows/validate-canon.yml"
 
 permissions:
@@ -29,3 +39,6 @@ jobs:
 
       - name: Validate locked world data
         run: python tools/validate_world_data.py
+
+      - name: Validate Canon registry and scoped overrides
+        run: python tools/validate_canon_registry.py
