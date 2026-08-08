@@ -2,30 +2,70 @@
   "asset_id": "XTZ-BLD-001",
   "name": "玄岳关",
   "type": "mountain_gate",
+  "status": "CANON_A1_LOCKED",
+  "canon_source": "玄天宗世界设定总纲 V1.6.1 / V1.6-A A1 D1-10锁定",
+  "world_anchor": {
+    "center_km": [0.0, 3.7],
+    "ground_elevation_m": 610,
+    "facing": "south",
+    "status": "CANON_A1_LOCKED"
+  },
   "dimensions_m": {
     "width": 52,
     "depth": 18,
-    "height": 34
+    "height": 34,
+    "total_depth_with_eaves": 21
   },
   "construction": {
     "material": "玉质主体",
-    "accent": ["淡金结构线", "少量朱红"],
-    "doors": "玉质三门制"
+    "accent": ["淡金结构线", "少量朱红身份节点"],
+    "doors": "实体双开玉门，三门制",
+    "roof_rule": "主要屋面继续执行玉质礼制体系，不得变成普通青绿琉璃瓦"
   },
-  "front_platform_m": {
-    "width": 84,
-    "depth": 32
+  "openings": {
+    "central": {"clear_width_m": 11, "clear_height_m": 15, "use": "正式入宗、大典、使团", "door_state": "双开玉门常态向内开启70-80deg"},
+    "east": {"clear_width_m": 5.5, "clear_height_m": 10, "use": "弟子及日常人员", "door_state": "常态关闭"},
+    "west": {"clear_width_m": 5.5, "clear_height_m": 10, "use": "执事、灵兽及应急", "door_state": "常态关闭"}
   },
   "main_gate": {
     "clear_width": 11,
     "clear_height": 15,
     "opening_angle": "70-80deg inward"
   },
+  "plaque": {
+    "material": "温白玉",
+    "size_m": [8.8, 2.4],
+    "text": "玄岳关",
+    "lettering": "微凸淡金"
+  },
+  "wing_walls_each_side_m": [14, 18],
+  "overall_gate_control_width_m": [82, 90],
+  "front_platform_m": {
+    "width": 84,
+    "depth": 32,
+    "total_control_width_m": [96, 105]
+  },
+  "approach_steps": {
+    "count": 9,
+    "total_rise_m": 1.6,
+    "center_width_m": 14
+  },
   "twin_swords": {
     "asset_id": "XTZ-WPN-001",
     "height_m": 44,
     "axis_distance_m": 68,
+    "axes_local_x_m": [-34, 34],
+    "front_offset_m": [3, 5],
+    "blade_length_m": 33,
+    "hilt_guard_m": 8,
+    "pommel_m": 3,
+    "blade_max_width_m": [3.6, 4.0],
+    "body_max_thickness_m": 0.65,
+    "base_plan_m": [7, 7],
+    "base_height_m": 2.2,
     "shape": "V10 double-edged straight sword",
-    "light": "ice_blue restrained along blade edges and array patterns"
-  }
+    "material": "冷白玉质",
+    "light": "ice_blue restrained along blade edges and limited array patterns only"
+  },
+  "visual_relation": "玄岳关与双阙剑为前景核心，玄天峰为最高终极视觉中心；不可从门洞看穿完整主轴和后山。"
 }
