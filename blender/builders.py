@@ -7,6 +7,7 @@ from mathutils import Vector
 
 NON_CANON_PROXY_TAG = "NON_CANON_PROXY"
 CANON_A1_CONTROL_TAG = "CANON_A1_CONTROL_CURVE"
+CANON_B1_ANCHOR_TAG = "CANON_B1_LOCKED"
 
 
 def get_or_create_collection(name: str):
@@ -236,6 +237,42 @@ def build_axis(axis_data: dict):
     obj["xtz_segment_count"] = len(axis_data["stages"])
     obj["xtz_max_continuous_sightline_m"] = int(axis_data["geometry_rules"]["max_continuous_route_alignment_sightline_m"])
     return obj, points
+
+
+def build_key_assets(key_assets_data: dict):
+    """Build B1-locked positional/size proxies for selected core assets."""
+    collection = get_or_create_collection("XTZ_KeyAssets")
+    built = []
+    for asset in key_assets_data["assets"]:
+        if not asset.get("v0_1_build"):
+            continue
+        if "plan_m" not in asset or "height_m" not in asset or asset.get("elevation_m") is None:
+            continue
+
+        x_km, y_km = asset["coord_km"]
+        width_m, depth_m = asset["plan_m"]
+        height_m = float(asset["height_m"])
+        base_z = float(asset["elevation_m"])
+        obj = add_cube(
+            f"XTZ_ASSET_{asset['id']}_{asset['name']}",
+            (float(width_m), float(depth_m), height_m),
+            (float(x_km) * 1000.0, float(y_km) * 1000.0, base_z + height_m / 2.0),
+            collection,
+        )
+        obj["xtz_asset_id"] = asset["id"]
+        obj["xtz_name"] = asset["name"]
+        obj["xtz_type"] = asset["type"]
+        obj["xtz_world_anchor_status"] = CANON_B1_ANCHOR_TAG
+        obj["xtz_geometry_status"] = NON_CANON_PROXY_TAG
+        obj["xtz_base_elevation_m"] = base_z
+        obj["xtz_plan_m"] = f"{width_m}x{depth_m}"
+        obj["xtz_height_m"] = height_m
+        if "visual_rank" in asset:
+            obj["xtz_visual_rank"] = asset["visual_rank"]
+        if "visibility" in asset:
+            obj["xtz_visibility_rule"] = asset["visibility"]
+        built.append(obj)
+    return built
 
 
 def add_camera(name, lens_mm, location, target, collection):
