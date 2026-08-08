@@ -6,6 +6,7 @@ import bpy
 from mathutils import Vector
 
 NON_CANON_PROXY_TAG = "NON_CANON_PROXY"
+CANON_A1_CONTROL_TAG = "CANON_A1_CONTROL_CURVE"
 
 
 def get_or_create_collection(name: str):
@@ -47,9 +48,15 @@ def add_proxy_peak(peak: dict, collection):
     foot = peak.get("primary_foot_elevation_m")
 
     if floating:
-        proxy_height = 520.0
-        base_z = summit - proxy_height
-        unresolved = True
+        deepest = peak.get("deepest_inverted_spire_elevation_m")
+        if deepest is not None:
+            base_z = float(deepest)
+            proxy_height = summit - base_z
+            unresolved = False
+        else:
+            proxy_height = 470.0
+            base_z = summit - proxy_height
+            unresolved = True
     else:
         if foot is None:
             raise ValueError(f"{peak['name']} missing primary_foot_elevation_m")
@@ -77,8 +84,9 @@ def add_proxy_peak(peak: dict, collection):
     obj["xtz_floating"] = floating
     obj["xtz_summit_elevation_m"] = summit
     obj["xtz_geometry_status"] = NON_CANON_PROXY_TAG
+    obj["xtz_world_anchor_status"] = "CANON_A1_LOCKED"
     if unresolved:
-        obj["xtz_unresolved"] = "玄天峰 proxy body depth is not yet canonical"
+        obj["xtz_unresolved"] = "Proxy mountain body; retain locked A1 center/envelope and refine geometry later."
     return obj
 
 
@@ -102,9 +110,18 @@ def _add_sword(name, height_m, x_m, y_m, base_z, collection):
     return [blade, guard, grip, pommel]
 
 
-def build_gate(gate_data: dict, anchor=(0.0, 2000.0, 0.0)):
-    """Build a dimensional gate proxy. World anchor remains NON_CANON_PROXY."""
+def gate_anchor_m(gate_data: dict) -> tuple[float, float, float]:
+    anchor = gate_data["world_anchor"]
+    x_km, y_km = anchor["center_km"]
+    return float(x_km) * 1000.0, float(y_km) * 1000.0, float(anchor["ground_elevation_m"])
+
+
+def build_gate(gate_data: dict, anchor=None):
+    """Build a simple gate proxy at the locked A1 world anchor."""
     collection = get_or_create_collection("XTZ_XuanyueGate")
+    if anchor is None:
+        anchor = gate_anchor_m(gate_data)
+
     width = float(gate_data["dimensions_m"]["width"])
     depth = float(gate_data["dimensions_m"]["depth"])
     height = float(gate_data["dimensions_m"]["height"])
@@ -120,52 +137,66 @@ def build_gate(gate_data: dict, anchor=(0.0, 2000.0, 0.0)):
 
     platform = gate_data.get("front_platform_m", {})
     if platform:
-        add_cube("XTZ_GATE_FrontPlatform", (float(platform["width"]), float(platform["depth"]), 1.2), (x, y - depth / 2.0 - float(platform["depth"]) / 2.0, z + 0.6), collection)
+        add_cube(
+            "XTZ_GATE_FrontPlatform",
+            (float(platform["width"]), float(platform["depth"]), 1.2),
+            (x, y - depth / 2.0 - float(platform["depth"]) / 2.0, z + 0.6),
+            collection,
+        )
 
     for obj in (left, right, lintel):
         obj["xtz_asset_id"] = gate_data["asset_id"]
         obj["xtz_geometry_status"] = NON_CANON_PROXY_TAG
-        obj["xtz_world_anchor_status"] = NON_CANON_PROXY_TAG
+        obj["xtz_world_anchor_status"] = gate_data["world_anchor"]["status"]
 
     swords = gate_data["twin_swords"]
     sword_h = float(swords["height_m"])
-    half_axis = float(swords["axis_distance_m"]) / 2.0
-    sword_objects = _add_sword("XTZ_SWORD_WEST", sword_h, x - half_axis, y, z, collection) + _add_sword("XTZ_SWORD_EAST", sword_h, x + half_axis, y, z, collection)
+    x_axes = [float(v) for v in swords.get("axes_local_x_m", [-sword_h / 2.0, sword_h / 2.0])]
+    front_range = swords.get("front_offset_m", [4.0, 4.0])
+    front_offset = (float(front_range[0]) + float(front_range[1])) / 2.0
+    sword_y = y - front_offset
+    base_z = z + float(swords.get("base_height_m", 0.0))
+
+    sword_objects = _add_sword("XTZ_SWORD_WEST", sword_h, x + x_axes[0], sword_y, base_z, collection)
+    sword_objects += _add_sword("XTZ_SWORD_EAST", sword_h, x + x_axes[1], sword_y, base_z, collection)
     for obj in sword_objects:
         obj["xtz_asset_id"] = swords["asset_id"]
-        obj["xtz_world_anchor_status"] = NON_CANON_PROXY_TAG
+        obj["xtz_world_anchor_status"] = "CANON_A1_LOCKED_RANGE_MIDPOINT_PROXY"
+        obj["xtz_front_offset_m"] = front_offset
     return {"gate_objects": [left, right, lintel], "sword_objects": sword_objects, "anchor": Vector(anchor)}
 
 
-def build_axis(axis_data: dict, start=(0.0, 2000.0, 2.0)):
-    """Build an engineering preview curve; all unresolved waypoints remain proxy-only."""
+def build_axis(axis_data: dict):
+    """Build the locked A1 50m-control curve; detailed stair geometry is a later phase."""
     collection = get_or_create_collection("XTZ_CentralAxis")
-    total_m = float(axis_data["total_centerline_km"]) * 1000.0
-    sx, sy, sz = start
-    offsets = [0, -110, 85, -145, 110, -95, 135, -70, 0, 45]
-    points = []
-    for i, xoff in enumerate(offsets):
-        t = i / (len(offsets) - 1)
-        points.append((sx + xoff, sy + total_m * t, sz + 12.0 + 820.0 * (t ** 1.35)))
+    nodes = axis_data["axis_nodes_km"]
+    elevations = axis_data["axis_node_elevations_m"]
+    if len(nodes) != len(elevations):
+        raise ValueError("axis_nodes_km and axis_node_elevations_m length mismatch")
 
-    curve_data = bpy.data.curves.new("XTZ_AXIS_PreviewCurveData", type="CURVE")
+    points = [
+        (float(x_km) * 1000.0, float(y_km) * 1000.0, float(z_m))
+        for (x_km, y_km), z_m in zip(nodes, elevations)
+    ]
+
+    curve_data = bpy.data.curves.new("XTZ_AXIS_A1_ControlCurveData", type="CURVE")
     curve_data.dimensions = "3D"
-    curve_data.bevel_depth = 6.0
-    curve_data.bevel_resolution = 3
-    spline = curve_data.splines.new("BEZIER")
-    spline.bezier_points.add(len(points) - 1)
-    for bp, co in zip(spline.bezier_points, points):
-        bp.co = co
-        bp.handle_left_type = "AUTO"
-        bp.handle_right_type = "AUTO"
+    curve_data.bevel_depth = 4.0
+    curve_data.bevel_resolution = 2
+    spline = curve_data.splines.new("POLY")
+    spline.points.add(len(points) - 1)
+    for point, co in zip(spline.points, points):
+        point.co = (*co, 1.0)
 
-    obj = bpy.data.objects.new("XTZ_AXIS_NON_CANON_PREVIEW", curve_data)
+    obj = bpy.data.objects.new("XTZ_AXIS_A1_CONTROL_CURVE", curve_data)
     collection.objects.link(obj)
     obj["xtz_asset_id"] = axis_data["asset_id"]
-    obj["xtz_geometry_status"] = NON_CANON_PROXY_TAG
-    obj["xtz_warning"] = "Replace with canonical A1 waypoints before production camera paths are approved."
-    obj["xtz_stair_count"] = int(axis_data["nine_stages"]["stairs"])
-    obj["xtz_segment_count"] = int(axis_data["nine_stages"]["segments"])
+    obj["xtz_geometry_status"] = CANON_A1_CONTROL_TAG
+    obj["xtz_detail_status"] = "REQUIRES_D2_10M_AND_ASSET_1M_DETAIL"
+    obj["xtz_warning"] = "A1 nodes are locked. Inter-node stairs/platforms are not final construction geometry."
+    obj["xtz_stair_count"] = int(axis_data["total_steps"])
+    obj["xtz_segment_count"] = len(axis_data["stages"])
+    obj["xtz_max_continuous_sightline_m"] = int(axis_data["geometry_rules"]["max_continuous_route_alignment_sightline_m"])
     return obj, points
 
 
@@ -185,8 +216,8 @@ def build_cameras(camera_data: dict, axis_points: Iterable[tuple]):
     collection = get_or_create_collection("XTZ_Cameras")
     points = list(axis_points)
     start = Vector(points[0])
-    target = Vector(points[min(3, len(points) - 1)])
-    drone = add_camera("XTZ_CAM_DJI_28MM_PROXY", 28.0, (start.x, start.y - 120.0, start.z + 28.0), target, collection)
+    target = Vector(points[min(2, len(points) - 1)])
+    drone = add_camera("XTZ_CAM_DJI_28MM_PROXY", 28.0, (start.x, start.y - 120.0, start.z + 12.0), target, collection)
     drone["xtz_camera_system"] = camera_data["camera_system"]
     drone["xtz_usage"] = "real-drone path preview"
     drone["xtz_position_status"] = NON_CANON_PROXY_TAG
