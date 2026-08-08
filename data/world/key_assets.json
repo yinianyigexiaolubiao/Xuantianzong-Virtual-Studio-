@@ -1,0 +1,182 @@
+{
+  "schema_version": "0.1.0",
+  "status": "CANON_B1_LOCKED",
+  "canon_source": "玄天宗世界设定总纲 V1.6.1 / B1 正式版",
+  "coordinate_system": {
+    "unit_xy": "km",
+    "unit_z": "absolute_elevation_m"
+  },
+  "assets": [
+    {
+      "id": "XTZ-PLT-001",
+      "name": "接天阵台",
+      "type": "ceremonial_platform",
+      "coord_km": [0.0, 9.10],
+      "elevation_m": 1270,
+      "plan_m": [122, 96],
+      "height_m": 14,
+      "visibility": "main_axis_visible",
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BLD-010",
+      "name": "接天阵门",
+      "type": "gate",
+      "coord_km": [0.0, 9.08],
+      "elevation_m": 1310,
+      "plan_m": [42, 28],
+      "height_m": 22,
+      "visibility": "xuantian_peak_reception",
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BLD-011",
+      "name": "礼制等候院",
+      "type": "courtyard_proxy",
+      "coord_km": [0.0, 9.20],
+      "elevation_m": 1510,
+      "plan_m": [90, 62],
+      "height_m": 20,
+      "visibility": "xuantian_peak_ceremonial",
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BLD-002",
+      "name": "玄天殿",
+      "type": "main_palace",
+      "coord_km": [0.0, 9.31],
+      "elevation_m": 1610,
+      "plan_m": [98, 76],
+      "height_m": 45,
+      "visual_rank": "S",
+      "material_rule": "最高礼制玉质体系，玉白+淡金+少量朱红，玉质牌匾，禁止黑匾与普通琉璃瓦",
+      "visibility": "ultimate_visual_center",
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BLD-012",
+      "name": "祖师堂",
+      "type": "ancestral_hall",
+      "coord_km": [-0.20, 9.50],
+      "elevation_m": 1625,
+      "plan_m": [58, 42],
+      "height_m": 30,
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BLD-013",
+      "name": "掌门院",
+      "type": "courtyard",
+      "coord_km": [0.22, 9.48],
+      "elevation_m": 1595,
+      "plan_m": [86, 66],
+      "height_m": 23,
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BLD-014",
+      "name": "魂灯殿",
+      "type": "hall",
+      "coord_km": [-0.29, 9.40],
+      "elevation_m": 1588,
+      "plan_m": [52, 36],
+      "height_m": 25,
+      "v0_1_build": true
+    },
+    {
+      "id": "XTZ-BST-001",
+      "name": "玄天獬豸西",
+      "type": "guardian_beast_anchor",
+      "coord_km": [-0.22, 3.76],
+      "elevation_m": 614,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-BST-002",
+      "name": "玄天獬豸东",
+      "type": "guardian_beast_anchor",
+      "coord_km": [0.22, 3.76],
+      "elevation_m": 614,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-BST-003",
+      "name": "狻猊玄武门西",
+      "type": "guardian_beast_anchor",
+      "coord_km": [0.05, 7.15],
+      "elevation_m": 1030,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-BST-004",
+      "name": "狻猊玄武门东",
+      "type": "guardian_beast_anchor",
+      "coord_km": [0.43, 7.15],
+      "elevation_m": 1030,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-BST-005",
+      "name": "狻猊玄天门西",
+      "type": "guardian_beast_anchor",
+      "coord_km": [-0.05, 8.40],
+      "elevation_m": 1190,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-BST-006",
+      "name": "狻猊玄天门东",
+      "type": "guardian_beast_anchor",
+      "coord_km": [0.29, 8.40],
+      "elevation_m": 1190,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-SPC-001",
+      "name": "九宫问心境入口",
+      "type": "special_space_entrance",
+      "coord_km": [-0.15, 6.52],
+      "elevation_m": 930,
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-SPC-002",
+      "name": "玄元洞天",
+      "type": "hidden_space",
+      "coord_km": [0.34, 9.43],
+      "elevation_m": 1560,
+      "visibility": "hidden",
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-SPC-003",
+      "name": "地火核心",
+      "type": "underground_core",
+      "coord_km": [-0.55, 6.62],
+      "elevation_m": 520,
+      "visibility": "underground",
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-BLD-020",
+      "name": "九渊镇妖塔",
+      "type": "sealed_tower",
+      "coord_km": [0.80, 10.90],
+      "elevation_m": 1000,
+      "top_elevation_cap_m": 1120,
+      "visibility": "not_visible_from_front_gate",
+      "v0_1_build": false
+    },
+    {
+      "id": "XTZ-TREE-003",
+      "name": "若木",
+      "type": "divine_tree",
+      "coord_km": [2.00, 4.45],
+      "elevation_m": null,
+      "height_m": 260,
+      "location_note": "万木峰西侧落霞谷",
+      "v0_1_build": false
+    }
+  ],
+  "engineering_note": "B1坐标、标高与外包络用于Digital Twin锁位；V0.1只生成核心建筑Proxy，不代表最终建筑造型。"
+}
