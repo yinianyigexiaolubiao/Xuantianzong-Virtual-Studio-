@@ -1,0 +1,78 @@
+{
+  "project": "Xuantianzong Virtual Studio",
+  "registry_version": "2026-08-08",
+  "sole_current_canon": {
+    "name": "玄天宗世界设定总纲 V1.6.1 全量合并锁定版",
+    "status": "SOLE_CURRENT_CANON",
+    "date": "2026-08-07",
+    "conflict_rule": "V1.6.1 explicit text and locked values win; older files remain source history only."
+  },
+  "control_stack": [
+    {
+      "id": "A1",
+      "name": "玄天宗 V1.6-A 总平面与高程控制书 A1 正式控制版",
+      "class": "TECH_CONTROL",
+      "precision": "50m macro spatial control",
+      "controls": ["coordinate system", "nine-peak terrain skeleton", "elevation", "ancient road", "nine-stage axis", "Xuantian Peak envelope", "rear zone", "water", "Xuanyue Gate", "Twin Swords"]
+    },
+    {
+      "id": "B1",
+      "name": "玄天宗 V1.6-B 九峰功能与关键资产布局 B1 正式版",
+      "class": "TECH_CONTROL",
+      "precision": "10m functional layout",
+      "controls": ["peak functions", "population", "building coverage", "central assets", "traffic", "airspace"]
+    },
+    {
+      "id": "C1",
+      "name": "玄天宗 V1.6-C 视觉与高阶神兽出镜控制书 C1 正式版",
+      "class": "VISUAL_CONTROL",
+      "controls": ["visual hierarchy", "materials", "brightness", "xianxia atmosphere", "beast appearance rules", "image/video acceptance"]
+    },
+    {
+      "id": "E1",
+      "name": "玄天宗 V1.6-E V12固定相机与视线控制书 E1 总确认稿",
+      "class": "CAMERA_CONTROL",
+      "controls": ["V12 strategic camera", "composition anchors", "visibility", "rear-zone occlusion", "strategic-view QC"],
+      "not_for": ["real DJI single-lens flight path"]
+    },
+    {
+      "id": "F1",
+      "name": "玄天宗 V1.6-F 三维灰模与比例控制书 F1 总确认稿",
+      "class": "GRAYBOX_CONTROL",
+      "basis": ["V1.6.1", "A1", "B1", "C1", "E1"],
+      "controls": ["100m terrain massing", "continuous ridge chains", "central valley", "rear ridge massing", "heavy inverted Xuantian Peak envelope", "B1 envelope blocks", "E1 graybox fit"]
+    },
+    {
+      "id": "G1",
+      "name": "玄天宗 V1.6-G1 正式母图生成控制稿",
+      "class": "FUTURE_HERO_IMAGE_CONTROL",
+      "status": "LOCKED",
+      "controls": ["formal master-image generation", "Xuantian Peak remains inverted", "Xuantian Hall first visual subject", "no moving locked assets for composition", "no AI-invented large landmarks", "composition-scale-beast triple acceptance"]
+    }
+  ],
+  "historical_reference": [
+    "V1.6 D1 preliminary design",
+    "V1.6 full-audit locked version",
+    "V1.5 V12 visual master integration",
+    "V1.4 / V1.3 / V1.2 / V1.1 world-bible history",
+    "older strategic maps and concept images"
+  ],
+  "deprecated": [
+    "five-peak topology",
+    "nine isolated regular cones",
+    "nine large floating islands / regular ring",
+    "straight white sky stair from Xuanyue Gate to Xuantian Hall",
+    "disk / slab / UFO Xuantian Peak",
+    "dark western castle visual language",
+    "global blue/neon treatment",
+    "uniform all-jade natural/production materials",
+    "treating E1 stitched camera as a real DJI single-lens shot"
+  ],
+  "engineering_labels": [
+    "LOCKED_DESIGN",
+    "LOCKED_GEOMETRY_VALIDATED",
+    "LOCKED_VISUALLY_VALIDATED",
+    "LOCKED_DESIGN_NOT_VISUALLY_VALIDATED",
+    "NON_CANON_PROXY"
+  ]
+}
