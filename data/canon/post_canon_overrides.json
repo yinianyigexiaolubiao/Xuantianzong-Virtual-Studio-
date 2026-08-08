@@ -1,0 +1,62 @@
+{
+  "registry_version": "2026-08-08-r1",
+  "base_world_canon": "玄天宗世界设定总纲_V1.6.1_全量合并锁定版",
+  "policy": "Later explicit user-approved LOCKED modules supersede the base canon only for fields explicitly listed in their lock scope. All non-overridden fields continue to use V1.6.1.",
+  "overrides": [
+    {
+      "id": "OVR-BEAST-001",
+      "domain": "six_high_tier_beasts",
+      "status": "ACTIVE_LOCKED_OVERRIDE",
+      "reason": "Post-V1.6.1 user-approved beast asset system explicitly establishes CANONICAL_BEASTS as sole beast truth, locks V1.0 registry, F2 dimensions/placements and downstream G1 usage.",
+      "authority_chain": [
+        "玄天宗_神兽创作强制门禁_V2.0/CANONICAL_BEASTS.json",
+        "六兽神话学约束层_V1.0_锁定版.json",
+        "六兽正式资产注册表_V1.0_LOCKED.json",
+        "F2_六兽真实尺度植入_设计参数与验收.json",
+        "F2_LOCK_RELEASE_NOTE.txt",
+        "F3_形态深化与V12套合_设计参数.json (source REVIEW; downstream PASSED_BY_G1)",
+        "玄天宗_V1.6-G1_正式母图生成控制稿_已锁定记录.json"
+      ],
+      "supersedes_base_fields": [
+        "high_tier_beast_dimensions.白泽",
+        "high_tier_beast_dimensions.玄雷夔",
+        "high_tier_beast_dimensions.毕方",
+        "high_tier_beast_dimensions.夫诸",
+        "high_tier_beast_dimensions.九天玄应龙",
+        "high_tier_beast_dimensions.太玄玄武",
+        "九天玄应龙.wingspan",
+        "九天玄应龙.winged_identity"
+      ],
+      "current": {
+        "白泽": {"normal":{"shoulder_height_m":90,"body_length_m":150,"horn_crown_span_m":120},"manifest":{"shoulder_height_m":240,"body_length_m":380,"horn_crown_span_m":300}},
+        "玄雷夔": {"normal":{"max_body_height_m":110,"body_length_m":170},"manifest":{"max_body_height_m":280,"body_length_m":430},"hard_visual":["one_leg","no_horns"],"deprecated_fields":["主雷角55米","显圣主雷角130米"]},
+        "毕方": {"normal":{"standing_height_m":120,"wingspan_m":300},"manifest":{"standing_height_m":320,"wingspan_m":900},"hard_visual":["one_leg"]},
+        "夫诸": {"normal":{"shoulder_height_m":85,"body_length_m":150,"four_horn_span_m":130},"manifest":{"shoulder_height_m":220,"body_length_m":360,"four_horn_span_m":320},"hard_visual":["four_independent_horn_roots"]},
+        "九天玄应龙": {"normal":{"body_length_m":1200,"airspace_envelope_m":1800},"manifest":{"body_length_m":3600,"airspace_envelope_m":5500},"hard_visual":["wingless_oriental_ancestral_dragon"],"note":"1800m/5500m are occupancy/coil-control envelopes, not a required closed circular body pose."},
+        "太玄玄武": {"normal":{"shell_max_diameter_m":850,"snake_length_m":1400},"manifest":{"shell_max_diameter_m":2200,"snake_length_m":3800},"hard_visual":["tortoise_snake_dual_spirit","snake_must_not_become_dragon"]}
+      },
+      "f2_locked_placements_m": {
+        "白泽": [3220,7800,1420],
+        "玄雷夔": [-1780,7550,1220],
+        "毕方": [3050,6280,1220],
+        "夫诸": [2430,8730,1450],
+        "九天玄应龙": [350,9300,2050],
+        "太玄玄武": [950,8050,1010]
+      },
+      "binary_evidence": {
+        "f2_manifest": "MANIFEST_SHA256.json",
+        "direct_file_library_binaries_found": false,
+        "manifest_verifies_named_glbs_and_sha256": true
+      }
+    }
+  ],
+  "verified_no_override_required": [
+    "sacred_tree_scales_and_ruomu_position",
+    "xuantian_peak_envelope_and_vertical_limits",
+    "xuanyue_gate_dimensions",
+    "twin_sword_dimensions_and_V10_identity",
+    "nine_peak_macro_topology",
+    "ancient_road_and_nine_stage_axis",
+    "rear_zone_and_water_system"
+  ]
+}
