@@ -1,0 +1,35 @@
+{
+  "project": "Xuantianzong Virtual Studio",
+  "milestone": "Digital Twin V0.1",
+  "canon": "玄天宗世界设定总纲 V1.6.1 + V1.6-A A1 正式控制版",
+  "peak_count": 9,
+  "gate_anchor_status": "CANON_A1_LOCKED",
+  "gate_anchor": {
+    "center_km": [
+      0.0,
+      3.7
+    ],
+    "ground_elevation_m": 610
+  },
+  "ancient_road_status": "CANON_A1_LOCKED",
+  "ancient_road_control_points": 9,
+  "ancient_road_actual_length_km": 6.0,
+  "central_axis_status": "CANON_A1_LOCKED",
+  "central_axis_control_nodes": 10,
+  "central_axis_actual_length_km": 7.2,
+  "key_assets_status": "CANON_B1_LOCKED",
+  "v0_1_key_asset_proxy_count": 7,
+  "continuous_entry_route": "接引院 → 十二里入山古道 → 玄岳关 → 九段玄阶 → 接天阵台 → 玄天峰核心建筑群",
+  "frame_start": 1,
+  "frame_end": 360,
+  "fps": 24,
+  "preview_camera": "XTZ_CAM_DJI_28MM_PROXY",
+  "preview_duration_s": 15.0,
+  "deliverables": {
+    "blend": "build/xuantianzong_digital_twin_v0.1.blend",
+    "global_graybox": "build/xuantianzong_digital_twin_v0.1_global_graybox.png",
+    "gate_preview_video": "build/xuantianzong_digital_twin_v0.1_gate_preview.mp4",
+    "validation_report": "build/digital_twin_v0.1_validation.md"
+  },
+  "warning": "A1/B1 world anchors, control points and approved envelopes are locked. Graybox meshes, detailed road/stair geometry, E1 preview rig and DJI preview path remain engineering proxies unless explicitly promoted by a later approved specification."
+}

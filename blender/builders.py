@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Iterable
 
 import bpy
+from math import atan2
+
 from mathutils import Vector
 
 NON_CANON_PROXY_TAG = "NON_CANON_PROXY"
@@ -41,6 +43,12 @@ def add_cube(name, size_xyz, location, collection):
     return obj
 
 
+def tag_proxy(obj, reason="V0.1 auditable graybox geometry"):
+    obj["xtz_geometry_status"] = NON_CANON_PROXY_TAG
+    obj["xtz_proxy_reason"] = reason
+    return obj
+
+
 def add_proxy_peak(peak: dict, collection):
     x_km, y_km = peak["center_km"]
     summit = float(peak["summit_elevation_m"])
@@ -52,7 +60,10 @@ def add_proxy_peak(peak: dict, collection):
         deepest = peak.get("deepest_inverted_spire_elevation_m")
         if deepest is not None:
             base_z = float(deepest)
-            proxy_height = summit - base_z
+            # The broad inverted body terminates at the locked palace terrace,
+            # leaving B1 core architecture visible. A separate crown reaches the summit.
+            terrace = peak.get("main_palace_terrace_elevation_m", [summit, summit])
+            proxy_height = float(terrace[0]) - base_z
             unresolved = False
         else:
             proxy_height = 470.0
@@ -69,8 +80,8 @@ def add_proxy_peak(peak: dict, collection):
     radius_y = core_y_km * 500.0
     bpy.ops.mesh.primitive_cone_add(
         vertices=48,
-        radius1=1.0,
-        radius2=0.16 if not floating else 0.38,
+        radius1=0.08 if floating else 1.0,
+        radius2=1.0 if floating else 0.16,
         depth=1.0,
         location=(x_km * 1000.0, y_km * 1000.0, base_z + proxy_height / 2.0),
     )
@@ -93,21 +104,81 @@ def add_proxy_peak(peak: dict, collection):
 
 def build_peaks(peaks_data: dict):
     collection = get_or_create_collection("XTZ_Peaks")
-    return [add_proxy_peak(p, collection) for p in peaks_data["peaks"]]
+    peaks = [add_proxy_peak(p, collection) for p in peaks_data["peaks"]]
+
+    xuan_data = next(p for p in peaks_data["peaks"] if p.get("floating"))
+    x_km, y_km = xuan_data["center_km"]
+    terrace_z = float(xuan_data["main_palace_terrace_elevation_m"][0])
+    summit_z = float(xuan_data["summit_elevation_m"])
+    bpy.ops.mesh.primitive_cone_add(
+        vertices=32,
+        radius1=1.0,
+        radius2=0.08,
+        depth=1.0,
+        location=(x_km * 1000.0, y_km * 1000.0 + 250.0, (terrace_z + summit_z) / 2.0),
+    )
+    crown = bpy.context.object
+    crown.name = "XTZ_XUANTIAN_SUMMIT_CROWN_NON_CANON_PROXY"
+    crown.scale = (170.0, 130.0, summit_z - terrace_z)
+    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
+    move_to_collection(crown, collection)
+    tag_proxy(crown, "Summit crown profile is provisional; 1680m summit and terrace envelope are locked")
+    crown["xtz_asset_id"] = xuan_data["id"]
+    crown["xtz_formal_peak"] = False
+    crown["xtz_summit_elevation_m"] = summit_z
+
+    # A low, continuous valley/foothill mass makes the eight terrestrial peaks
+    # read as two ridge chains instead of nine disconnected floating cones.
+    # Its exact surface is deliberately tagged Proxy; peak centers/envelopes stay locked.
+    valley = add_cube(
+        "XTZ_TERRAIN_ValleyMass_NON_CANON_PROXY",
+        (7600.0, 10800.0, 240.0),
+        (0.0, 6000.0, 420.0),
+        collection,
+    )
+    tag_proxy(valley, "Terrain surface/topology awaits D2 lock; only supports V0.1 spatial reading")
+    valley["xtz_formal_peak"] = False
+    return peaks
 
 
-def _add_sword(name, height_m, x_m, y_m, base_z, collection):
-    blade_h = height_m * 0.78
-    grip_h = height_m * 0.12
-    guard_w = height_m * 0.24
-    blade = add_cube(f"{name}_Blade", (height_m * 0.085, height_m * 0.025, blade_h), (x_m, y_m, base_z + grip_h + blade_h / 2.0), collection)
-    guard = add_cube(f"{name}_Guard", (guard_w, height_m * 0.05, height_m * 0.035), (x_m, y_m, base_z + grip_h), collection)
-    grip = add_cube(f"{name}_Grip", (height_m * 0.045, height_m * 0.045, grip_h), (x_m, y_m, base_z + grip_h / 2.0), collection)
-    pommel = add_cube(f"{name}_Pommel", (height_m * 0.07, height_m * 0.055, height_m * 0.05), (x_m, y_m, base_z), collection)
+def _add_sword(name, sword_data, x_m, y_m, base_z, collection):
+    """Build a dimensionally exact 44m V10 double-edged straight-sword proxy."""
+    height_m = float(sword_data["height_m"])
+    blade_h = float(sword_data.get("blade_length_m", height_m * 0.75))
+    guard_w = float(sword_data.get("hilt_guard_m", 8.0))
+    pommel_h = float(sword_data.get("pommel_m", 3.0))
+    blade_w_range = sword_data.get("blade_max_width_m", [3.6, 4.0])
+    blade_w = sum(float(v) for v in blade_w_range) / len(blade_w_range)
+    blade_t = float(sword_data.get("body_max_thickness_m", 0.65))
+    blade_bottom = base_z + height_m - blade_h
+
+    # Front silhouette is a straight, symmetric double-edged blade with a single point.
+    verts = [
+        (-blade_w / 2, -blade_t / 2, blade_bottom),
+        (blade_w / 2, -blade_t / 2, blade_bottom),
+        (0.0, -blade_t / 2, base_z + height_m),
+        (-blade_w / 2, blade_t / 2, blade_bottom),
+        (blade_w / 2, blade_t / 2, blade_bottom),
+        (0.0, blade_t / 2, base_z + height_m),
+    ]
+    verts = [(vx + x_m, vy + y_m, vz) for vx, vy, vz in verts]
+    faces = [(0, 1, 2), (5, 4, 3), (0, 3, 4, 1), (1, 4, 5, 2), (2, 5, 3, 0)]
+    mesh = bpy.data.meshes.new(f"{name}_BladeMesh")
+    mesh.from_pydata(verts, [], faces)
+    mesh.update()
+    blade = bpy.data.objects.new(f"{name}_Blade", mesh)
+    collection.objects.link(blade)
+
+    grip_top = blade_bottom - 1.0
+    grip_bottom = base_z + pommel_h
+    guard = add_cube(f"{name}_Guard", (guard_w, 1.4, 1.0), (x_m, y_m, blade_bottom - 0.5), collection)
+    grip = add_cube(f"{name}_Grip", (1.5, 1.2, grip_top - grip_bottom), (x_m, y_m, (grip_top + grip_bottom) / 2.0), collection)
+    pommel = add_cube(f"{name}_Pommel", (2.5, 1.6, pommel_h), (x_m, y_m, base_z + pommel_h / 2.0), collection)
     blade["xtz_shape"] = "V10 double-edged straight sword proxy"
     blade["xtz_light_rule"] = "ice-blue only along blade edges/limited array patterns"
     for obj in (blade, guard, grip, pommel):
-        obj["xtz_geometry_status"] = NON_CANON_PROXY_TAG
+        tag_proxy(obj, "V10 identity and locked envelope are Canon; detailed weapon asset is pending")
+        obj["xtz_sword_height_m"] = height_m
     return [blade, guard, grip, pommel]
 
 
@@ -158,8 +229,8 @@ def build_gate(gate_data: dict, anchor=None):
     sword_y = y - front_offset
     base_z = z + float(swords.get("base_height_m", 0.0))
 
-    sword_objects = _add_sword("XTZ_SWORD_WEST", sword_h, x + x_axes[0], sword_y, base_z, collection)
-    sword_objects += _add_sword("XTZ_SWORD_EAST", sword_h, x + x_axes[1], sword_y, base_z, collection)
+    sword_objects = _add_sword("XTZ_SWORD_WEST", swords, x + x_axes[0], sword_y, base_z, collection)
+    sword_objects += _add_sword("XTZ_SWORD_EAST", swords, x + x_axes[1], sword_y, base_z, collection)
     for obj in sword_objects:
         obj["xtz_asset_id"] = swords["asset_id"]
         obj["xtz_world_anchor_status"] = "CANON_A1_LOCKED_RANGE_MIDPOINT_PROXY"
@@ -202,7 +273,77 @@ def build_ancient_road(road_data: dict):
         "A0-A8 are locked A1 control points. This polyline is a spatial-control guide, "
         "not the final 6km road-edge geometry."
     )
+
+    # A0 is Canon-locked as 接引院出口. The courtyard volume is intentionally
+    # provisional because no Canon dimensions have been serialized yet.
+    a0 = points[0]
+    court = add_cube(
+        "XTZ_JIEYIN_COURTYARD_NON_CANON_PROXY",
+        (80.0, 60.0, 8.0),
+        (a0[0], a0[1] - 30.0, a0[2] + 4.0),
+        collection,
+    )
+    tag_proxy(court, "接引院 dimensions/architecture are not locked; A0 exit anchor is locked")
+    court["xtz_anchor_dependency"] = "A0 CANON_A1_LOCKED"
     return obj, points
+
+
+def _append_box(verts, faces, center, size_xyz, yaw):
+    """Append a rotated box to a combined mesh without creating 3600 objects."""
+    cx, cy, cz = center
+    sx, sy, sz = (float(v) / 2.0 for v in size_xyz)
+    c, s = __import__("math").cos(yaw), __import__("math").sin(yaw)
+    start = len(verts)
+    for lx, ly, lz in (
+        (-sx, -sy, -sz), (sx, -sy, -sz), (sx, sy, -sz), (-sx, sy, -sz),
+        (-sx, -sy, sz), (sx, -sy, sz), (sx, sy, sz), (-sx, sy, sz),
+    ):
+        verts.append((cx + lx * c - ly * s, cy + lx * s + ly * c, cz + lz))
+    faces.extend(
+        [
+            (start, start + 1, start + 2, start + 3),
+            (start + 4, start + 7, start + 6, start + 5),
+            (start, start + 4, start + 5, start + 1),
+            (start + 1, start + 5, start + 6, start + 2),
+            (start + 2, start + 6, start + 7, start + 3),
+            (start + 4, start, start + 3, start + 7),
+        ]
+    )
+
+
+def build_stair_graybox(axis_data: dict, points, collection):
+    """Create all 3600 visible treads while preserving the ten locked A1 nodes."""
+    verts, faces = [], []
+    built_steps = 0
+    for p0, p1, stage in zip(points, points[1:], axis_data["stages"]):
+        start, end = Vector(p0), Vector(p1)
+        count = int(stage["steps"])
+        horizontal = Vector((end.x - start.x, end.y - start.y, 0.0))
+        run = horizontal.length
+        if run <= 0:
+            raise ValueError(f"Stage {stage['stage']} has zero horizontal run")
+        direction = horizontal.normalized()
+        yaw = atan2(direction.y, direction.x) - 1.5707963267948966
+        tread_depth = max(0.35, run / count)
+        rise = (end.z - start.z) / count
+        for i in range(count):
+            t = (i + 0.5) / count
+            center = start.lerp(end, t)
+            top_z = start.z + (i + 1) * rise
+            _append_box(verts, faces, (center.x, center.y, top_z - rise / 2.0), (8.0, tread_depth, max(0.08, rise)), yaw)
+        built_steps += count
+
+    mesh = bpy.data.meshes.new("XTZ_NINE_STAGE_STAIRS_3600_PROXY_MESH")
+    mesh.from_pydata(verts, [], faces)
+    mesh.update()
+    obj = bpy.data.objects.new("XTZ_NINE_STAGE_STAIRS_3600_NON_CANON_PROXY", mesh)
+    collection.objects.link(obj)
+    tag_proxy(obj, "Tread count and A1 nodes are locked; inter-node construction geometry awaits D2")
+    obj["xtz_stair_count"] = built_steps
+    obj["xtz_declared_actual_length_km"] = float(axis_data["actual_length_km"])
+    obj["xtz_stage_count"] = len(axis_data["stages"])
+    obj["xtz_control_node_count"] = len(points)
+    return obj
 
 
 def build_axis(axis_data: dict):
@@ -236,6 +377,7 @@ def build_axis(axis_data: dict):
     obj["xtz_stair_count"] = int(axis_data["total_steps"])
     obj["xtz_segment_count"] = len(axis_data["stages"])
     obj["xtz_max_continuous_sightline_m"] = int(axis_data["geometry_rules"]["max_continuous_route_alignment_sightline_m"])
+    build_stair_graybox(axis_data, points, collection)
     return obj, points
 
 

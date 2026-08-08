@@ -35,6 +35,8 @@ def configure_scene():
     scene.render.resolution_percentage = 100
     scene.render.fps = 24
     scene.render.image_settings.file_format = "PNG"
+    scene.render.film_transparent = False
+    scene.world.color = (0.035, 0.045, 0.065)
 
 
 def load_preview_path() -> dict:
@@ -77,6 +79,14 @@ def write_manifest(
         "frame_start": scene.frame_start,
         "frame_end": frame_end,
         "fps": scene.render.fps,
+        "preview_camera": "XTZ_CAM_DJI_28MM_PROXY",
+        "preview_duration_s": frame_end / scene.render.fps,
+        "deliverables": {
+            "blend": "build/xuantianzong_digital_twin_v0.1.blend",
+            "global_graybox": "build/xuantianzong_digital_twin_v0.1_global_graybox.png",
+            "gate_preview_video": "build/xuantianzong_digital_twin_v0.1_gate_preview.mp4",
+            "validation_report": "build/digital_twin_v0.1_validation.md"
+        },
         "warning": scene["xtz_warning"],
     }
     out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")

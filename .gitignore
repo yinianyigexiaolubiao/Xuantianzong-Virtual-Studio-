@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+build/*.blend1
+build/qa_frames/

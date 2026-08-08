@@ -13,12 +13,12 @@ Every generated object must be either:
 
 At V0.1 the nine peak centers, elevations, core spans, gate dimensions, twin-sword height/spacing, world envelope, axis length/stage count and camera lens rules are Canon-controlled.
 
-Still Proxy until dedicated locked data is serialized:
+Still Proxy until dedicated detailed data is serialized:
 
-- exact 玄岳关 world anchor;
-- exact A1 central-axis waypoint coordinates;
-- 玄天峰 lower-body depth/profile;
-- exact 玄天殿 geometry and placement on 玄天峰;
+- terrain surfaces and detailed peak profiles (while A1 centers/envelopes remain locked);
+- detailed ancient-road edges between locked A0–A8 controls;
+- inter-node stair/platform construction between the ten locked A1 axis nodes;
+- 玄岳关, V10 sword and B1 building art geometry (their locked anchors/envelopes remain Canon-controlled);
 - exact E1 rig transform;
 - production DJI flight paths.
 
@@ -30,9 +30,11 @@ Running `blender/world_builder.py` creates:
 - nine peak proxy objects;
 - 玄岳关 dimensional proxy;
 - two V10 straight-sword proxies at 68 m axis separation and 44 m height;
-- a nine-stage bent ceremonial-axis preview;
+- a nine-stage bent ceremonial-axis control curve plus one combined 3600-tread graybox mesh;
+- all seven required B1 core-asset envelope proxies;
 - one 28 mm DJI preview camera;
 - three 50 mm cameras representing the E1 virtual stitch.
+- a global graybox inspection render, 15-second/24fps H.264 gate-pass preview and validation report.
 
 ## Acceptance gates
 
@@ -41,12 +43,10 @@ Running `blender/world_builder.py` creates:
 3. all peak XY centers and summit elevations match `peaks.json`;
 4. 玄岳关 bounding dimensions are 52 × 18 × 34 m;
 5. twin swords are 44 m high and 68 m apart on axis;
-6. ceremonial-axis preview is visibly non-straight and marked NON_CANON_PROXY;
+6. the ten-node ceremonial axis is visibly non-straight and the 3600-tread inter-node geometry is marked NON_CANON_PROXY;
 7. E1 and DJI cameras remain separate systems;
 8. no script silently writes a missing Proxy value back into Canon JSON.
 
 ## Next lock required
 
-Before V0.2 production paths, serialize the A1 exact waypoint/control-point table for:
-
-`玄岳关 → 迎仙坪 → 九段玄阶 → 玄武门 → 玄天门 → 镇岳广场/北斗坛 → 接天阵台`.
+Before V0.2 production paths, serialize D2/detail geometry for road edges, stage platforms, terrain surfaces and production camera transforms without moving the existing A1/B1 controls.
