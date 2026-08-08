@@ -49,7 +49,7 @@ def render_qc(scene):
         raise RuntimeError(f"Expected >=10 QC cameras, found {len(cameras)}")
     for index, camera_name in enumerate(cameras, 1):
         render_still(scene, camera_name, QC_OUTPUT / f"qc_{index:02d}_{camera_name.removeprefix('XTZ_CAM_QC_').lower()}.png")
-    render_still(scene, "XTZ_CAM_QC_12_F1_STRATEGIC", OUTPUT / "xuantianzong_mini_digital_twin_v0.2_global.png", 1600, 900)
+    render_still(scene, "XTZ_CAM_QC_12_F1_STRATEGIC", OUTPUT / "xuantianzong_mini_v0.2_global.png", 1600, 900)
 
 
 def render_video(scene):
@@ -65,7 +65,7 @@ def render_video(scene):
     scene.render.ffmpeg.codec = "H264"
     scene.render.ffmpeg.constant_rate_factor = "MEDIUM"
     scene.render.ffmpeg.ffmpeg_preset = "GOOD"
-    scene.render.filepath = str(OUTPUT / "xuantianzong_gate_flythrough_v0.2.mp4")
+    scene.render.filepath = str(OUTPUT / "xuantianzong_mini_v0.2_gate_preview.mp4")
     bpy.ops.render.render(animation=True)
     print(f"[XTZ V0.2] VIDEO RENDERED {scene.render.filepath}")
 

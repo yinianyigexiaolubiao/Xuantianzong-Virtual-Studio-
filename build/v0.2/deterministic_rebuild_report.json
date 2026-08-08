@@ -17,7 +17,7 @@
       "sha256": "241c89ff6b547975f14f23f6391a55af522b7f43f4898aa0e92f146f6899fd5c"
     },
     "a_manifest": {
-      "path": "build\\v0.2\\digital_twin_v0.2_manifest.json",
+      "path": "build\\v0.2\\manifest.json",
       "sha256": "4d56a4cd7ba7d9f9ffd95650b60275d8e115aa7a763f305da24d851314998f62"
     },
     "b_manifest": {

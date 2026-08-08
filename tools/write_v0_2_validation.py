@@ -14,15 +14,15 @@ def main():
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     args = parser.parse_args()
     output = args.root / "build" / "v0.2"
-    manifest = load(output / "digital_twin_v0.2_manifest.json")
+    manifest = load(output / "manifest.json")
     geometry = load(output / "geometry_validation.json")
     camera = load(output / "camera_metrics.json")
     deterministic = load(output / "deterministic_rebuild_report.json")
     qc = sorted((output / "qc").glob("*.png"))
     media = {
         "blend": output / "xuantianzong_mini_digital_twin_v0.2.blend",
-        "preview": output / "xuantianzong_gate_flythrough_v0.2.mp4",
-        "global": output / "xuantianzong_mini_digital_twin_v0.2_global.png",
+        "preview": output / "xuantianzong_mini_v0.2_gate_preview.mp4",
+        "global": output / "xuantianzong_mini_v0.2_global.png",
     }
     missing = [str(path) for path in media.values() if not path.is_file() or path.stat().st_size == 0]
     expected_qc_count = int(manifest["qc_camera_count"])
