@@ -1,0 +1,95 @@
+{
+  "registry_version": "2026-08-08-r1",
+  "project": "Xuantianzong Virtual Studio",
+  "policy": {
+    "base_world_canon": "玄天宗世界设定总纲 V1.6.1 全量合并锁定版",
+    "post_canon_rule": "A later explicit user-approved LOCKED module supersedes V1.6.1 only for fields explicitly within its lock scope.",
+    "unregistered_rule": "Chat text, temporary prompts and concept images do not become formal engineering assets unless registered.",
+    "binary_states": ["DIRECT_FOUND","MANIFEST_VERIFIED","REFERENCED_ONLY","NOT_APPLICABLE"]
+  },
+  "assets": [
+    {"id":"CANON-V161-DOCX","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版.docx","class":"BASE_CANON","status":"SOLE_BASE_WORLD_CANON","file_library":"DIRECT_FOUND"},
+    {"id":"CANON-V161-PDF","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版.pdf","class":"BASE_CANON_RENDER","status":"DERIVED_FROM_DOCX","file_library":"DIRECT_FOUND"},
+    {"id":"CANON-V161-TXT","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版.txt","class":"BASE_CANON_TEXT_EXPORT","status":"DERIVED_FROM_DOCX","file_library":"DIRECT_FOUND"},
+    {"id":"CANON-V161-PARAM","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版_设计参数.json","class":"BASE_CANON_MACHINE_DATA","status":"LOCKED_PARAMETER_EXPORT","file_library":"DIRECT_FOUND"},
+
+    {"id":"CTRL-A1","title":"玄天宗_V1.6-A_总平面与高程控制书_A1正式版.pdf","class":"TECH_CONTROL","status":"MERGED_INTO_V1.6.1_BUT_RETAINED_FOR_ENGINEERING_DETAIL","file_library":"DIRECT_FOUND"},
+    {"id":"CTRL-B1-DOCX","title":"玄天宗_V1.6-B_九峰功能与关键资产布局_B1正式版.docx","class":"TECH_CONTROL","status":"MERGED_INTO_V1.6.1_BUT_RETAINED_FOR_ENGINEERING_DETAIL","file_library":"DIRECT_FOUND"},
+    {"id":"CTRL-B1-PDF","title":"玄天宗_V1.6-B_九峰功能与关键资产布局_B1正式版.pdf","class":"TECH_CONTROL","status":"MERGED_INTO_V1.6.1_BUT_RETAINED_FOR_ENGINEERING_DETAIL","file_library":"DIRECT_FOUND"},
+    {"id":"CTRL-C1","title":"玄天宗 V1.6-C 视觉与高阶神兽出镜控制书 C1 正式版（DOCX/PDF/JSON）","class":"VISUAL_CONTROL","status":"MERGED_INTO_V1.6.1_BUT_RETAINED_FOR_ENGINEERING_DETAIL","file_library":"DIRECT_FOUND_FAMILY"},
+    {"id":"CTRL-E1","title":"玄天宗_V1.6-E_V12固定相机与视线控制书_E1总确认稿（DOCX/PDF）","class":"CAMERA_CONTROL","status":"ACTIVE_TECH_CONTROL","file_library":"DIRECT_FOUND_FAMILY"},
+    {"id":"CTRL-F1-DOCX","title":"玄天宗_V1.6-F_三维灰模与比例控制书_F1总确认稿.docx","class":"GRAYBOX_CONTROL","status":"ACTIVE_TECH_CONTROL","file_library":"DIRECT_FOUND"},
+    {"id":"CTRL-F1-PDF","title":"玄天宗_V1.6-F_三维灰模与比例控制书_F1总确认稿.pdf","class":"GRAYBOX_CONTROL","status":"ACTIVE_TECH_CONTROL","file_library":"DIRECT_FOUND"},
+    {"id":"BIN-F1-OBJ","title":"玄天宗_V1.6-F_F1_三维灰模场景.obj","class":"DERIVED_BINARY","status":"F1_GRAYBOX","file_library":"DIRECT_FOUND"},
+    {"id":"BIN-F1-GLB","title":"玄天宗_V1.6-F_F1_三维灰模场景.glb","class":"DERIVED_BINARY","status":"F1_GRAYBOX","file_library":"REFERENCED_ONLY"},
+
+    {"id":"BEAST-GATE-README","title":"README_强制执行.txt","class":"ASSET_CONTROL","status":"ACTIVE_BEAST_GATE_V2","file_library":"DIRECT_FOUND"},
+    {"id":"BEAST-GATE-JSON","title":"玄天宗_神兽创作流程_当前生效标准.json","class":"ASSET_CONTROL","status":"LOCKED","file_library":"DIRECT_FOUND","package_sha256":"7b780a9b7bf948fef21b0e5c977e84593e46e1e7bebdc2a0be073fb3004d5866"},
+    {"id":"BEAST-GATE-TXT","title":"玄天宗_神兽创作流程_当前生效标准.txt","class":"ASSET_CONTROL","status":"LOCKED","file_library":"DIRECT_FOUND"},
+    {"id":"BEAST-GATE-ZIP","title":"玄天宗_神兽创作强制门禁_V2.0.zip","class":"ASSET_CONTROL_PACKAGE","status":"LOCKED_PACKAGE_REFERENCE","file_library":"REFERENCED_ONLY","sha256":"7b780a9b7bf948fef21b0e5c977e84593e46e1e7bebdc2a0be073fb3004d5866"},
+    {"id":"BEAST-CANONICAL","title":"CANONICAL_BEASTS.json","class":"POST_CANON_LOCKED_OVERRIDE_SOURCE","status":"SOLE_BEAST_SOURCE_OF_TRUTH_BY_LOCKED_WORKFLOW","file_library":"REFERENCED_BY_MULTIPLE_LOCKED_SOURCES"},
+    {"id":"BEAST-MYTH","title":"六兽神话学约束层_V1.0_锁定版.json","class":"ASSET_CONTROL","status":"LOCKED","file_library":"DIRECT_FOUND"},
+    {"id":"BEAST-SCALE","title":"比例数据_正式锁定源.json","class":"ASSET_CONTROL","status":"PARTIALLY_SUPERSEDED_BY_DEPRECATED_FIELDS","file_library":"DIRECT_FOUND"},
+    {"id":"BEAST-REGISTRY","title":"六兽正式资产注册表_V1.0_LOCKED.json","class":"POST_CANON_LOCKED_OVERRIDE_SOURCE","status":"LOCKED_USER_APPROVED","file_library":"DIRECT_FOUND"},
+    {"id":"BEAST-REFHASH","title":"REFERENCE_HASHES.json","class":"HASH_REFERENCE","status":"REFERENCE_HASHES","file_library":"DIRECT_FOUND"},
+
+    {"id":"F2-PARAM","title":"F2_六兽真实尺度植入_设计参数与验收.json","class":"POST_CANON_LOCKED_OVERRIDE_SOURCE","status":"LOCKED_USER_CONFIRMED","file_library":"DIRECT_FOUND"},
+    {"id":"F2-LOCK","title":"F2_LOCK_RELEASE_NOTE.txt","class":"LOCK_RECORD","status":"LOCKED_USER_CONFIRMED","file_library":"DIRECT_FOUND"},
+    {"id":"F2-MANIFEST","title":"MANIFEST_SHA256.json","class":"HASH_MANIFEST","status":"LOCKED","file_library":"DIRECT_FOUND","manifest_sha256":"5e44beb2aa97027b2960c76675b8c1f7f924e2597aa415da26615723582f945f"},
+    {"id":"F2-PLAN","title":"01_F2_六兽常态世界空间试放总平面.png","class":"DERIVED_BINARY","status":"F2_REVIEW_OUTPUT","file_library":"MANIFEST_VERIFIED","sha256":"f3b4a86db5ba2a137402204f3749d7780528408e5d85aeeb703a9cf3c3955983","size_bytes":164295},
+    {"id":"F2-SCALE-PNG","title":"02_F2_常态量级复验.png","class":"DERIVED_BINARY","status":"F2_REVIEW_OUTPUT","file_library":"MANIFEST_VERIFIED","sha256":"a3ba1d13178220062cf2ff0b6eb2a478a981803d67b8b5770a62b4a05f937351","size_bytes":119608},
+    {"id":"F2-BAIZE-GLB","title":"F2_白泽_常态真实尺度试放.glb","class":"DERIVED_BINARY","status":"F2_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"e31a88668211d071df3c2a5006eb8a6226285743cc7a9f75405e836a3a36f2ec","size_bytes":555996},
+    {"id":"F2-KUI-GLB","title":"F2_玄雷夔_常态真实尺度试放.glb","class":"DERIVED_BINARY","status":"F2_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"fe26d914302e8ca7a4fc587f9b8186c93d2005755d51b5fb853a749e563734b2","size_bytes":558412},
+    {"id":"F2-BIFANG-GLB","title":"F2_毕方_常态真实尺度试放.glb","class":"DERIVED_BINARY","status":"F2_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"20f4534a32bbabf0716827641ec148d8fa5aef9071a6e58b80c67c850dca248b","size_bytes":558348},
+    {"id":"F2-FUZHU-GLB","title":"F2_夫诸_常态真实尺度试放.glb","class":"DERIVED_BINARY","status":"F2_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"b06b221f33c2f7876e7446fcc0e247a76559698a58c5b203c3a7acfdbdf11f03","size_bytes":555964},
+    {"id":"F2-DRAGON-GLB","title":"F2_九天玄应龙_常态真实尺度试放.glb","class":"DERIVED_BINARY","status":"F2_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"5c7412b9db5c4750e86733da885aca95331a684fca4c2cf4029bb8f03931cc81","size_bytes":568444},
+    {"id":"F2-XUANWU-GLB","title":"F2_太玄玄武_常态真实尺度试放.glb","class":"DERIVED_BINARY","status":"F2_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"28a22be0620cfbcf4292e002730b3e30cc0c5b3d8dc46f74ef875b132ed4736c","size_bytes":567468},
+    {"id":"F2-MASTER-GLB","title":"玄天宗_V1.6-F2_六兽常态真实尺度_技术总场景.glb","class":"DERIVED_BINARY","status":"F2_MASTER_PROXY","file_library":"MANIFEST_VERIFIED","sha256":"65fc09960b13553658c81637516d347a4fd3e04eb6eaeb70d27da401da356ce9","size_bytes":596860},
+
+    {"id":"F3-PARAM","title":"F3_形态深化与V12套合_设计参数.json","class":"ASSET_CONTROL","status":"SOURCE_REVIEW_DOWNSTREAM_PASSED_BY_G1","file_library":"DIRECT_FOUND"},
+    {"id":"F3-MASTER-GLB","title":"玄天宗_V1.6-F3_六兽LOD1.5_与F1总场景.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-BAIZE-GLB","title":"F3_白泽_LOD1.5形态代理.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-KUI-GLB","title":"F3_玄雷夔_LOD1.5形态代理.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-BIFANG-GLB","title":"F3_毕方_LOD1.5形态代理.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-FUZHU-GLB","title":"F3_夫诸_LOD1.5形态代理.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-DRAGON-GLB","title":"F3_九天玄应龙_LOD1.5形态代理.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-XUANWU-GLB","title":"F3_太玄玄武_LOD1.5形态代理.glb","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-OVERLAY","title":"01_F3_V12六兽套合投影.png","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"F3-VISIBILITY","title":"02_F3_V12可见性矩阵.png","class":"DERIVED_BINARY","status":"F3_REFERENCED_OUTPUT","file_library":"REFERENCED_ONLY"},
+    {"id":"G1-LOCK","title":"玄天宗_V1.6-G1_正式母图生成控制稿_已锁定记录.json","class":"FUTURE_HERO_IMAGE_CONTROL","status":"LOCKED","file_library":"DIRECT_FOUND"},
+
+    {"id":"HIST-V10","title":"玄天宗世界设定总纲_V1.0.docx","class":"HISTORICAL","status":"SUPERSEDED","file_library":"DIRECT_FOUND"},
+    {"id":"HIST-V11","title":"玄天宗世界设定总纲_V1.1.docx","class":"HISTORICAL","status":"SUPERSEDED","file_library":"DIRECT_FOUND"},
+    {"id":"HIST-V12","title":"玄天宗世界设定总纲_V1.2.docx","class":"HISTORICAL","status":"SUPERSEDED","file_library":"DIRECT_FOUND"},
+    {"id":"HIST-V13","title":"玄天宗世界设定总纲_V1.3_建筑视觉定稿版.docx","class":"HISTORICAL","status":"SUPERSEDED","file_library":"DIRECT_FOUND"},
+    {"id":"HIST-V14","title":"玄天宗世界设定总纲_V1.4_最新总图整合定稿版.docx","class":"HISTORICAL","status":"SUPERSEDED","file_library":"DIRECT_FOUND"},
+    {"id":"HIST-V15","title":"玄天宗世界设定总纲_V1.5_V12视觉母图整合正式版.docx/pdf","class":"VISUAL_REFERENCE_HISTORICAL","status":"SUPERSEDED_FOR_WORLD_DATA","file_library":"DIRECT_FOUND_FAMILY"},
+    {"id":"HIST-V16","title":"玄天宗世界设定总纲_V1.6_全量校核锁定版.docx/pdf/txt","class":"HISTORICAL","status":"MERGED_INTO_V1.6.1","file_library":"DIRECT_FOUND_FAMILY"},
+    {"id":"HIST-D1","title":"玄天宗_V1.6-A_总平面与高程控制书_D1初步设计稿.docx/pdf","class":"HISTORICAL_TECH_DESIGN","status":"SUPERSEDED_BY_A1_AND_V1.6.1_LOCKS","file_library":"DIRECT_FOUND_FAMILY"}
+  ],
+  "known_visual_reference_families": [
+    "玄天宗_全宗宏大战略总图_正式母图_V5.png",
+    "玄天宗_全宗宏大战略总图_正式标注版_V6.png",
+    "玄天宗_全宗宏大战略总图_正式母图_V6.jpeg",
+    "玄天宗_全宗宏大战略总图_远景与双剑精修版_V11.png"
+  ],
+  "known_deprecated_concepts": [
+    "five_peak_topology",
+    "isolated_regular_cone_peaks",
+    "nine_large_floating_islands_or_regular_ring",
+    "straight_white_sky_stair_gate_to_hall",
+    "disk_slab_ufo_xuantian_peak",
+    "dark_western_castle_visual_language",
+    "global_blue_neon_treatment",
+    "uniform_all_jade_natural_and_production_materials",
+    "E1_stitched_camera_as_real_DJI",
+    "Xuanlei_Kui_horn_fields",
+    "winged_Jiutian_Xuanying_Dragon"
+  ],
+  "tracked_recovery_gaps": [
+    {"asset":"玄天宗_V1.6-F_F1_三维灰模场景.glb","evidence":"F1 document reference","blocking_v0_2":false},
+    {"asset":"玄天宗_神兽创作强制门禁_V2.0.zip","evidence":"locked workflow reference + package SHA256","blocking_v0_2":false},
+    {"asset":"CANONICAL_BEASTS.json","evidence":"multiple locked source-of-truth references + V1.0 locked registry values","blocking_v0_2":false},
+    {"asset":"F3 GLB/PNG output set","evidence":"F3 design JSON paths; no direct file/manifest found in current File Library search","blocking_v0_2":false}
+  ]
+}
