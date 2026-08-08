@@ -15,6 +15,7 @@ from xtz_common import load_world_json, repo_root
 from builders import (
     add_world_envelope,
     animate_camera_from_path,
+    build_ancient_road,
     build_axis,
     build_cameras,
     build_gate,
@@ -40,7 +41,14 @@ def load_preview_path() -> dict:
     return data["paths"][0]
 
 
-def write_manifest(scene, peak_count: int, frame_end: int, gate_data: dict, axis_data: dict):
+def write_manifest(
+    scene,
+    peak_count: int,
+    frame_end: int,
+    gate_data: dict,
+    road_data: dict,
+    axis_data: dict,
+):
     out = repo_root() / "build" / "digital_twin_v0.1_manifest.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     manifest = {
@@ -53,8 +61,13 @@ def write_manifest(scene, peak_count: int, frame_end: int, gate_data: dict, axis
             "center_km": gate_data["world_anchor"]["center_km"],
             "ground_elevation_m": gate_data["world_anchor"]["ground_elevation_m"],
         },
+        "ancient_road_status": road_data["status"],
+        "ancient_road_control_points": len(road_data["control_points"]),
+        "ancient_road_actual_length_km": road_data["actual_length_km"],
         "central_axis_status": axis_data["status"],
         "central_axis_control_nodes": len(axis_data["axis_nodes_km"]),
+        "central_axis_actual_length_km": axis_data["actual_length_km"],
+        "continuous_entry_route": "接引院 → 十二里入山古道 → 玄岳关 → 九段玄阶 → 接天阵台",
         "frame_start": scene.frame_start,
         "frame_end": frame_end,
         "fps": scene.render.fps,
@@ -70,6 +83,7 @@ def build():
 
     peaks = load_world_json("peaks.json")
     gate = load_world_json("xuanyue_gate.json")
+    ancient_road = load_world_json("ancient_road.json")
     axis = load_world_json("central_axis.json")
     cameras = load_world_json("camera_e1.json")
     preview_path = load_preview_path()
@@ -78,12 +92,18 @@ def build():
     add_world_envelope(width_km, depth_km)
     peak_objects = build_peaks(peaks)
 
-    # World anchors/control nodes are read directly from locked A1 data.
-    # Meshes are still proxy geometry and must not be mistaken for final asset art.
+    # A1 anchors/control points are read directly from locked Canon data.
+    # Road/axis curves are control guides; detailed edges, stairs and platforms are later-stage assets.
     gate_result = build_gate(gate)
+    road_obj, road_points = build_ancient_road(ancient_road)
     axis_obj, axis_points = build_axis(axis)
-    camera_result = build_cameras(cameras, axis_points)
 
+    road_end = Vector(road_points[-1])
+    axis_start = Vector(axis_points[0])
+    if (road_end - axis_start).length > 0.01:
+        raise ValueError("Ancient-road A8 and central-axis start are not spatially continuous")
+
+    camera_result = build_cameras(cameras, axis_points)
     frame_end = animate_camera_from_path(camera_result["drone"], preview_path)
 
     scene = bpy.context.scene
@@ -91,20 +111,25 @@ def build():
     scene["xtz_milestone"] = "Digital Twin V0.1"
     scene["xtz_canon"] = peaks["canon"]
     scene["xtz_gate_anchor_status"] = gate["world_anchor"]["status"]
+    scene["xtz_ancient_road_status"] = ancient_road["status"]
     scene["xtz_axis_status"] = axis["status"]
     scene["xtz_warning"] = (
-        "A1 world anchors/control nodes are locked. Graybox meshes, E1 preview rig and DJI preview path "
-        "remain engineering proxies unless explicitly promoted by a later approved specification."
+        "A1 world anchors/control points are locked. Graybox meshes, detailed road/stair geometry, "
+        "E1 preview rig and DJI preview path remain engineering proxies unless explicitly promoted "
+        "by a later approved specification."
     )
 
-    write_manifest(scene, len(peak_objects), frame_end, gate, axis)
+    write_manifest(scene, len(peak_objects), frame_end, gate, ancient_road, axis)
 
     print(
         f"[XTZ] Built {len(peak_objects)} peak proxies, gate proxy at A1 anchor {tuple(gate_result['anchor'])}, "
-        f"A1 axis with {len(axis_points)} locked control nodes, "
+        f"ancient road with {len(road_points)} locked A1 control points, "
+        f"central axis with {len(axis_points)} locked A1 control nodes, "
         f"{1 + len(camera_result['e1'])} cameras and preview animation."
     )
-    print(f"[XTZ] Axis object status: {axis_obj['xtz_geometry_status']}")
+    print(f"[XTZ] Ancient-road status: {road_obj['xtz_geometry_status']}")
+    print(f"[XTZ] Axis status: {axis_obj['xtz_geometry_status']}")
+    print("[XTZ] Entry-route continuity: PASS (ancient-road A8 == central-axis start == Xuanyue Gate)")
 
     if os.environ.get("XTZ_SAVE_BLEND") == "1":
         out = repo_root() / "build" / "xuantianzong_digital_twin_v0.1.blend"
