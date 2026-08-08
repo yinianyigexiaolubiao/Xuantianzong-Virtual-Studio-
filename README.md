@@ -1,49 +1,133 @@
-# Xuantianzong Virtual Studio / 玄天宗虚拟制片系统
+# 玄天宗 / Xuantianzong — Project Archive + Virtual Studio
 
-Current phase: **Digital Twin V0.2 — Mini Spatial Proof**
+Current active engineering phase: **Digital Twin V0.2 — Mini Spatial Proof**.
 
-This repository builds 玄天宗 as a persistent, spatially consistent virtual production world.
+This repository is now the **project-level engineering/archive index for the entire recovered 玄天宗 project**, not only the Blender Digital Twin branch.
 
-Core pipeline:
+It preserves and classifies:
+
+- current world Canon and technical controls;
+- Digital Twin / AI Virtual Studio engineering;
+- historical visual mother images and strategic maps;
+- promotional-film / real-DJI production rules;
+- disciple phone-content and 五蕴测灵石 content lineage;
+- 《玄元炼气诀》 text and ancient-book publishing branch;
+- historical 数字玄天宗 V0.1–V0.3 lineage;
+- high-tier beasts / sacred trees / F2-F3-G1 controls;
+- superseded world-bible and technical versions.
+
+Core active film pipeline remains:
 
 `Canon / Registered Locked Assets → Machine Data → Blender Digital Twin → Camera/QC → Control Passes → AI Video → Final Film`
 
-## Read first
+## Read first — full project
 
-1. `CODEX.md` — engineering contract and current milestone.
-2. `docs/canon/AUTHORITY_STACK_V1.6.1.md` — current authority/conflict model.
-3. `docs/canon/MASTER_ASSET_REGISTRY_2026-08-08.md` — complete engineering asset census.
-4. `data/canon/master_asset_registry_2026-08-08.json` — machine-readable asset census.
-5. `docs/canon/POST_CANON_LOCKED_OVERRIDES.md` — later user-approved scoped overrides.
-6. `data/canon/post_canon_overrides.json` — machine-readable override registry.
-7. `docs/canon/ASSET_CLASSIFICATION_2026-08-08.md` — source classification.
-8. `docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md` — mandatory graybox/topology rules for V0.2.
-9. `data/canon/source_registry_v1.6.1.json` — control-stack registry.
-10. `data/world/*.json` — current Blender/world geometry projection.
+1. `docs/project/MASTER_PROJECT_REGISTRY_2026-08-08.md` — human-readable full-project census.
+2. `data/project/master_project_registry_2026-08-08.json` — machine-readable full-project registry.
+3. `docs/project/SYNC_STATUS_2026-08-08.md` — what is physically mirrored vs File-Library-only/manifest/reference evidence.
+4. `CODEX.md` — engineering contract and current milestone.
 
-## Authority model
+Then read the active Canon stack:
 
-### Base world canon
+5. `docs/canon/AUTHORITY_STACK_V1.6.1.md`
+6. `docs/canon/MASTER_ASSET_REGISTRY_2026-08-08.md`
+7. `data/canon/master_asset_registry_2026-08-08.json`
+8. `docs/canon/POST_CANON_LOCKED_OVERRIDES.md`
+9. `data/canon/post_canon_overrides.json`
+10. `docs/canon/ASSET_CLASSIFICATION_2026-08-08.md`
+11. `data/canon/source_registry_v1.6.1.json`
+12. `data/world/*.json`
+
+For V0.2 also read:
+
+13. `docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md`
+
+## Project-level archive modules
+
+The full project registry must always contain exactly these recovered branches:
+
+1. `CANON_AND_WORLD`
+2. `DIGITAL_TWIN`
+3. `VISUAL_ASSETS`
+4. `PROMO_FILM_AND_DJI`
+5. `PHONE_CONTENT`
+6. `XUANYUAN_LIANQI`
+7. `DIGITAL_XUANTIANZONG`
+8. `BEASTS_AND_SACRED_TREES`
+9. `HISTORICAL_ARCHIVE`
+
+`tools/validate_project_registry.py` and CI prevent one of these branches from silently disappearing from the repository index.
+
+## Archive honesty rule
+
+**Registered is not the same as physically mirrored.**
+
+Some older PNG/PDF/DOCX/OBJ/GLB/TXT artifacts are directly present in ChatGPT File Library, but the current File Library search interface does not expose arbitrary raw bytes to the GitHub connector. They are therefore recorded honestly with states such as:
+
+- `FILE_LIBRARY_ONLY_BINARY`
+- `FILE_LIBRARY_ONLY_TEXT`
+- `MANIFEST_VERIFIED`
+- `REFERENCED_ONLY`
+
+An artifact may be marked `GITHUB_MIRRORED` only when exact content/bytes are actually present here. See `docs/project/SYNC_STATUS_2026-08-08.md`.
+
+## Current world authority
+
+### Base world Canon
 
 **玄天宗世界设定总纲 V1.6.1 · 全量合并锁定版** is the `BASE_WORLD_CANON`.
 
-It remains the integrated master for geography, nine peaks, institutions, architecture hierarchy, A1/B1/C1 world parameters and every field not explicitly superseded later.
+It is the integrated master for geography, nine peaks, institutions, architecture hierarchy and every field not explicitly superseded by a later registered LOCKED scoped module.
 
-### Scoped post-canon locked assets
+### Scoped post-Canon locked assets
 
-After V1.6.1 was produced, the project continued and some specialist asset modules were explicitly approved/LOCKED by the user. A later module may supersede V1.6.1 **only for the fields explicitly inside its lock scope**.
+A later explicit user-approved LOCKED specialist module may supersede V1.6.1 **only inside its registered lock scope**.
 
-Current confirmed override:
+Current confirmed scoped override:
 
 - `OVR-BEAST-001` — six high-tier beasts.
 
 Examples:
-- 玄雷夔 is one-footed and **has no horns**; old thunder-horn fields are deprecated.
-- 九天玄应龙 is a **wingless** Xuantianzong-derived Oriental ancestral dragon; normal body length 1200m.
+- 玄雷夔: one leg, **no horns**.
+- 九天玄应龙: **wingless** Oriental ancestral dragon; normal physical body length 1200m.
 
-Do not use “newer file wins” as a general rule. DRAFT/REVIEW files, prompts and concept images cannot override Canon by themselves.
+Do not use “newer file wins” as a general rule. Drafts, review files, prompts and concept images cannot override Canon on their own.
 
-## Current status
+## Recovered non-Digital-Twin branches
+
+### 《玄元炼气诀》
+
+Recovered text lineage, ancient-book layout iterations, generated pages and a **214-page `玄元炼气诀_古籍真本版_无标点.pdf`** are registered under `XUANYUAN_LIANQI`.
+
+Archive guide: `docs/archive/xuanyuan_lianqi/README.md`.
+
+### 数字玄天宗
+
+The historical V0.3 living-world/canon-engine snapshot is mirrored at:
+
+`docs/archive/digital_xuantianzong/STATUS_2026-08-04.md`
+
+Its then-current V1.3 authority is historical; current world authority is V1.6.1/current scoped locks.
+
+### Visual-development lineage
+
+Historical gate, Xuantian Hall, nine-peak maps and strategic mother-image families are registered and classified rather than discarded.
+
+Archive guide: `docs/archive/visual_assets/README.md`.
+
+### Promo film / DJI / 小云雀 lineage
+
+The approved direction is **宣传片，不是纪录片**, with no invented protagonist and a real-DJI physical-flight premise.
+
+Archive guide: `docs/archive/promo_film/README.md`.
+
+### Phone-content / spirit-stone lineage
+
+Real-phone imaging rules and the outer-disciple 五蕴测灵石 introduction branch are preserved at:
+
+`docs/archive/phone_content/README.md`.
+
+## Current Digital Twin status
 
 ### V0.1 — Engineering Proof
 
@@ -53,7 +137,7 @@ It proved:
 
 `registered world data → Blender → .blend → render → 15s MP4`
 
-V0.1 is not the visual-spatial target: its flat base, isolated cone massing and disk-like Xuantian Peak reading exposed implementation gaps against F1/C1/E1.
+V0.1 is not the visual-spatial target: its flat base, isolated cone massing and disk-like Xuantian Peak exposed implementation gaps against F1/C1/E1.
 
 ### V0.2 — Mini Spatial Proof
 
@@ -61,25 +145,12 @@ Active work is tracked in GitHub Issue #2.
 
 Primary scope:
 - final 800–1000m of 十二里入山古道;
-- real valley/mountain-pass massing around 玄岳关;
+- continuous valley/mountain-pass massing around 玄岳关;
 - 玄岳关 + 双阙剑;
 - 300–500m interior valley;
-- distant 玄天峰 inverted-mountain silhouette;
-- physically plausible DJI camera motion;
+- distant heavy inverted 玄天峰 silhouette;
+- physically plausible DJI motion;
 - Canon + Geometry + Visual + Camera + Deterministic-Rebuild validation.
-
-F2/F3 beast controls are preserved for later relevant shots but are not a reason to add high-tier beasts to the V0.2 gate proof.
-
-## Recovered / verified historical engineering assets
-
-The census confirmed that earlier work contains valuable technical assets rather than only obsolete pictures:
-
-- F1 graybox DOCX/PDF and an actual F1 OBJ are directly discoverable.
-- F2 is LOCKED; its manifest verifies six individual GLBs, a Master GLB and review PNGs with SHA256/size even though this census did not directly surface each binary as a File Library item.
-- F3 source JSON exists; source status is REVIEW, while downstream locked G1 records F3 as passed.
-- G1 is LOCKED formal master-image control.
-
-See the Master Asset Registry for exact binary-evidence state (`DIRECT_FOUND`, `MANIFEST_VERIFIED`, `REFERENCED_ONLY`).
 
 ## Non-negotiable topology
 
@@ -92,4 +163,4 @@ See the Master Asset Registry for exact binary-evidence state (`DIRECT_FOUND`, `
 
 ## Do not start yet
 
-Until V0.2 spatial/camera QC passes, do not treat Seedance, Wan, ComfyUI, LoRA, Unreal or final high-detail art as the project bottleneck.
+Until V0.2 spatial/camera QC passes, do not treat Seedance, Wan, ComfyUI, LoRA, Unreal or final high-detail art as the active bottleneck.
