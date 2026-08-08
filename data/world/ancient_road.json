@@ -1,0 +1,43 @@
+{
+  "asset_id": "XTZ-ROAD-001",
+  "name": "十二里入山古道",
+  "status": "CANON_A1_LOCKED",
+  "canon_source": "玄天宗世界设定总纲 V1.6.1 / V1.6-A A1 D1-03锁定",
+  "start": "接引院",
+  "end": "玄岳关",
+  "plan_projection_km": 2.48,
+  "actual_length_km": 6.0,
+  "total_climb_m": 165,
+  "average_grade_percent": 2.75,
+  "major_switchbacks": 7,
+  "control_points": [
+    {"id": "A0", "coord_km": [0.05, 1.22], "elev_m": 445, "function": "接引院出口"},
+    {"id": "A1", "coord_km": [-0.40, 1.50], "elev_m": 458, "function": "第一次向西回折"},
+    {"id": "A2", "coord_km": [0.45, 1.80], "elev_m": 475, "function": "东侧缓坡林道"},
+    {"id": "A3", "coord_km": [-0.50, 2.15], "elev_m": 495, "function": "西侧山腰回折"},
+    {"id": "A4", "coord_km": [0.40, 2.45], "elev_m": 520, "function": "中段东坡台地"},
+    {"id": "A5", "coord_km": [-0.40, 2.80], "elev_m": 545, "function": "中段第二次西折"},
+    {"id": "A6", "coord_km": [0.30, 3.10], "elev_m": 570, "function": "进入关前山林"},
+    {"id": "A7", "coord_km": [-0.20, 3.35], "elev_m": 592, "function": "最终转折与山门显露点"},
+    {"id": "A8", "coord_km": [0.00, 3.70], "elev_m": 610, "function": "玄岳关"}
+  ],
+  "widths_m": {
+    "normal_clear": 5.5,
+    "minimum_local": 4.2,
+    "major_switchback": 8.0,
+    "rest_or_checkpoint": [10.0, 12.0],
+    "final_jade_approach_clear": 12.0,
+    "final_jade_approach_total_control": [14.0, 16.0],
+    "gate_forecourt_platform": [28.0, 32.0]
+  },
+  "final_jade_approach_length_m": 180,
+  "material_rule": "常规路段为天然山石、夯实土基和局部石板；最后180m过渡为白玉迎宾道。",
+  "transport_rule": "服务入宗礼制、步行、巡守、灵兽与应急，不承担宗门主要物流。",
+  "gate_reveal_rule": {
+    "A0_A4": "玄岳关与双阙剑仅有零碎檐角或剑尖，不见完整山门；玄天峰不可见",
+    "A5_A6": "玄岳关上层轮廓间歇显露，双阙剑剑尖逐步出现",
+    "A7": "玄岳关与双阙剑首次完整显露，并建立远方最高视觉中心",
+    "A8": "玄岳关成为视觉中心；山门后仍不可一眼看穿完整主轴、玄天峰下部与后山"
+  },
+  "engineering_note": "A0-A8为A1锁定控制点。具体道路边缘、排水、挡墙、植被与小尺度地形在D2/资产级深化。"
+}
