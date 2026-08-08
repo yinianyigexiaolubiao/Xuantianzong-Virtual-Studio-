@@ -1,6 +1,46 @@
-# CODEX.md — Xuantianzong Virtual Studio Engineering Contract
+# CODEX.md — Xuantianzong Project + Virtual Studio Engineering Contract
 
-## Authority — read before doing anything
+## Project scope — read before doing anything
+
+This repository is the **project-level archive and active engineering home for the recovered 玄天宗 project**, not merely a Blender/Digital-Twin codebase.
+
+Before touching any project branch, read:
+
+1. `docs/project/MASTER_PROJECT_REGISTRY_2026-08-08.md`
+2. `data/project/master_project_registry_2026-08-08.json`
+3. `docs/project/SYNC_STATUS_2026-08-08.md`
+
+The project registry contains nine mandatory branches:
+
+- `CANON_AND_WORLD`
+- `DIGITAL_TWIN`
+- `VISUAL_ASSETS`
+- `PROMO_FILM_AND_DJI`
+- `PHONE_CONTENT`
+- `XUANYUAN_LIANQI`
+- `DIGITAL_XUANTIANZONG`
+- `BEASTS_AND_SACRED_TREES`
+- `HISTORICAL_ARCHIVE`
+
+Do not delete, rename away, ignore or silently redefine one of these branches merely because the current coding task concerns Digital Twin.
+
+### Archive honesty
+
+A registered historical file may be:
+
+- `GITHUB_MIRRORED`
+- `GITHUB_REGISTERED_METADATA`
+- `FILE_LIBRARY_ONLY_BINARY`
+- `FILE_LIBRARY_ONLY_TEXT`
+- `MANIFEST_VERIFIED`
+- `CHAT_RECORDED_SPEC`
+- `REFERENCED_ONLY`
+
+Never claim an old File Library artifact has been copied into GitHub unless exact content/bytes are actually present. Never recreate an old binary/text from memory and label it as the original.
+
+If a previously unknown Xuantianzong project artifact is recovered, register it in `data/project/master_project_registry_2026-08-08.json` before using it as an official project asset.
+
+## Canon authority — read before changing world data
 
 1. `玄天宗世界设定总纲 V1.6.1` is the **BASE_WORLD_CANON**, not a license to erase later user-approved locked specialist assets.
 2. Read `docs/canon/AUTHORITY_STACK_V1.6.1.md`.
@@ -21,6 +61,31 @@ Never resurrect superseded V1.6.1 beast values for those six. In particular:
 
 V0.2 does not need to place these beasts, but any code/document touched during V0.2 must not reintroduce the superseded fields.
 
+## Other project branches that must remain preserved
+
+### 《玄元炼气诀》
+
+This is an independent cultivation-text/publishing branch, not disposable prose inside the Digital Twin project. See `docs/archive/xuanyuan_lianqi/README.md`.
+
+The preferred recovered source is registered as `玄元炼气诀_真传重写版_无说明.txt`; its exact long text is File-Library-only until raw bytes/full payload can be migrated. Do not replace it with a partial reconstruction.
+
+### 数字玄天宗
+
+Historical V0.1–V0.3 living-world/canon-engine lineage is preserved in `docs/archive/digital_xuantianzong/STATUS_2026-08-04.md`. Its then-current V1.3 world authority is historical; do not use it to override current V1.6.1.
+
+### Visual assets
+
+Historical mother images/maps are catalogued under `VISUAL_ASSETS` and `docs/archive/visual_assets/README.md`. They may carry style/composition evidence but cannot override current geometry merely because they look attractive.
+
+### Promo film / DJI / phone content
+
+Preserve the production branches in:
+
+- `docs/archive/promo_film/README.md`
+- `docs/archive/phone_content/README.md`
+
+Do not convert promotional-film work into documentary narration, invent a hero, or lose the real-DJI physical-flight premise.
+
 ## Current milestone
 
 `Digital Twin V0.2 — Mini Spatial Proof`
@@ -29,7 +94,7 @@ V0.1 is preserved as `Engineering Proof`: it demonstrated `Canon/Data → JSON �
 
 V0.2 MUST inherit `docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md` rather than invent a new terrain system from scratch.
 
-## Required invariants
+## Required spatial invariants
 
 - Exactly nine formal peaks.
 - Only 玄天峰 may be a large floating main peak.
@@ -58,8 +123,10 @@ A Canon value is not automatically visually validated. If a rendered result look
 
 ## Development rules
 
+- Run `python tools/validate_project_registry.py` when changing project archive/index files.
 - Run `python tools/validate_world_data.py` before and after any edit to `data/world/`.
-- Before changing Canon/asset authority, verify the Master Registry and Override Registry first.
+- Run `python tools/validate_canon_registry.py` whenever Canon/authority/registered-lock files change.
+- Before changing Canon/asset authority, verify the Canon Master Registry and Override Registry first.
 - V0.2 must add/use a Blender geometry validator for generated transforms, bounds, clearances, collisions and path continuity.
 - Blender-generated objects must use the `XTZ_` prefix.
 - New provisional coordinates or shapes must carry `NON_CANON_PROXY` metadata.
@@ -68,7 +135,8 @@ A Canon value is not automatically visually validated. If a rendered result look
 - Prefer deterministic builders reading registered machine data over hand-positioned scene edits.
 - Preserve V0.1 delivery artifacts; V0.2 writes to a separate output directory.
 - Do not start Seedance/Wan/ComfyUI/LoRA/Unreal integration while the Mini Spatial Proof is still failing visual or camera QC.
-- Any new user-approved LOCKED asset must be added to the Master Asset Registry. If it supersedes an existing locked field, it must also be registered as a scoped post-canon override.
+- Any new user-approved LOCKED asset must be added to the Canon Master Asset Registry. If it supersedes an existing locked field, it must also be registered as a scoped post-canon override.
+- Any new project branch/artifact must also be represented in the full Project Registry.
 
 ## F1 inheritance
 
@@ -97,12 +165,13 @@ Report or validate speed, acceleration, jerk and yaw-rate limits. Avoid constant
 
 ## Acceptance ladder
 
-A milestone requires separate passes:
+A Digital Twin milestone requires separate passes:
 
-1. **Canon Validator** — source data/invariants pass.
-2. **Geometry Validator** — generated scene transforms, bounds, clearances, terrain/route continuity and collision checks pass.
-3. **Visual QC** — fixed bright-gray renders show correct silhouettes, hierarchy, occlusion and scale.
-4. **Camera QC** — DJI preview reads as physically plausible aerial movement and produces a meaningful reveal after passing Xuanyue Gate.
-5. **Deterministic Rebuild** — two clean builds reproduce the same locked transforms, bounds and camera data.
+1. **Project Registry Validator** — full project archive/index remains represented.
+2. **Canon Validator** — source data/invariants pass.
+3. **Geometry Validator** — generated scene transforms, bounds, clearances, terrain/route continuity and collision checks pass.
+4. **Visual QC** — fixed bright-gray renders show correct silhouettes, hierarchy, occlusion and scale.
+5. **Camera QC** — DJI preview reads as physically plausible aerial movement and produces a meaningful reveal after passing Xuanyue Gate.
+6. **Deterministic Rebuild** — two clean builds reproduce the same locked transforms, bounds and camera data.
 
 Do not claim complete success if only one layer passes.
