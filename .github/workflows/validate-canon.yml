@@ -1,32 +1,40 @@
-name: Validate Xuantianzong Canon
+name: Validate Xuantianzong Project
 
 on:
   push:
     paths:
       - "data/world/**"
       - "data/canon/**"
+      - "data/project/**"
       - "docs/canon/**"
+      - "docs/project/**"
+      - "docs/archive/**"
       - "CODEX.md"
       - "README.md"
       - "tools/validate_world_data.py"
       - "tools/validate_canon_registry.py"
+      - "tools/validate_project_registry.py"
       - ".github/workflows/validate-canon.yml"
   pull_request:
     paths:
       - "data/world/**"
       - "data/canon/**"
+      - "data/project/**"
       - "docs/canon/**"
+      - "docs/project/**"
+      - "docs/archive/**"
       - "CODEX.md"
       - "README.md"
       - "tools/validate_world_data.py"
       - "tools/validate_canon_registry.py"
+      - "tools/validate_project_registry.py"
       - ".github/workflows/validate-canon.yml"
 
 permissions:
   contents: read
 
 jobs:
-  validate-canon:
+  validate-project:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -42,3 +50,6 @@ jobs:
 
       - name: Validate Canon registry and scoped overrides
         run: python tools/validate_canon_registry.py
+
+      - name: Validate full project archive registry
+        run: python tools/validate_project_registry.py
