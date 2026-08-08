@@ -1,0 +1,25 @@
+{
+  "camera_system": "E1",
+  "master_camera": {
+    "name": "V12 strategic master camera",
+    "type": "static strategic reference",
+    "lens_equivalent": "50mm three-frame horizontal virtual stitch",
+    "usage": "whole sect visual benchmark",
+    "not_for": "real drone flight simulation"
+  },
+  "drone_camera": {
+    "lens_equivalent": "24-35mm",
+    "aspect_ratio": "16:9",
+    "movement": [
+      "center axis forward push",
+      "slow ascent",
+      "low angle elevation",
+      "controlled yaw"
+    ],
+    "rules": [
+      "physical camera motion",
+      "no impossible floating",
+      "no fisheye distortion"
+    ]
+  }
+}

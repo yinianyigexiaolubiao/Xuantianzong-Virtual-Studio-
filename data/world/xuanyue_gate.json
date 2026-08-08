@@ -1,0 +1,31 @@
+{
+  "asset_id": "XTZ-BLD-001",
+  "name": "玄岳关",
+  "type": "mountain_gate",
+  "dimensions_m": {
+    "width": 52,
+    "depth": 18,
+    "height": 34
+  },
+  "construction": {
+    "material": "玉质主体",
+    "accent": ["淡金结构线", "少量朱红"],
+    "doors": "玉质三门制"
+  },
+  "front_platform_m": {
+    "width": 84,
+    "depth": 32
+  },
+  "main_gate": {
+    "clear_width": 11,
+    "clear_height": 15,
+    "opening_angle": "70-80deg inward"
+  },
+  "twin_swords": {
+    "asset_id": "XTZ-WPN-001",
+    "height_m": 44,
+    "axis_distance_m": 68,
+    "shape": "V10 double-edged straight sword",
+    "light": "ice_blue restrained along blade edges and array patterns"
+  }
+}

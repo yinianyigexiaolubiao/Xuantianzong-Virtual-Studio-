@@ -1,0 +1,25 @@
+{
+  "asset_id": "XTZ-AXIS-001",
+  "name": "中央登宗主轴",
+  "total_centerline_km": 7.2,
+  "sequence": [
+    "玄天镇北门",
+    "接引院与试灵台",
+    "十二里入山古道",
+    "玄岳关与外山门",
+    "迎仙坪",
+    "外门中央谷地",
+    "九段三千六百级玄阶",
+    "玄武门",
+    "内门宫观区",
+    "玄天门",
+    "镇岳广场与北斗坛",
+    "接天阵台"
+  ],
+  "nine_stages": {
+    "stairs": 3600,
+    "segments": 9,
+    "rule": "follow terrain, no straight sky staircase"
+  },
+  "visual_rule": "礼制、身份递进、阵法核验、紧急撤离通道"
+}
