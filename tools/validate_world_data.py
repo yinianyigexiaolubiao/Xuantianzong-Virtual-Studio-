@@ -25,6 +25,7 @@ def main():
     gate = load("xuanyue_gate.json")
     road = load("ancient_road.json")
     axis = load("central_axis.json")
+    key_assets = load("key_assets.json")
     cameras = load("camera_e1.json")
     preview = load("preview_camera_paths.json")
 
@@ -138,6 +139,45 @@ def main():
     if "no straight sky staircase" not in axis["nine_stages"]["rule"]:
         fail("central-axis anti-straight-stair rule is missing")
 
+    if key_assets["status"] != "CANON_B1_LOCKED":
+        fail("key assets must remain CANON_B1_LOCKED")
+    assets = {a["name"]: a for a in key_assets["assets"]}
+    required_build = {"接天阵台", "接天阵门", "礼制等候院", "玄天殿", "祖师堂", "掌门院", "魂灯殿"}
+    actual_build = {a["name"] for a in key_assets["assets"] if a.get("v0_1_build")}
+    if actual_build != required_build:
+        fail("V0.1 B1 build set changed")
+
+    locked_core = {
+        "接天阵台": ([0.0, 9.10], 1270, [122, 96], 14),
+        "接天阵门": ([0.0, 9.08], 1310, [42, 28], 22),
+        "礼制等候院": ([0.0, 9.20], 1510, [90, 62], 20),
+        "玄天殿": ([0.0, 9.31], 1610, [98, 76], 45),
+        "祖师堂": ([-0.20, 9.50], 1625, [58, 42], 30),
+        "掌门院": ([0.22, 9.48], 1595, [86, 66], 23),
+        "魂灯殿": ([-0.29, 9.40], 1588, [52, 36], 25),
+    }
+    for name, (coord, elev, plan, height) in locked_core.items():
+        a = assets.get(name)
+        if a is None:
+            fail(f"missing B1 asset: {name}")
+        if a["coord_km"] != coord or a["elevation_m"] != elev or a["plan_m"] != plan or a["height_m"] != height:
+            fail(f"B1 anchor/envelope changed: {name}")
+
+    if assets["玄天殿"].get("visual_rank") != "S":
+        fail("玄天殿 must remain S-rank visual center")
+    if "玉质牌匾" not in assets["玄天殿"].get("material_rule", "") or "禁止黑匾" not in assets["玄天殿"].get("material_rule", ""):
+        fail("玄天殿 material/plaque rule missing")
+
+    tower = assets.get("九渊镇妖塔")
+    if tower is None or tower["coord_km"] != [0.80, 10.90] or tower["elevation_m"] != 1000:
+        fail("九渊镇妖塔 B1 anchor changed")
+    if tower["top_elevation_cap_m"] != 1120 or tower.get("visibility") != "not_visible_from_front_gate":
+        fail("九渊镇妖塔 visibility/top cap changed")
+
+    ruomu = assets.get("若木")
+    if ruomu is None or ruomu["coord_km"] != [2.00, 4.45] or ruomu["height_m"] != 260:
+        fail("若木 B1 anchor/height changed")
+
     if cameras["drone_camera"]["lens_equivalent"] != "24-35mm":
         fail("DJI camera range must remain 24-35mm equivalent")
 
@@ -159,7 +199,7 @@ def main():
             fail("preview camera crosses at/above the central opening top")
 
     print("[XTZ] world data validation: PASS")
-    print("[XTZ] nine peaks / Xuantian vertical envelope / ancient road A0-A8 / gate / 10 A1 axis nodes / 3600 stairs verified")
+    print("[XTZ] nine peaks / Xuantian envelope / ancient road / Xuanyue Gate / A1 axis / B1 core assets / camera rules verified")
 
 
 if __name__ == "__main__":
