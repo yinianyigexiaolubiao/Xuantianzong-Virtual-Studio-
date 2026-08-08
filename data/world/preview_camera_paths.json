@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "warning": "All paths in this file are engineering previews unless canon_status is explicitly changed after review.",
   "paths": [
     {
@@ -11,21 +11,26 @@
       "fps": 24,
       "duration_s": 15.0,
       "physics_intent": {
-        "average_speed_mps": 12.0,
+        "average_speed_mps": 13.0,
         "movement": "center-axis forward push with slow controlled ascent",
         "forbidden": ["fisheye", "FPV roll", "sudden acceleration", "impossible floating-camera motion"]
       },
       "anchor_dependency": {
-        "gate_anchor_m": [0.0, 2000.0, 0.0],
-        "status": "NON_CANON_PROXY",
-        "note": "Replace after absolute A1 gate waypoint is confirmed."
+        "gate_anchor_m": [0.0, 3700.0, 610.0],
+        "status": "CANON_A1_LOCKED",
+        "source": "玄岳关 A1 control point (0.00,3.70km), ground elevation 610m"
+      },
+      "clearance_intent": {
+        "central_opening_clear_m": [11.0, 15.0],
+        "camera_height_through_gate_m_abs": [620.0, 621.0],
+        "note": "Camera center remains below the 625m top of the 15m central opening while passing through the 18m-deep gate body."
       },
       "keyframes": [
-        {"t": 0.0, "location_m": [0.0, 1860.0, 18.0], "look_at_m": [0.0, 1995.0, 22.0]},
-        {"t": 3.75, "location_m": [0.0, 1905.0, 20.0], "look_at_m": [0.0, 2000.0, 23.0]},
-        {"t": 7.5, "location_m": [0.0, 1950.0, 23.0], "look_at_m": [0.0, 2005.0, 25.0]},
-        {"t": 11.25, "location_m": [0.0, 1992.0, 26.0], "look_at_m": [0.0, 2035.0, 29.0]},
-        {"t": 15.0, "location_m": [0.0, 2040.0, 30.0], "look_at_m": [0.0, 2140.0, 36.0]}
+        {"t": 0.0, "location_m": [0.0, 3545.0, 618.0], "look_at_m": [0.0, 3690.0, 620.0]},
+        {"t": 3.75, "location_m": [0.0, 3590.0, 619.0], "look_at_m": [0.0, 3700.0, 620.0]},
+        {"t": 7.5, "location_m": [0.0, 3640.0, 620.0], "look_at_m": [0.0, 3710.0, 620.5]},
+        {"t": 11.25, "location_m": [0.0, 3692.0, 620.5], "look_at_m": [0.0, 3735.0, 623.0]},
+        {"t": 15.0, "location_m": [0.0, 3740.0, 624.0], "look_at_m": [0.0, 3840.0, 630.0]}
       ]
     }
   ]
