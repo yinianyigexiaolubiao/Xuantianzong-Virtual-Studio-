@@ -166,6 +166,44 @@ def build_gate(gate_data: dict, anchor=None):
     return {"gate_objects": [left, right, lintel], "sword_objects": sword_objects, "anchor": Vector(anchor)}
 
 
+def build_ancient_road(road_data: dict):
+    """Build the locked A1 centerline-control curve from Jieyin Courtyard to Xuanyue Gate."""
+    collection = get_or_create_collection("XTZ_AncientRoad")
+    control_points = road_data["control_points"]
+    points = [
+        (
+            float(cp["coord_km"][0]) * 1000.0,
+            float(cp["coord_km"][1]) * 1000.0,
+            float(cp["elev_m"]),
+        )
+        for cp in control_points
+    ]
+
+    curve_data = bpy.data.curves.new("XTZ_ANCIENT_ROAD_A1_ControlCurveData", type="CURVE")
+    curve_data.dimensions = "3D"
+    curve_data.bevel_depth = float(road_data["widths_m"]["normal_clear"]) / 2.0
+    curve_data.bevel_resolution = 2
+    spline = curve_data.splines.new("POLY")
+    spline.points.add(len(points) - 1)
+    for point, co in zip(spline.points, points):
+        point.co = (*co, 1.0)
+
+    obj = bpy.data.objects.new("XTZ_ANCIENT_ROAD_A1_CONTROL_CURVE", curve_data)
+    collection.objects.link(obj)
+    obj["xtz_asset_id"] = road_data["asset_id"]
+    obj["xtz_geometry_status"] = CANON_A1_CONTROL_TAG
+    obj["xtz_detail_status"] = "REQUIRES_D2_10M_AND_ASSET_1M_DETAIL"
+    obj["xtz_control_point_count"] = len(control_points)
+    obj["xtz_actual_length_km"] = float(road_data["actual_length_km"])
+    obj["xtz_major_switchbacks"] = int(road_data["major_switchbacks"])
+    obj["xtz_final_jade_approach_length_m"] = float(road_data["final_jade_approach_length_m"])
+    obj["xtz_warning"] = (
+        "A0-A8 are locked A1 control points. This polyline is a spatial-control guide, "
+        "not the final 6km road-edge geometry."
+    )
+    return obj, points
+
+
 def build_axis(axis_data: dict):
     """Build the locked A1 50m-control curve; detailed stair geometry is a later phase."""
     collection = get_or_create_collection("XTZ_CentralAxis")
