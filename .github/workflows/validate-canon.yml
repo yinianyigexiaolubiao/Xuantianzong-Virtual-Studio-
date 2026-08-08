@@ -1,0 +1,31 @@
+name: Validate Xuantianzong Canon
+
+on:
+  push:
+    paths:
+      - "data/world/**"
+      - "tools/validate_world_data.py"
+      - ".github/workflows/validate-canon.yml"
+  pull_request:
+    paths:
+      - "data/world/**"
+      - "tools/validate_world_data.py"
+      - ".github/workflows/validate-canon.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-canon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate locked world data
+        run: python tools/validate_world_data.py
