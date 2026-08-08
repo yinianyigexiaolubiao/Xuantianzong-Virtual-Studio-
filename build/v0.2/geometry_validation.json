@@ -1,0 +1,520 @@
+{
+  "status": "PASS",
+  "blend": "D:\\玄天宗\\build\\v0.2\\xuantianzong_mini_digital_twin_v0.2.blend",
+  "checks": [
+    {
+      "name": "xuanyue_gate_bbox",
+      "status": "PASS",
+      "details": {
+        "actual_m": [
+          52.0,
+          18.0,
+          34.0
+        ],
+        "expected_m": [
+          52,
+          18,
+          34
+        ]
+      }
+    },
+    {
+      "name": "xuanyue_gate_transform",
+      "status": "PASS",
+      "details": {
+        "bbox_min": [
+          -26.0,
+          3691.0,
+          610.0
+        ],
+        "anchor": [
+          0,
+          3700,
+          610
+        ]
+      }
+    },
+    {
+      "name": "central_opening_clearance",
+      "status": "PASS",
+      "details": {
+        "actual_m": [
+          11.0,
+          15.0
+        ],
+        "expected_m": [
+          11,
+          15
+        ]
+      }
+    },
+    {
+      "name": "twin_sword_west_height",
+      "status": "PASS",
+      "details": {
+        "low": [
+          -38.0,
+          3695.100098,
+          612.200012
+        ],
+        "high": [
+          -30.0,
+          3696.899902,
+          656.200012
+        ],
+        "height_m": 44.0,
+        "axis_x_m": -34.0
+      }
+    },
+    {
+      "name": "twin_sword_east_height",
+      "status": "PASS",
+      "details": {
+        "low": [
+          30.0,
+          3695.100098,
+          612.200012
+        ],
+        "high": [
+          38.0,
+          3696.899902,
+          656.200012
+        ],
+        "height_m": 44.0,
+        "axis_x_m": 34.0
+      }
+    },
+    {
+      "name": "twin_sword_axis_distance",
+      "status": "PASS",
+      "details": {
+        "axes_x_m": [
+          -34.0,
+          34.0
+        ],
+        "distance_m": 68.0
+      }
+    },
+    {
+      "name": "continuous_terrain_exists",
+      "status": "PASS",
+      "details": {
+        "vertices": 38801
+      }
+    },
+    {
+      "name": "xuanyue_gate_embedded_in_mountain_pass",
+      "status": "PASS",
+      "details": {
+        "center_m": 610.0,
+        "west_m": 705.0,
+        "east_m": 714.0
+      }
+    },
+    {
+      "name": "road_geometry_continuity",
+      "status": "PASS",
+      "details": {
+        "approach_segments": 108,
+        "interior_segments": 88
+      }
+    },
+    {
+      "name": "road_gate_interior_continuity",
+      "status": "PASS",
+      "details": {
+        "approach_centerline_end": [
+          0.0,
+          3700.0,
+          610.799988
+        ],
+        "interior_centerline_start": [
+          0.0,
+          3700.0,
+          611.0
+        ],
+        "gap_m": 0.200012
+      }
+    },
+    {
+      "name": "single_floating_main_peak",
+      "status": "PASS",
+      "details": {
+        "formal_peaks": 9,
+        "floating": [
+          "玄天峰"
+        ]
+      }
+    },
+    {
+      "name": "canon_peak_anchor_transforms",
+      "status": "PASS",
+      "details": [
+        {
+          "id": "XTZ-MTN-001",
+          "actual": [
+            0.0,
+            9350.0,
+            1680.0
+          ],
+          "expected": [
+            0.0,
+            9350.0,
+            1680
+          ]
+        },
+        {
+          "id": "XTZ-MTN-002",
+          "actual": [
+            -2550.0,
+            8150.0,
+            1540.0
+          ],
+          "expected": [
+            -2550.0,
+            8150.0,
+            1540
+          ]
+        },
+        {
+          "id": "XTZ-MTN-003",
+          "actual": [
+            2200.0,
+            8450.0,
+            1510.0
+          ],
+          "expected": [
+            2200.0,
+            8450.0,
+            1510
+          ]
+        },
+        {
+          "id": "XTZ-MTN-004",
+          "actual": [
+            3050.0,
+            7350.0,
+            1460.0
+          ],
+          "expected": [
+            3050.0,
+            7350.0,
+            1460
+          ]
+        },
+        {
+          "id": "XTZ-MTN-005",
+          "actual": [
+            3050.0,
+            5950.0,
+            1320.0
+          ],
+          "expected": [
+            3050.0,
+            5950.0,
+            1320
+          ]
+        },
+        {
+          "id": "XTZ-MTN-006",
+          "actual": [
+            2350.0,
+            4700.0,
+            1120.0
+          ],
+          "expected": [
+            2350.0,
+            4700.0,
+            1120
+          ]
+        },
+        {
+          "id": "XTZ-MTN-007",
+          "actual": [
+            -2350.0,
+            4650.0,
+            1180.0
+          ],
+          "expected": [
+            -2350.0,
+            4650.0,
+            1180
+          ]
+        },
+        {
+          "id": "XTZ-MTN-008",
+          "actual": [
+            -3100.0,
+            6050.0,
+            1290.0
+          ],
+          "expected": [
+            -3100.0,
+            6050.0,
+            1290
+          ]
+        },
+        {
+          "id": "XTZ-MTN-009",
+          "actual": [
+            -1150.0,
+            6950.0,
+            1390.0
+          ],
+          "expected": [
+            -1150.0,
+            6950.0,
+            1390
+          ]
+        }
+      ]
+    },
+    {
+      "name": "xuantian_locked_envelope",
+      "status": "PASS",
+      "details": {
+        "min": [
+          -725.0,
+          8825.0,
+          1210.0
+        ],
+        "max": [
+          725.0,
+          9875.0,
+          1680.0
+        ],
+        "dimensions": [
+          1450.0,
+          1050.0,
+          470.0
+        ]
+      }
+    },
+    {
+      "name": "canon_b1_asset_transforms",
+      "status": "PASS",
+      "details": [
+        {
+          "id": "XTZ-BLD-002",
+          "location": [
+            0.0,
+            9310.0,
+            1632.5
+          ],
+          "dimensions": [
+            98.0,
+            76.0,
+            45.0
+          ]
+        },
+        {
+          "id": "XTZ-BLD-010",
+          "location": [
+            0.0,
+            9080.0,
+            1321.0
+          ],
+          "dimensions": [
+            42.0,
+            28.0,
+            22.0
+          ]
+        },
+        {
+          "id": "XTZ-BLD-011",
+          "location": [
+            0.0,
+            9200.0,
+            1520.0
+          ],
+          "dimensions": [
+            90.0,
+            62.0,
+            20.0
+          ]
+        },
+        {
+          "id": "XTZ-BLD-012",
+          "location": [
+            -200.0,
+            9500.0,
+            1640.0
+          ],
+          "dimensions": [
+            58.0,
+            42.0,
+            30.0
+          ]
+        },
+        {
+          "id": "XTZ-BLD-013",
+          "location": [
+            220.0,
+            9480.0,
+            1606.5
+          ],
+          "dimensions": [
+            86.0,
+            66.0,
+            23.0
+          ]
+        },
+        {
+          "id": "XTZ-BLD-014",
+          "location": [
+            -290.0,
+            9400.0,
+            1600.5
+          ],
+          "dimensions": [
+            52.0,
+            36.0,
+            25.0
+          ]
+        },
+        {
+          "id": "XTZ-PLT-001",
+          "location": [
+            0.0,
+            9100.0,
+            1277.0
+          ],
+          "dimensions": [
+            122.0,
+            96.0,
+            14.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "camera_no_terrain_collision",
+      "status": "PASS",
+      "details": {
+        "minimum_clearance_m": 8.018671
+      }
+    },
+    {
+      "name": "camera_no_gate_or_lintel_collision",
+      "status": "PASS",
+      "details": {
+        "inside_frames": 25,
+        "first": [
+          -0.018852,
+          3691.349996,
+          620.497975
+        ],
+        "last": [
+          -0.108821,
+          3708.408294,
+          620.528717
+        ]
+      }
+    },
+    {
+      "name": "camera_no_twin_sword_collision",
+      "status": "PASS",
+      "details": {
+        "collision": false
+      }
+    },
+    {
+      "name": "camera_path_continuity",
+      "status": "PASS",
+      "details": {
+        "max_frame_displacement_m": 0.986891
+      }
+    },
+    {
+      "name": "camera_max_speed_mps",
+      "status": "PASS",
+      "details": {
+        "actual": 23.68538,
+        "limit": 27.0
+      }
+    },
+    {
+      "name": "camera_max_acceleration_mps2",
+      "status": "PASS",
+      "details": {
+        "actual": 4.970197,
+        "limit": 6.0
+      }
+    },
+    {
+      "name": "camera_max_jerk_mps3",
+      "status": "PASS",
+      "details": {
+        "actual": 12.310105,
+        "limit": 18.0
+      }
+    },
+    {
+      "name": "camera_max_yaw_rate_deg_s",
+      "status": "PASS",
+      "details": {
+        "actual": 10.574948,
+        "limit": 20.0
+      }
+    }
+  ],
+  "camera_metrics": {
+    "status": "PASS",
+    "fps": 24,
+    "frames": 360,
+    "duration_s": 15.0,
+    "max_speed_mps": 23.68538,
+    "average_speed_mps": 16.838024,
+    "max_acceleration_mps2": 4.970197,
+    "max_jerk_mps3": 12.310105,
+    "max_yaw_rate_deg_s": 10.574948,
+    "speed_profile": [
+      [
+        0.0,
+        4.0
+      ],
+      [
+        3.0,
+        12.0
+      ],
+      [
+        6.0,
+        20.0
+      ],
+      [
+        9.0,
+        22.0
+      ],
+      [
+        10.8,
+        18.0
+      ],
+      [
+        12.5,
+        18.0
+      ],
+      [
+        13.5,
+        15.5
+      ],
+      [
+        15.0,
+        18.0
+      ]
+    ],
+    "separation": [
+      "position_curve",
+      "body_yaw_curve",
+      "gimbal_target_curve",
+      "speed_profile"
+    ],
+    "limits": {
+      "max_speed_mps": 27.0,
+      "max_acceleration_mps2": 6.0,
+      "max_jerk_mps3": 18.0,
+      "max_yaw_rate_deg_s": 20.0
+    }
+  },
+  "non_canon_proxy_count": 47,
+  "locked_design_not_visually_validated": []
+}

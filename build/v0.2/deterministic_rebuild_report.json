@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "comparison": {
+    "object_transforms_and_bounds": true,
+    "terrain_control_data": true,
+    "camera_samples": true,
+    "camera_metrics": true,
+    "manifest": true
+  },
+  "inputs": {
+    "a_snapshot": {
+      "path": "build\\v0.2\\_deterministic\\A_snapshot.json",
+      "sha256": "241c89ff6b547975f14f23f6391a55af522b7f43f4898aa0e92f146f6899fd5c"
+    },
+    "b_snapshot": {
+      "path": "build\\v0.2\\_deterministic\\B_snapshot.json",
+      "sha256": "241c89ff6b547975f14f23f6391a55af522b7f43f4898aa0e92f146f6899fd5c"
+    },
+    "a_manifest": {
+      "path": "build\\v0.2\\digital_twin_v0.2_manifest.json",
+      "sha256": "4d56a4cd7ba7d9f9ffd95650b60275d8e115aa7a763f305da24d851314998f62"
+    },
+    "b_manifest": {
+      "path": "build\\v0.2\\_deterministic\\B_manifest.json",
+      "sha256": "4d56a4cd7ba7d9f9ffd95650b60275d8e115aa7a763f305da24d851314998f62"
+    }
+  },
+  "note": "Independent clean Blender builds compared at rounded machine-readable state level; .blend container bytes are not required to match."
+}

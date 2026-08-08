@@ -2,3 +2,7 @@ __pycache__/
 *.py[cod]
 build/*.blend1
 build/qa_frames/
+build/v0.2/_deterministic/
+build/v0.2/*.blend1
+build/v0.2/qc/qc_03_03_left_45.png
+build/v0.2/qc/qc_04_04_right_45.png

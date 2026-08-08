@@ -141,7 +141,7 @@ V0.1 is not the visual-spatial target: its flat base, isolated cone massing and 
 
 ### V0.2 — Mini Spatial Proof
 
-Active work is tracked in GitHub Issue #2.
+Completed for GitHub Issue #2. Rebuild, geometry, camera, media and visual-QC evidence is preserved under `build/v0.2/`.
 
 Primary scope:
 - final 800–1000m of 十二里入山古道;
@@ -161,6 +161,6 @@ Primary scope:
 - The ceremonial axis bends with terrain and is never a straight sky stair.
 - E1 strategic stitched camera is not a real DJI single-lens shot.
 
-## Do not start yet
+## Downstream boundary
 
-Until V0.2 spatial/camera QC passes, do not treat Seedance, Wan, ComfyUI, LoRA, Unreal or final high-detail art as the active bottleneck.
+V0.2 spatial/camera QC has passed. Its `NON_CANON_PROXY` graybox geometry remains an engineering proof and is not automatically promoted to Canon or final high-detail art.
