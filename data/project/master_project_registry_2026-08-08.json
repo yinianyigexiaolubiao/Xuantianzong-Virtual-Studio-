@@ -1,0 +1,189 @@
+{
+  "registry_version": "2026-08-08-r1",
+  "project": "玄天宗 / Xuantianzong",
+  "purpose": "Project-level census of all recovered work, not limited to Digital Twin.",
+  "sync_states": {
+    "GITHUB_MIRRORED": "Exact artifact/content is present in this GitHub repository.",
+    "GITHUB_REGISTERED_METADATA": "Work is represented in GitHub but original artifact bytes are not mirrored here.",
+    "FILE_LIBRARY_ONLY_BINARY": "Binary is directly present in ChatGPT File Library but current connector does not expose raw bytes for GitHub mirroring.",
+    "FILE_LIBRARY_ONLY_TEXT": "Text is directly present in File Library but full exact content was not recoverable in one payload, so no partial fake mirror is made.",
+    "MANIFEST_VERIFIED": "Binary is verified by a locked manifest/hash but was not directly recovered in this archival pass.",
+    "CHAT_RECORDED_SPEC": "Project work/decision exists in project conversation history and has been converted into a GitHub archival brief.",
+    "REFERENCED_ONLY": "Historical source references an output, but neither direct bytes nor a stronger manifest were recovered."
+  },
+  "authority_note": "This project registry inventories work. Canon authority is separately controlled by data/canon/*; registering an old file does not make it current Canon.",
+  "required_modules": [
+    "CANON_AND_WORLD",
+    "DIGITAL_TWIN",
+    "VISUAL_ASSETS",
+    "PROMO_FILM_AND_DJI",
+    "PHONE_CONTENT",
+    "XUANYUAN_LIANQI",
+    "DIGITAL_XUANTIANZONG",
+    "BEASTS_AND_SACRED_TREES",
+    "HISTORICAL_ARCHIVE"
+  ],
+  "modules": [
+    {
+      "id": "CANON_AND_WORLD",
+      "title": "世界正典、总平面与技术控制",
+      "current_authority": "V1.6.1 BASE_WORLD_CANON + registered scoped post-canon locked overrides",
+      "subregistry": "data/canon/master_asset_registry_2026-08-08.json",
+      "github_sync": "GITHUB_MIRRORED",
+      "assets": [
+        {"id":"CW-V161-DOCX","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版.docx","source":"FILE_LIBRARY","class":"CURRENT_CANON_SOURCE","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-V161-PDF","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版.pdf","source":"FILE_LIBRARY","class":"CURRENT_CANON_RENDER","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"CW-V161-TXT","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版.txt","source":"FILE_LIBRARY","class":"CURRENT_CANON_TEXT_EXPORT","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-V161-JSON","title":"玄天宗世界设定总纲_V1.6.1_全量合并锁定版_设计参数.json","source":"FILE_LIBRARY","class":"CURRENT_CANON_MACHINE_EXPORT","sync_state":"GITHUB_REGISTERED_METADATA","github_projection":"data/world/*.json"},
+        {"id":"CW-A1","title":"玄天宗_V1.6-A_总平面与高程控制书_A1正式版","source":"FILE_LIBRARY","class":"TECH_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-B1","title":"玄天宗_V1.6-B_九峰功能与关键资产布局_B1正式版/总确认稿/设计参数","source":"FILE_LIBRARY","class":"TECH_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-C1","title":"玄天宗_V1.6-C_视觉与高阶神兽出镜控制书_C1正式版","source":"FILE_LIBRARY","class":"VISUAL_AND_IMAGING_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-E1","title":"玄天宗_V1.6-E_V12固定相机与视线控制书_E1总确认稿","source":"FILE_LIBRARY","class":"CAMERA_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-F1","title":"玄天宗_V1.6-F_三维灰模与比例控制书_F1总确认稿","source":"FILE_LIBRARY","class":"GRAYBOX_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"CW-F1-OBJ","title":"玄天宗_V1.6-F_F1_三维灰模场景.obj","source":"FILE_LIBRARY","class":"GRAYBOX_BINARY","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"CW-G1","title":"玄天宗_V1.6-G1_正式母图生成控制稿_已锁定记录.json","source":"FILE_LIBRARY","class":"MASTER_IMAGE_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"}
+      ]
+    },
+    {
+      "id": "DIGITAL_TWIN",
+      "title": "AI Virtual Studio / Blender Digital Twin",
+      "current_stage": "V0.2 Mini Spatial Proof",
+      "github_sync": "GITHUB_MIRRORED",
+      "assets": [
+        {"id":"DT-CODE","title":"Blender deterministic builders and world-data projection","source":"GITHUB","class":"ACTIVE_ENGINEERING","sync_state":"GITHUB_MIRRORED","github_path":"blender/"},
+        {"id":"DT-WORLD-DATA","title":"Machine-readable world geometry data","source":"GITHUB","class":"ACTIVE_ENGINEERING","sync_state":"GITHUB_MIRRORED","github_path":"data/world/"},
+        {"id":"DT-V01-BLEND","title":"xuantianzong_digital_twin_v0.1.blend","source":"GITHUB","class":"ENGINEERING_PROOF","sync_state":"GITHUB_MIRRORED","github_path":"build/xuantianzong_digital_twin_v0.1.blend"},
+        {"id":"DT-V01-MP4","title":"xuantianzong_digital_twin_v0.1_gate_preview.mp4","source":"GITHUB","class":"ENGINEERING_PROOF","sync_state":"GITHUB_MIRRORED","github_path":"build/xuantianzong_digital_twin_v0.1_gate_preview.mp4"},
+        {"id":"DT-V01-PNG","title":"xuantianzong_digital_twin_v0.1_global_graybox.png","source":"GITHUB","class":"ENGINEERING_PROOF","sync_state":"GITHUB_MIRRORED","github_path":"build/xuantianzong_digital_twin_v0.1_global_graybox.png"},
+        {"id":"DT-V02","title":"Digital Twin V0.2 Mini Spatial Proof","source":"GITHUB_ISSUE","class":"ACTIVE_MILESTONE","sync_state":"GITHUB_MIRRORED","github_ref":"issue#2"}
+      ]
+    },
+    {
+      "id": "VISUAL_ASSETS",
+      "title": "视觉母图、总图、建筑与场景探索",
+      "rule": "Historical visual assets are retained for style/composition lineage only; they cannot override current geometry/Canon.",
+      "github_sync": "GITHUB_REGISTERED_METADATA",
+      "assets": [
+        {"id":"VA-20260804-GATE","title":"三门四柱玄天宗山门.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-20260804-CORE","title":"玄天宗山巅核心全景.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-20260804-PAIFANG","title":"云海之上的玄天宗牌坊.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-20260804-MORNING-GATE","title":"玄天宗清晨山门.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-20260804-SPIRIT-TEST","title":"玄天宗灵石试炼.png","source":"FILE_LIBRARY","class":"SCENE_EXPLORATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-XT-HALL-V2","title":"玄天宗_玄天殿_建筑母图_V2.png","source":"FILE_LIBRARY","class":"HISTORICAL_BUILDING_MOTHER_IMAGE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-XT-HALL-JADE1","title":"云海玉脉玄天殿.png","source":"FILE_LIBRARY","class":"HISTORICAL_BUILDING_ITERATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-XT-HALL-PLAQUE","title":"青白玉匾的玄天殿.png / 玄天殿青白玉匾额.png","source":"FILE_LIBRARY","class":"HISTORICAL_BUILDING_ITERATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-XT-HALL-STAIRS","title":"玄天殿白玉圣阶.png / 玄天殿白玉玄武长阶.png / 玄天殿与北斗玉阶.png / 玄天殿白玉天阶.png","source":"FILE_LIBRARY","class":"HISTORICAL_BUILDING_ITERATION_FAMILY","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-XT-HALL-VERMILION","title":"白玉朱砂玄天殿.png","source":"FILE_LIBRARY","class":"HISTORICAL_BUILDING_ITERATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-FULLMAP","title":"玄天宗全域总图.png","source":"FILE_LIBRARY","class":"HISTORICAL_MAP_EXPLORATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-NINEPEAK-SCENE","title":"玄天九峰朝拜圣境.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-GATE-NINEPEAK","title":"玄岳关前的九峰仙境.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-TWIN-SWORDS-RAIN","title":"雨后玄天宗双阙.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-CLOUD-XTZ","title":"云海之上的玄天宗.png / 云海环绕玄天殿.png","source":"FILE_LIBRARY","class":"DRONE_SCENE_EXPLORATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-SACRED-GATE","title":"玄天圣门：白玉金殿与光剑.png","source":"FILE_LIBRARY","class":"HISTORICAL_CONCEPT","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-NINEPEAK-MAP-V1","title":"玄天宗_全宗九峰总平面图_V1.png","source":"FILE_LIBRARY","class":"HISTORICAL_MAP","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-NINEPEAK-MAP-V3","title":"玄天宗_全宗九峰总平面图_宽阔白玉玄阶_V3.png","source":"FILE_LIBRARY","class":"HISTORICAL_MAP","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-STRATEGIC-V5","title":"玄天宗_全宗宏大战略总图_正式母图_V5.png + 正式标注版_V5.png","source":"FILE_LIBRARY","class":"HISTORICAL_VISUAL_REFERENCE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-STRATEGIC-V6","title":"玄天宗_全宗宏大战略总图_正式母图_V6.jpeg + 正式标注版_V6.png","source":"FILE_LIBRARY","class":"HISTORICAL_VISUAL_REFERENCE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-STRATEGIC-V11","title":"玄天宗_全宗宏大战略总图_远景与双剑精修版_V11.png","source":"FILE_LIBRARY","class":"HISTORICAL_VISUAL_REFERENCE","sync_state":"FILE_LIBRARY_ONLY_BINARY","note":"Duplicate File Library copies recovered."},
+        {"id":"VA-VISUAL-OVERVIEW","title":"玄天宗视觉母图总览.png","source":"FILE_LIBRARY","class":"HISTORICAL_VISUAL_SPEC_SHEET","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"VA-V16-PANORAMA-SPEC","title":"玄岳仙宗全景设定图.png","source":"FILE_LIBRARY","class":"MISNAMED_OR_HISTORICAL_VISUAL_SPEC_SHEET","sync_state":"FILE_LIBRARY_ONLY_BINARY","note":"Content is Xuantianzong V1.6 material; filename is not authority."},
+        {"id":"VA-V16-ANNOTATED","title":"2026-08-06 image-gen-1.png annotated V1.6 whole-sect overview","source":"FILE_LIBRARY","class":"HISTORICAL_ANNOTATED_VISUAL","sync_state":"FILE_LIBRARY_ONLY_BINARY"}
+      ]
+    },
+    {
+      "id": "PROMO_FILM_AND_DJI",
+      "title": "玄天宗宣传片、真实大疆无人机与小云雀工作流",
+      "current_direction": "Promotional film, not documentary; no invented hero/protagonist; camera must read as a real DJI physically flying through a persistent Xuantianzong.",
+      "github_sync": "GITHUB_MIRRORED",
+      "assets": [
+        {"id":"PF-CURRENT-BRIEF","title":"宣传片创作总约束（恢复版）","source":"PROJECT_CONVERSATION+C1+E1","class":"ACTIVE_PRODUCTION_BRIEF","sync_state":"GITHUB_MIRRORED","github_path":"docs/archive/promo_film/README.md"},
+        {"id":"PF-DJI-RULES","title":"真实DJI镜头边界：24–35mm等效、中轴前推、缓升、低角度、适量偏航、真实惯性","source":"E1+C1+PROJECT_CONVERSATION","class":"ACTIVE_CAMERA_RULE","sync_state":"GITHUB_MIRRORED","github_path":"docs/archive/promo_film/README.md"},
+        {"id":"PF-XIAOYUNQUE","title":"小云雀/视频模型协作提示词工作流","source":"PROJECT_CONVERSATION","class":"CHAT_RECORDED_WORKFLOW","sync_state":"CHAT_RECORDED_SPEC","github_path":"docs/archive/promo_film/README.md"},
+        {"id":"PF-OLD-45S","title":"旧45秒三段式宣传片镜头意图","source":"PROJECT_CONVERSATION","class":"SUPERSEDED_GEOMETRY_RETAIN_CINEMATIC_INTENT","sync_state":"CHAT_RECORDED_SPEC","github_path":"docs/archive/promo_film/README.md"},
+        {"id":"PF-10-STILLS","title":"早期无人机宣传片前10张参考图批次","source":"PROJECT_CONVERSATION/HISTORICAL_SANDBOX","class":"CONCEPT_SHOT_EXPLORATION","sync_state":"REFERENCED_ONLY","note":"Historical references only; five-peak/straight-axis readings are superseded."}
+      ]
+    },
+    {
+      "id": "PHONE_CONTENT",
+      "title": "弟子手机口播、测灵石介绍与真实手机影像",
+      "github_sync": "GITHUB_MIRRORED",
+      "assets": [
+        {"id":"PC-C1-RULES","title":"C1真实手机影像控制","source":"C1","class":"ACTIVE_IMAGING_RULE","sync_state":"GITHUB_MIRRORED","github_path":"docs/archive/phone_content/README.md"},
+        {"id":"PC-SPIRIT-STONE-INTRO","title":"外门弟子介绍五蕴测灵石手机口播","source":"PROJECT_CONVERSATION","class":"CHAT_RECORDED_CONTENT","sync_state":"CHAT_RECORDED_SPEC","github_path":"docs/archive/phone_content/README.md","note":"Locked opening intent: ‘兄弟们，今天给你们介绍一下…’"},
+        {"id":"PC-SPIRIT-STONE-VISUAL","title":"玄天宗灵石试炼.png","source":"FILE_LIBRARY","class":"HISTORICAL_SCENE_IMAGE","sync_state":"FILE_LIBRARY_ONLY_BINARY"}
+      ]
+    },
+    {
+      "id": "XUANYUAN_LIANQI",
+      "title": "《玄元炼气诀》功法原典与古籍出版工程",
+      "current_role": "Independent cultivation-text source with higher authority than story/prompt content for its own domain; current world Canon references it as the orthodox Qi-refining root method.",
+      "github_sync": "GITHUB_REGISTERED_METADATA",
+      "assets": [
+        {"id":"XLQ-CURRENT-DRAFT","title":"玄元炼气诀_当前整理稿.txt","source":"FILE_LIBRARY","class":"EARLY_DRAFT","sync_state":"FILE_LIBRARY_ONLY_TEXT"},
+        {"id":"XLQ-COMPLETE","title":"玄元炼气诀_完整版.txt","source":"FILE_LIBRARY","class":"SUPERSEDED_DRAFT","sync_state":"FILE_LIBRARY_ONLY_TEXT"},
+        {"id":"XLQ-COMPLETE-CREATIVE","title":"玄元炼气诀_完整版创作稿.txt","source":"FILE_LIBRARY_PREVIOUS_SEARCH","class":"SUPERSEDED_DRAFT","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"XLQ-FIRST-FULL","title":"玄元炼气诀_完整正文第一版.txt","source":"FILE_LIBRARY_PREVIOUS_SEARCH","class":"SUPERSEDED_DRAFT","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"XLQ-TRUE-REWRITE","title":"玄元炼气诀_真传重写版.txt","source":"FILE_LIBRARY","class":"INTERMEDIATE_REWRITE","sync_state":"FILE_LIBRARY_ONLY_TEXT"},
+        {"id":"XLQ-TRUE-NO-NOTE","title":"玄元炼气诀_真传重写版_无说明.txt","source":"FILE_LIBRARY","class":"PREFERRED_TEXT_SOURCE_RECOVERED","sync_state":"FILE_LIBRARY_ONLY_TEXT","note":"Full file exists; File Library response is too long/truncated, so no fake partial mirror."},
+        {"id":"XLQ-PDF-VERTICAL","title":"玄元炼气诀_古籍竖排版.pdf","source":"FILE_LIBRARY","class":"PUBLISHING_ITERATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"XLQ-PDF-VERTICAL2","title":"玄元炼气诀_古籍竖排改进版.pdf","source":"FILE_LIBRARY","class":"PUBLISHING_ITERATION","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"XLQ-PDF-REFERENCE","title":"玄元炼气诀_参考图标准_无标点竖排版.pdf","source":"FILE_LIBRARY","class":"PUBLISHING_STYLE_CONTROL","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"XLQ-PDF-TRUEBOOK","title":"玄元炼气诀_古籍真本版_无标点.pdf","source":"FILE_LIBRARY","class":"MAJOR_COMPLETED_BOOK_DELIVERABLE","sync_state":"FILE_LIBRARY_ONLY_BINARY","note":"Recovered as a 214-page ancient-book PDF."},
+        {"id":"XLQ-IMG-FRAGMENT","title":"古籍《玄元炼气诀》残页.png","source":"FILE_LIBRARY","class":"STYLE_REFERENCE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"XLQ-IMG-PAGE","title":"古籍《玄元炼气诀》书页.png","source":"FILE_LIBRARY","class":"STYLE_REFERENCE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"XLQ-IMG-BATCH-A","title":"2026-08-03 12:07 image-gen-1..5 first five-page book batch","source":"FILE_LIBRARY","class":"PUBLISHING_IMAGE_BATCH_SUPERSEDED","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"XLQ-IMG-BATCH-B","title":"2026-08-03 12:24 image-gen-1..5 revised first five-page batch","source":"FILE_LIBRARY","class":"PUBLISHING_IMAGE_BATCH","sync_state":"FILE_LIBRARY_ONLY_BINARY"}
+      ]
+    },
+    {
+      "id": "DIGITAL_XUANTIANZONG",
+      "title": "数字玄天宗：活的正典资料库与修仙世界引擎",
+      "historical_snapshot": "2026-08-04 V0.3",
+      "github_sync": "GITHUB_MIRRORED",
+      "assets": [
+        {"id":"DX-STATUS-20260804","title":"数字玄天宗_项目状态档案_2026-08-04.md","source":"FILE_LIBRARY","class":"HISTORICAL_PROJECT_SNAPSHOT","sync_state":"GITHUB_MIRRORED","github_path":"docs/archive/digital_xuantianzong/STATUS_2026-08-04.md"},
+        {"id":"DX-V01-V02","title":"Digital Xuantianzong V0.1–V0.2 world time/events/permanent-memory lineage","source":"STATUS_ARCHIVE","class":"HISTORICAL_ENGINE_LINEAGE","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"DX-V03","title":"Digital Xuantianzong V0.3: 67 canon clauses, 20 entity cards, 5 approved revisions","source":"STATUS_ARCHIVE","class":"HISTORICAL_ENGINE_RELEASE","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"DX-PUBLISHED","title":"digital-xuantianzong.stable-lemur-2006.chatgpt.site","source":"STATUS_ARCHIVE","class":"HISTORICAL_PUBLISHED_SITE_REFERENCE","sync_state":"REFERENCED_ONLY"}
+      ]
+    },
+    {
+      "id": "BEASTS_AND_SACRED_TREES",
+      "title": "高阶神兽、神兽门禁、F2/F3与三神木",
+      "current_authority": "See data/canon/post_canon_overrides.json and data/canon/master_asset_registry_2026-08-08.json",
+      "github_sync": "GITHUB_MIRRORED",
+      "assets": [
+        {"id":"BST-F2","title":"F2六兽真实尺度植入 LOCKED workflow","source":"FILE_LIBRARY+MANIFEST","class":"POST_CANON_LOCKED_ASSET","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"BST-F3","title":"F3形态深化与V12套合","source":"FILE_LIBRARY","class":"SOURCE_REVIEW_DOWNSTREAM_PASSED_BY_G1","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"BST-GATE","title":"玄天宗神兽创作强制门禁 V2.0 family","source":"FILE_LIBRARY","class":"LOCKED_ASSET_GATE","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"BST-TREES","title":"建木480m / 扶桑320m / 若木260m and placement controls","source":"V1.6.1+F1","class":"CURRENT_CANON_ASSETS","sync_state":"GITHUB_REGISTERED_METADATA"}
+      ]
+    },
+    {
+      "id": "HISTORICAL_ARCHIVE",
+      "title": "历史版本、过渡技术稿与被取代规则",
+      "github_sync": "GITHUB_REGISTERED_METADATA",
+      "assets": [
+        {"id":"HA-V10","title":"玄天宗世界设定总纲_V1.0.docx","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V11","title":"玄天宗世界设定总纲_V1.1.docx","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V12","title":"玄天宗世界设定总纲_V1.2.docx","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V13A","title":"玄天宗世界设定总纲_V1.3_续订版.docx","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V13B","title":"玄天宗世界设定总纲_V1.3_建筑视觉定稿版.docx","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V14","title":"玄天宗世界设定总纲_V1.4_最新总图整合定稿版.docx","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON_VISUAL_LINEAGE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V15","title":"玄天宗世界设定总纲_V1.5_V12视觉母图整合正式版.docx/pdf","source":"FILE_LIBRARY","class":"SUPERSEDED_CANON_VISUAL_LINEAGE","sync_state":"FILE_LIBRARY_ONLY_BINARY"},
+        {"id":"HA-V16","title":"玄天宗世界设定总纲_V1.6_全量校核锁定版.docx/pdf/txt","source":"FILE_LIBRARY","class":"MERGED_INTO_V1.6.1","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"HA-D1","title":"玄天宗_V1.6-A_总平面与高程控制书_D1初步设计稿.docx/pdf/txt","source":"FILE_LIBRARY","class":"SUPERSEDED_PRELIMINARY_TECH_CONTROL","sync_state":"GITHUB_REGISTERED_METADATA"},
+        {"id":"HA-GENERIC-CONCEPT-BATCH-20260804","title":"2026-08-04 early image-gen preview/rework batches","source":"FILE_LIBRARY","class":"LOW_PRIORITY_CONCEPT_BATCH","sync_state":"GITHUB_REGISTERED_METADATA","note":"Registered as a family; not authoritative and not individually promoted."}
+      ]
+    }
+  ],
+  "excluded_non_project_results": [
+    "2026-08-07 AI image daily-account image-gen batch",
+    "Harry-Potter/Hogwarts classroom source and derived image"
+  ],
+  "archive_policy": {
+    "inventory_complete_definition": "Every recovered project branch and every named/high-value artifact family has a module and sync state in this registry.",
+    "binary_mirror_definition": "An artifact is not called GitHub-mirrored unless exact bytes/content are actually in the repository.",
+    "future_rule": "Any newly recovered historical project artifact must be added here before being used or declared archived."
+  }
+}
