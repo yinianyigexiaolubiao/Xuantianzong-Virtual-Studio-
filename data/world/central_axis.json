@@ -1,25 +1,78 @@
 {
   "asset_id": "XTZ-AXIS-001",
-  "name": "中央登宗主轴",
-  "total_centerline_km": 7.2,
-  "sequence": [
-    "玄天镇北门",
-    "接引院与试灵台",
-    "十二里入山古道",
-    "玄岳关与外山门",
-    "迎仙坪",
-    "外门中央谷地",
-    "九段三千六百级玄阶",
-    "玄武门",
-    "内门宫观区",
-    "玄天门",
-    "镇岳广场与北斗坛",
-    "接天阵台"
+  "name": "九段玄阶与中央登宗主轴",
+  "status": "CANON_A1_LOCKED",
+  "canon_source": "玄天宗世界设定总纲 V1.6.1 / V1.6-A A1正式控制版",
+  "coordinate_system": {
+    "unit_xy": "km",
+    "unit_z": "absolute_elevation_m",
+    "origin": "宗门南界中央",
+    "x_positive": "east",
+    "y_positive": "north"
+  },
+  "start": {
+    "name": "玄岳关",
+    "coord_km": [0.0, 3.7],
+    "elevation_m": 610
+  },
+  "end": {
+    "name": "接天阵台",
+    "coord_km": [0.0, 9.1],
+    "elevation_m": 1270
+  },
+  "actual_length_km": 7.2,
+  "total_climb_m": 660,
+  "total_steps": 3600,
+  "axis_nodes_km": [
+    [0.0, 3.7],
+    [-0.38, 4.25],
+    [0.34, 4.83],
+    [-0.45, 5.42],
+    [0.37, 5.98],
+    [-0.31, 6.57],
+    [0.24, 7.17],
+    [-0.18, 7.78],
+    [0.12, 8.42],
+    [0.0, 9.1]
+  ],
+  "axis_node_elevations_m": [610, 674, 742, 812, 884, 958, 1034, 1112, 1192, 1270],
+  "stages": [
+    {"stage": 1, "area": "迎仙坪至古松林", "length_km": 0.72, "elev_start_m": 610, "elev_end_m": 674, "climb_m": 64, "steps": 350, "lateral_bias": "west"},
+    {"stage": 2, "area": "外门居住区", "length_km": 0.82, "elev_start_m": 674, "elev_end_m": 742, "climb_m": 68, "steps": 370, "lateral_bias": "east"},
+    {"stage": 3, "area": "膳堂、浴堂与水渠区", "length_km": 0.86, "elev_start_m": 742, "elev_end_m": 812, "climb_m": 70, "steps": 380, "lateral_bias": "west"},
+    {"stage": 4, "area": "大演武场", "length_km": 0.78, "elev_start_m": 812, "elev_end_m": 884, "climb_m": 72, "steps": 390, "lateral_bias": "east"},
+    {"stage": 5, "area": "瀑布与炼器支坊区", "length_km": 0.80, "elev_start_m": 884, "elev_end_m": 958, "climb_m": 74, "steps": 405, "lateral_bias": "west"},
+    {"stage": 6, "area": "玄武门及内外门分界", "length_km": 0.76, "elev_start_m": 958, "elev_end_m": 1034, "climb_m": 76, "steps": 415, "lateral_bias": "east"},
+    {"stage": 7, "area": "讲道院与藏经分院", "length_km": 0.84, "elev_start_m": 1034, "elev_end_m": 1112, "climb_m": 78, "steps": 425, "lateral_bias": "west"},
+    {"stage": 8, "area": "云脊与悬岩台", "length_km": 0.84, "elev_start_m": 1112, "elev_end_m": 1192, "climb_m": 80, "steps": 440, "lateral_bias": "east"},
+    {"stage": 9, "area": "玄天门至接天阵台", "length_km": 0.78, "elev_start_m": 1192, "elev_end_m": 1270, "climb_m": 78, "steps": 425, "lateral_bias": "center"}
   ],
   "nine_stages": {
     "stairs": 3600,
     "segments": 9,
     "rule": "follow terrain, no straight sky staircase"
   },
-  "visual_rule": "礼制、身份递进、阵法核验、紧急撤离通道"
+  "geometry_rules": {
+    "max_continuous_stairs": 120,
+    "stairs_per_group": [40, 100],
+    "max_lateral_offset_m": [300, 450],
+    "normal_stair_clear_width_m": 8,
+    "normal_total_width_m": [10, 11],
+    "teaching_zone_clear_width_m": [9, 10],
+    "teaching_platform_width_m": [18, 24],
+    "xuanwu_gate_forecourt_width_m": [30, 36],
+    "xuantian_gate_forecourt_width_m": [36, 42],
+    "jie_tian_platform_forecourt_width_m": [45, 60],
+    "stage8_min_clear_width_m": 6,
+    "max_continuous_route_alignment_sightline_m": 250
+  },
+  "visibility_rules": {
+    "at_xuanyue_gate": "玄天峰与玄天殿保持远方最高视觉中心；不可一眼看穿九段主轴完整路线、玄天峰下部细节与后山禁区",
+    "stages_1_3": "玄天峰作为远方高空地标，被古松、门殿、山脊和云雾局部遮挡；玄天殿仅为遥远剪影",
+    "stages_4_5": "玄天峰主体与倒悬山体逐渐清楚，玄天殿仍保持远景剪影",
+    "stage_6": "首次较完整看清玄天峰整体山体轮廓",
+    "stage_8": "首次较完整看清峰顶建筑群整体布局",
+    "stage_9": "进入玄天峰与玄天殿近距离主景"
+  },
+  "engineering_note": "A1锁定的是50米级空间控制节点。节点之间的具体台阶、平台与道路几何仍需在10米级/1米级资产设计中深化，不得反向移动A1控制点。"
 }
