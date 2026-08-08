@@ -19,6 +19,13 @@ def require(condition: bool, message: str):
         raise AssertionError(message)
 
 
+def read_text(relative_path: str) -> str:
+    path = ROOT / relative_path
+    if not path.exists():
+        raise AssertionError(f"Missing required authority document: {relative_path}")
+    return path.read_text(encoding="utf-8")
+
+
 def main():
     master = load_json("master_asset_registry_2026-08-08.json")
     overrides = load_json("post_canon_overrides.json")
@@ -94,18 +101,42 @@ def main():
     require(asset_map["F3-MASTER-GLB"]["file_library"] == "REFERENCED_ONLY", "F3 master GLB evidence state must remain REFERENCED_ONLY unless stronger evidence is recorded")
 
     required_docs = [
-        ROOT / "docs/canon/AUTHORITY_STACK_V1.6.1.md",
-        ROOT / "docs/canon/MASTER_ASSET_REGISTRY_2026-08-08.md",
-        ROOT / "docs/canon/POST_CANON_LOCKED_OVERRIDES.md",
-        ROOT / "docs/canon/ASSET_CLASSIFICATION_2026-08-08.md",
-        ROOT / "CODEX.md",
-        ROOT / "README.md",
+        "docs/canon/AUTHORITY_STACK_V1.6.1.md",
+        "docs/canon/MASTER_ASSET_REGISTRY_2026-08-08.md",
+        "docs/canon/POST_CANON_LOCKED_OVERRIDES.md",
+        "docs/canon/ASSET_CLASSIFICATION_2026-08-08.md",
+        "CODEX.md",
+        "README.md",
     ]
-    missing = [str(p.relative_to(ROOT)) for p in required_docs if not p.exists()]
-    require(not missing, f"Missing authority/index documents: {missing}")
+    for relative_path in required_docs:
+        read_text(relative_path)
+
+    # Critical entry documents must all expose the same authority model.
+    entry_docs = {
+        "README.md": read_text("README.md"),
+        "CODEX.md": read_text("CODEX.md"),
+        "docs/canon/AUTHORITY_STACK_V1.6.1.md": read_text("docs/canon/AUTHORITY_STACK_V1.6.1.md"),
+        "docs/canon/ASSET_CLASSIFICATION_2026-08-08.md": read_text("docs/canon/ASSET_CLASSIFICATION_2026-08-08.md"),
+    }
+    for name, text in entry_docs.items():
+        require("BASE_WORLD_CANON" in text, f"{name} must explicitly state BASE_WORLD_CANON")
+        require("OVR-BEAST-001" in text, f"{name} must explicitly expose OVR-BEAST-001")
+
+    # Prevent regression to the earlier oversimplified authority wording.
+    stale_phrases = [
+        "V1.6.1 is the sole current Canon",
+        "The sole current Canon is",
+        "V1.6.1 是唯一现行 Canon",
+        "SOLE CURRENT CANON",
+    ]
+    for name, text in entry_docs.items():
+        lowered = text.casefold()
+        for phrase in stale_phrases:
+            require(phrase.casefold() not in lowered, f"{name} reintroduced stale authority phrase: {phrase}")
 
     print("CANON_REGISTRY_VALIDATION: PASS")
     print(f"assets={len(assets)} active_overrides={sorted(active_ids)}")
+    print("authority_docs=CONSISTENT base=V1.6.1 overlay=OVR-BEAST-001")
     print("beast_override=OVR-BEAST-001 F2=LOCKED F3=REVIEW/PASSED_BY_G1 G1=LOCKED")
 
 
