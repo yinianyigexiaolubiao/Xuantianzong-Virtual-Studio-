@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "warning": "All paths in this file are engineering previews unless canon_status is explicitly changed after review.",
+  "paths": [
+    {
+      "path_id": "XTZ-CAM-PREVIEW-001",
+      "name": "玄岳关15秒真实无人机穿门测试",
+      "canon_status": "NON_CANON_PROXY",
+      "usage": "Digital Twin V0.1 engineering preview only",
+      "lens_mm": 28,
+      "fps": 24,
+      "duration_s": 15.0,
+      "physics_intent": {
+        "average_speed_mps": 12.0,
+        "movement": "center-axis forward push with slow controlled ascent",
+        "forbidden": ["fisheye", "FPV roll", "sudden acceleration", "impossible floating-camera motion"]
+      },
+      "anchor_dependency": {
+        "gate_anchor_m": [0.0, 2000.0, 0.0],
+        "status": "NON_CANON_PROXY",
+        "note": "Replace after absolute A1 gate waypoint is confirmed."
+      },
+      "keyframes": [
+        {"t": 0.0, "location_m": [0.0, 1860.0, 18.0], "look_at_m": [0.0, 1995.0, 22.0]},
+        {"t": 3.75, "location_m": [0.0, 1905.0, 20.0], "look_at_m": [0.0, 2000.0, 23.0]},
+        {"t": 7.5, "location_m": [0.0, 1950.0, 23.0], "look_at_m": [0.0, 2005.0, 25.0]},
+        {"t": 11.25, "location_m": [0.0, 1992.0, 26.0], "look_at_m": [0.0, 2035.0, 29.0]},
+        {"t": 15.0, "location_m": [0.0, 2040.0, 30.0], "look_at_m": [0.0, 2140.0, 36.0]}
+      ]
+    }
+  ]
+}
