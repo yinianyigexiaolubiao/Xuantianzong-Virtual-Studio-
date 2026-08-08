@@ -1,6 +1,6 @@
 {
   "project": "Xuantianzong Virtual Studio",
-  "registry_version": "2026-08-08",
+  "registry_version": "2026-08-08-r2",
   "sole_current_canon": {
     "name": "玄天宗世界设定总纲 V1.6.1 全量合并锁定版",
     "status": "SOLE_CURRENT_CANON",
@@ -43,10 +43,29 @@
       "controls": ["100m terrain massing", "continuous ridge chains", "central valley", "rear ridge massing", "heavy inverted Xuantian Peak envelope", "B1 envelope blocks", "E1 graybox fit"]
     },
     {
+      "id": "F2",
+      "name": "玄天宗 V1.6-F2 六兽真实尺度植入",
+      "class": "BEAST_SCALE_AND_PLACEMENT_CONTROL",
+      "status": "LOCKED",
+      "verified_sources": ["F2_LOCK_RELEASE_NOTE.txt", "F2_六兽真实尺度植入_设计参数与验收.json", "MANIFEST_SHA256.json"],
+      "controls": ["canonical beast dimensions", "locked F2 placements", "world-scale occupancy", "1200m wingless Jiutian Xuanying Dragon body", "1800m dragon airspace envelope", "proxy volume not final sculpt"]
+    },
+    {
+      "id": "F3",
+      "name": "玄天宗 V1.6-F3 六兽形态深化与V12套合",
+      "class": "BEAST_SHAPE_AND_V12_FIT_CONTROL",
+      "source_status": "REVIEW",
+      "downstream_status": "PASSED_BY_G1",
+      "verified_sources": ["F3_形态深化与V12套合_设计参数.json", "玄天宗_V1.6-G1_正式母图生成控制稿_已锁定记录.json"],
+      "controls": ["LOD1.5 species recognition proxies", "V12 projection", "visibility selection", "must not alter F2 locked coordinates or canonical dimensions"],
+      "status_note": "Do not rewrite the standalone F3 source as LOCKED unless a separate F3 lock/release record is verified; G1 explicitly records F3 as passed."
+    },
+    {
       "id": "G1",
       "name": "玄天宗 V1.6-G1 正式母图生成控制稿",
       "class": "FUTURE_HERO_IMAGE_CONTROL",
       "status": "LOCKED",
+      "basis": ["E1", "F2_LOCKED", "F3_PASSED"],
       "controls": ["formal master-image generation", "Xuantian Peak remains inverted", "Xuantian Hall first visual subject", "no moving locked assets for composition", "no AI-invented large landmarks", "composition-scale-beast triple acceptance"]
     }
   ],
