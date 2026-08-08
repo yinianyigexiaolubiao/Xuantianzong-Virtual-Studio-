@@ -23,7 +23,11 @@ The sole current Canon is:
 
 **玄天宗世界设定总纲 V1.6.1 · 全量合并锁定版**
 
-A1/B1/C1/E1/F1/G1 are retained as technical/visual control sources according to the authority stack; they may not override explicit V1.6.1 conflicts.
+A1/B1/C1/E1/F1/F2/F3/G1 are retained as technical/visual control sources according to the authority stack; they may not override explicit V1.6.1 conflicts.
+
+Important status distinction:
+- F2 六兽真实尺度植入：`LOCKED`.
+- F3 独立源 JSON 自身标记为 `REVIEW`, while locked G1 records F3 as passed. The repository preserves both facts instead of rewriting history.
 
 ## Current status
 
@@ -49,6 +53,8 @@ Primary scope:
 - distant 玄天峰 inverted-mountain silhouette;
 - physically plausible DJI camera motion;
 - Canon + Geometry + Visual + Camera + Deterministic-Rebuild validation.
+
+F2/F3 beast controls are preserved for later relevant shots but are not a reason to add high-tier beasts to the V0.2 gate proof.
 
 ## Non-negotiable topology
 
