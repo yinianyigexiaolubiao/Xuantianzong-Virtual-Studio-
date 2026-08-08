@@ -4,6 +4,8 @@ This is the **project-level archive index**. It is intentionally broader than th
 
 Machine registry: `data/project/master_project_registry_2026-08-08.json`
 
+Conversation/history-only supplement: `data/project/conversation_asset_supplement_2026-08-08.json`
+
 ## What this registry covers
 
 The recovered 玄天宗 project has nine mandatory branches:
@@ -20,6 +22,8 @@ The recovered 玄天宗 project has nine mandatory branches:
 
 If a branch is absent from the machine registry, the project archive is not complete.
 
+The supplement is mandatory for recovered work that existed in project conversation/history but did not resolve to a stable standalone File Library artifact. It currently preserves the V1 six-frame drone-preview route, V12 visual-bone lineage, unresolved intermediate map/building-version lineage, early 《玄元炼气诀》 creative-system lineage, 玄元祖师 provenance and the grain/kitchen-separation provenance. These records preserve history only; they do not create new Canon authority.
+
 ## Sync-state meanings
 
 - `GITHUB_MIRRORED` — exact content/artifact is actually in this repository.
@@ -27,7 +31,7 @@ If a branch is absent from the machine registry, the project archive is not comp
 - `FILE_LIBRARY_ONLY_BINARY` — exact binary is directly present in ChatGPT File Library; raw bytes were not exposed by the current connector, so GitHub metadata is honest rather than pretending it was copied.
 - `FILE_LIBRARY_ONLY_TEXT` — exact long text exists in File Library, but the retrieval interface truncates it; no partial reconstruction is labeled as the original.
 - `MANIFEST_VERIFIED` — a locked manifest/hash proves a binary existed even if bytes were not directly recovered in this pass.
-- `CHAT_RECORDED_SPEC` — work existed in project conversation rather than as a standalone file; its decisions are now preserved in a GitHub archival brief.
+- `CHAT_RECORDED_SPEC` — work existed in project conversation rather than as a standalone file; its decisions are now preserved in a GitHub archival brief/supplement.
 - `REFERENCED_ONLY` — historical evidence names the output but neither direct bytes nor a stronger manifest were recovered.
 
 ## Current authority vs archive
@@ -50,6 +54,8 @@ Recovered a substantial standalone cultivation-manual branch: drafts, rewritten 
 
 The preferred recovered source is `玄元炼气诀_真传重写版_无说明.txt`; the most substantial recovered publication artifact is `玄元炼气诀_古籍真本版_无标点.pdf`.
 
+An earlier conversation-only development line also explored a more game-like twelve-layer/meridian/phenomena/bottleneck/risk system, 玄元十二式 and hidden-page concepts. That lineage is archived in the conversation supplement as superseded provenance and must not be silently reintroduced into the preferred recovered text.
+
 ### 2026-08-04 — World Bible + Digital Xuantianzong
 
 Recovered V1.0, V1.1, V1.2 and V1.3 world-bible lineage; early gate/core/spirit-stone images; and `数字玄天宗_项目状态档案_2026-08-04.md`.
@@ -60,6 +66,8 @@ Digital Xuantianzong V0.3 historically contained 67 structured canon clauses, 20
 
 Recovered Xuantian Hall iterations, nine-peak maps, whole-sect strategic maps V5/V6/V11, gate/sword/white-jade revisions and drone-scene explorations.
 
+Project history also records a wider intermediate map/building-version sequence and a **V1 six-frame drone preview** using the narrative route `云海发现 → 玄岳关 → 九重玄阶 → 灵兽峰 → 悬浮玄天峰 → 玄天殿`. Exact standalone binaries for every intermediate label were not independently recovered; the sequence is preserved in the conversation supplement, not fabricated as files.
+
 These are retained as visual lineage. Their exact topology is historical unless revalidated against current Canon/A1/B1.
 
 ### 2026-08-06 — V1.6 consolidation and visual spec sheets
@@ -69,6 +77,8 @@ Recovered V1.6 full locked lineage, `玄天宗视觉母图总览.png`, `玄岳�
 ### 2026-08-07 — V1.6.1 and engineering controls
 
 Recovered V1.6.1 and A/B/C/E/F technical controls, actual F1 OBJ, F2/F3/G1 asset lineage and later locked beast workflows.
+
+V12 is preserved as a repeatedly referenced strategic visual skeleton through V1.5/D1/E1/project history even though an independently resolved final standalone V12 binary was not recovered in this last census. It therefore remains `REFERENCED_ONLY`, not an invented file.
 
 ### 2026-08-08 — Virtual Studio engineering archive
 
@@ -91,17 +101,22 @@ The machine registry contains the complete recovered named set. High-value ancho
 
 ## Project branches recovered from conversation rather than standalone files
 
-Some real project work existed only in project conversation history. It is now intentionally preserved as GitHub documentation:
+Some real project work existed only in project conversation history. It is now intentionally preserved as GitHub documentation and the machine supplement:
 
 - promotional-film direction: **宣传片，不是纪录片**;
 - no invented hero/protagonist;
 - final aerial footage must read as a real DJI physically flying through a persistent world;
 - DJI optical/movement boundary from E1/C1;
 - 小云雀/video-model prompt workflow;
+- V1 six-frame drone-preview route;
+- V12 strategic visual-bone lineage;
+- intermediate total-map/building-version lineage that did not resolve to exact standalone binaries;
 - exterior-disciple phone introduction of 五蕴测灵石, including the intended natural opening “兄弟们，今天给你们介绍一下…”;
-- phone footage must preserve real hand-held imperfections and environmental scale.
+- phone footage must preserve real hand-held imperfections and environmental scale;
+- early 《玄元炼气诀》 creative-system provenance;
+- 玄元祖师 and grain/kitchen-separation decision provenance already absorbed by later Canon.
 
-See `docs/archive/promo_film/README.md` and `docs/archive/phone_content/README.md`.
+See `data/project/conversation_asset_supplement_2026-08-08.json`, `docs/archive/promo_film/README.md` and `docs/archive/phone_content/README.md`.
 
 ## Binary-mirroring boundary
 
@@ -109,7 +124,7 @@ This census deliberately separates **100% project representation in GitHub** fro
 
 The current ChatGPT File Library search interface exposes file identity/content previews but does not provide raw bytes for arbitrary File Library binaries to the GitHub connector. Therefore old PNG/PDF/OBJ/GLB/TXT artifacts are never falsely marked `GITHUB_MIRRORED` unless exact content is actually in the repository.
 
-The project is considered inventory-complete when every recovered artifact/work branch is registered with an evidence/sync state. Physical binary migration is a separate transport task.
+The project is considered inventory-complete when every recovered artifact/work branch is registered with an evidence/sync state, including work that only survives as conversation/history provenance. Physical binary migration is a separate transport task.
 
 ## Exclusions
 
