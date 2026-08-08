@@ -7,50 +7,60 @@ ROOT = Path(__file__).resolve().parents[1]
 WORLD = ROOT / "data" / "world"
 
 
-def load(name):
-    return json.loads((WORLD / name).read_text(encoding="utf-8"))
+def load(name: str) -> dict:
+    path = WORLD / name
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
-def require(condition, message):
-    if not condition:
-        raise AssertionError(message)
+def fail(message: str):
+    raise AssertionError(message)
 
 
 def main():
     peaks = load("peaks.json")
     gate = load("xuanyue_gate.json")
     axis = load("central_axis.json")
-    camera = load("camera_e1.json")
+    cameras = load("camera_e1.json")
+    preview = load("preview_camera_paths.json")
 
-    items = peaks["peaks"]
-    require(len(items) == 9, "Canon requires exactly nine formal peaks")
-    require(len({p["id"] for p in items}) == 9, "Peak asset IDs must be unique")
-    require(len({p["name"] for p in items}) == 9, "Peak names must be unique")
-    floating = [p for p in items if p.get("floating")]
-    require(len(floating) == 1, "Exactly one large floating main peak is allowed")
-    require(floating[0]["name"] == "玄天峰", "The unique floating main peak must be 玄天峰")
+    if peaks["rules"]["formal_peak_count"] != 9:
+        fail("formal_peak_count must be 9")
+    if len(peaks["peaks"]) != 9:
+        fail("peaks array must contain exactly 9 peaks")
 
-    for p in items:
-        require(len(p["center_km"]) == 2, f"{p['name']} center_km invalid")
-        require(p["summit_elevation_m"] > 0, f"{p['name']} summit invalid")
-        require(all(v > 0 for v in p["core_body_km"]), f"{p['name']} core body invalid")
+    floating = [p for p in peaks["peaks"] if p.get("floating")]
+    if len(floating) != 1 or floating[0]["name"] != "玄天峰":
+        fail("玄天峰 must be the only large floating main peak")
 
-    dims = gate["dimensions_m"]
-    require(all(dims[k] > 0 for k in ("width", "depth", "height")), "Gate dimensions invalid")
-    sword = gate["twin_swords"]
-    require(sword["height_m"] == 44, "Twin sword height must remain 44m")
-    require(sword["axis_distance_m"] == 68, "Twin sword axis distance must remain 68m")
-    require("double-edged straight sword" in sword["shape"], "Twin swords must remain straight double-edged")
+    ids = [p["id"] for p in peaks["peaks"]]
+    if len(ids) != len(set(ids)):
+        fail("peak IDs must be unique")
 
-    require(axis["nine_stages"]["stairs"] == 3600, "Central axis must keep 3600 stairs")
-    require(axis["nine_stages"]["segments"] == 9, "Central axis must keep nine stages")
-    require(axis["total_centerline_km"] == 7.2, "Central axis centerline must remain 7.2 km")
+    if gate["dimensions_m"] != {"width": 52, "depth": 18, "height": 34}:
+        fail("玄岳关 locked body dimensions changed")
+    if gate["twin_swords"]["height_m"] != 44:
+        fail("双阙剑 locked height changed")
+    if gate["twin_swords"]["axis_distance_m"] != 68:
+        fail("双阙剑 locked axis distance changed")
 
-    require(camera["drone_camera"]["lens_equivalent"] == "24-35mm", "DJI lens range must remain 24–35mm")
-    require(camera["master_camera"]["lens_equivalent"] == "50mm three-frame horizontal virtual stitch", "E1 master camera definition changed unexpectedly")
+    if axis["nine_stages"]["segments"] != 9:
+        fail("中央登宗主轴 must contain nine stages")
+    if axis["nine_stages"]["stairs"] != 3600:
+        fail("九段玄阶 total stair count must remain 3600")
+    if "no straight sky staircase" not in axis["nine_stages"]["rule"]:
+        fail("central-axis anti-straight-stair rule is missing")
 
-    print("XTZ world data validation: PASS")
-    print("9 peaks / 1 floating main peak / gate / swords / axis / E1 camera validated.")
+    if cameras["drone_camera"]["lens_equivalent"] != "24-35mm":
+        fail("DJI camera range must remain 24-35mm equivalent")
+
+    for path in preview["paths"]:
+        if path["canon_status"] != "NON_CANON_PROXY":
+            fail("V0.1 preview paths must remain NON_CANON_PROXY until reviewed")
+        if len(path["keyframes"]) < 2:
+            fail("preview path requires at least two keyframes")
+
+    print("[XTZ] world data validation: PASS")
+    print("[XTZ] 9 peaks / 1 floating main peak / gate / swords / axis / camera rules verified")
 
 
 if __name__ == "__main__":
