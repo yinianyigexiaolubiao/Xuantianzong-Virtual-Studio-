@@ -1,0 +1,60 @@
+{
+  "registry_version": "2026-08-08-r1",
+  "purpose": "Supplementary registry for recovered Xuantianzong work that existed in project conversation/history but did not resolve to a stable standalone File Library artifact during the archive census.",
+  "rule": "These records preserve work/provenance. They do not override current Canon unless independently registered in the Canon authority stack.",
+  "assets": [
+    {
+      "id": "CHAT-DRONE-KEYFRAMES-V1",
+      "module": "PROMO_FILM_AND_DJI",
+      "title": "无人机预览关键帧 V1 六帧与飞行叙事路线",
+      "status": "CHAT_RECORDED_SPEC",
+      "sequence": [
+        "云海发现",
+        "玄岳关",
+        "九重玄阶",
+        "灵兽峰",
+        "悬浮玄天峰",
+        "玄天殿"
+      ],
+      "historical_note": "The six-frame preview route included spirit beasts/sword-riders/guardian imagery in historical exploration. It is not current shot geometry; V1.6.1/A1/F1/E1 and V0.2 camera QC supersede obsolete spatial readings."
+    },
+    {
+      "id": "CHAT-V12-VISUAL-BONE",
+      "module": "VISUAL_ASSETS",
+      "title": "V12 视觉母图 / 固定构图视觉骨架",
+      "status": "REFERENCED_ONLY",
+      "evidence": "Repeatedly referenced by V1.5, D1, E1 and project conversation as the strategic visual skeleton. Exact historical standalone binary was not independently recovered in this final census.",
+      "use": "Retain light, central hierarchy, long-range density and visual intent only; do not infer map topology or real DJI optics from the stitched V12 view."
+    },
+    {
+      "id": "CHAT-HIST-MAP-BUILDING-VERSIONS",
+      "module": "VISUAL_ASSETS",
+      "title": "历史总图/建筑图中间版本族（V1–V12 / V5-V6-V7-V11 等阶段记录）",
+      "status": "CHAT_RECORDED_SPEC",
+      "evidence": "Project history records a wider sequence of map/building iterations than the named binaries independently recovered during the final File Library census.",
+      "archive_rule": "Named/directly recovered files remain primary evidence. Unresolved intermediate version labels are preserved as lineage records and must not be invented as exact images."
+    },
+    {
+      "id": "CHAT-XLQ-EARLY-CREATIVE-LINEAGE",
+      "module": "XUANYUAN_LIANQI",
+      "title": "《玄元炼气诀》早期创作体系：十二层、经脉/异象/关隘/风险、玄元十二式与隐篇探索",
+      "status": "CHAT_RECORDED_SPEC",
+      "historical_note": "Earlier project work described a more game-like/graded creative lineage including twelve Qi-refining layers, meridian routes, phenomena, bottlenecks, risks, Xuan Yuan Twelve Forms and hidden-page concepts. Treat as superseded creative-development provenance unless exact later text retains those elements.",
+      "current_rule": "The preferred recovered text source and current V1.6.1 scripture relationship control present use; do not reintroduce early rank labels or hidden-page content by memory."
+    },
+    {
+      "id": "CHAT-XUANYUAN-ANCESTOR-ROOT",
+      "module": "CANON_AND_WORLD",
+      "title": "玄元祖师作为开山祖师及《玄元炼气诀》创法者的项目设定血统",
+      "status": "CHAT_RECORDED_SPEC",
+      "current_rule": "Use current V1.6.1/registered Canon for present wording; this record preserves the prior explicit project decision and provenance."
+    },
+    {
+      "id": "CHAT-FOOD-KITCHEN-SEPARATION",
+      "module": "CANON_AND_WORLD",
+      "title": "粮食仓储与厨房/膳堂分离的项目决策血统",
+      "status": "CHAT_RECORDED_SPEC",
+      "current_rule": "Already absorbed into later world Canon: independent grain storage and kitchen/open-fire separation. This record preserves provenance rather than creating a new override."
+    }
+  ]
+}
