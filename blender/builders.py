@@ -138,7 +138,7 @@ def build_gate(gate_data: dict, anchor=(0.0, 2000.0, 0.0)):
 
 
 def build_axis(axis_data: dict, start=(0.0, 2000.0, 2.0)):
-    """Build a preview curve that obeys the locked rule 'not a straight sky staircase'."""
+    """Build an engineering preview curve; all unresolved waypoints remain proxy-only."""
     collection = get_or_create_collection("XTZ_CentralAxis")
     total_m = float(axis_data["total_centerline_km"]) * 1000.0
     sx, sy, sz = start
@@ -201,6 +201,44 @@ def build_cameras(camera_data: dict, axis_points: Iterable[tuple]):
         e1.append(cam)
     bpy.context.scene.camera = drone
     return {"drone": drone, "e1": e1}
+
+
+def animate_camera_from_path(camera, path_data: dict):
+    """Keyframe a camera from a machine-readable engineering preview path."""
+    scene = bpy.context.scene
+    fps = int(path_data.get("fps", scene.render.fps))
+    duration_s = float(path_data["duration_s"])
+    scene.render.fps = fps
+    scene.frame_start = 1
+    scene.frame_end = max(2, int(round(duration_s * fps)))
+
+    keys = path_data["keyframes"]
+    if len(keys) < 2:
+        raise ValueError("preview camera path requires at least 2 keyframes")
+
+    for key in keys:
+        t = float(key["t"])
+        frame = 1 + int(round(t * fps))
+        location = Vector(key["location_m"])
+        target = Vector(key["look_at_m"])
+        camera.location = location
+        direction = target - location
+        camera.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
+        camera.keyframe_insert(data_path="location", frame=frame)
+        camera.keyframe_insert(data_path="rotation_euler", frame=frame)
+
+    if camera.animation_data and camera.animation_data.action:
+        action = camera.animation_data.action
+        for fcurve in action.fcurves:
+            for point in fcurve.keyframe_points:
+                point.interpolation = "BEZIER"
+                point.handle_left_type = "AUTO_CLAMPED"
+                point.handle_right_type = "AUTO_CLAMPED"
+
+    camera["xtz_path_id"] = path_data["path_id"]
+    camera["xtz_path_status"] = path_data["canon_status"]
+    camera["xtz_path_usage"] = path_data["usage"]
+    return scene.frame_end
 
 
 def add_world_envelope(width_km=8.0, depth_km=12.0):
