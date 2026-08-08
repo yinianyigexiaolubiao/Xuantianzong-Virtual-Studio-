@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "canon": "玄天宗世界设定总纲 V1.6.1 + V1.6-A A1 正式控制版",
   "coordinate_system": {
     "envelope_km": [8.0, 12.0],
@@ -21,13 +21,33 @@
     {
       "id": "XTZ-MTN-001",
       "name": "玄天峰",
+      "status": "CANON_A1_LOCKED",
       "center_km": [0.0, 9.35],
       "summit_elevation_m": 1680,
       "primary_foot_elevation_m": null,
       "core_body_km": [1.45, 1.05],
       "outer_foothill_km": null,
       "role": "唯一大型悬浮主峰",
-      "floating": true
+      "floating": true,
+      "shape_rule": "不规则完整倒悬山体，禁止圆盘、平板、规则浮岛",
+      "deepest_inverted_spire_elevation_m": 1210,
+      "main_vertical_body_depth_m": [400, 470],
+      "main_palace_terrace_elevation_m": [1605, 1615],
+      "palace_roof_ridge_elevation_m": [1650, 1660],
+      "ceremonial_zone_elevation_m": [1490, 1530],
+      "south_reception_elevation_m": [1300, 1320],
+      "average_lower_edge_elevation_m": [1280, 1380],
+      "valley_below_elevation_m": [960, 1030],
+      "central_clearance_m": [180, 250],
+      "buildable_area_km2": [0.28, 0.32],
+      "building_coverage_target_percent": [10, 12],
+      "building_coverage_cap_percent": 15,
+      "fine_waterfall_count": [3, 5],
+      "main_palace": {
+        "body_plan_m": [78, 56],
+        "podium_plan_m": [98, 76],
+        "roof_ridge_height_m": [42, 45]
+      }
     },
     {
       "id": "XTZ-MTN-002",
