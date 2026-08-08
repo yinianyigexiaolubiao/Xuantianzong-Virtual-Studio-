@@ -1,17 +1,28 @@
 {
   "project": "Xuantianzong Virtual Studio",
-  "registry_version": "2026-08-08-r2",
-  "sole_current_canon": {
+  "registry_version": "2026-08-08-r3",
+  "base_world_canon": {
     "name": "玄天宗世界设定总纲 V1.6.1 全量合并锁定版",
-    "status": "SOLE_CURRENT_CANON",
+    "status": "BASE_WORLD_CANON",
     "date": "2026-08-07",
-    "conflict_rule": "V1.6.1 explicit text and locked values win; older files remain source history only."
+    "conflict_rule": "V1.6.1 controls all world fields except those explicitly superseded by a later user-approved LOCKED scoped module registered in post_canon_overrides.json."
+  },
+  "post_canon_override_policy": {
+    "registry": "data/canon/post_canon_overrides.json",
+    "human_spec": "docs/canon/POST_CANON_LOCKED_OVERRIDES.md",
+    "active_overrides": ["OVR-BEAST-001"],
+    "rule": "Newer alone is insufficient. Override requires explicit user approval/LOCKED evidence and an explicit lock scope."
+  },
+  "master_asset_registry": {
+    "human": "docs/canon/MASTER_ASSET_REGISTRY_2026-08-08.md",
+    "machine": "data/canon/master_asset_registry_2026-08-08.json"
   },
   "control_stack": [
     {
       "id": "A1",
       "name": "玄天宗 V1.6-A 总平面与高程控制书 A1 正式控制版",
       "class": "TECH_CONTROL",
+      "status": "MERGED_INTO_BASE_CANON_BUT_RETAINED_FOR_ENGINEERING_DETAIL",
       "precision": "50m macro spatial control",
       "controls": ["coordinate system", "nine-peak terrain skeleton", "elevation", "ancient road", "nine-stage axis", "Xuantian Peak envelope", "rear zone", "water", "Xuanyue Gate", "Twin Swords"]
     },
@@ -19,6 +30,7 @@
       "id": "B1",
       "name": "玄天宗 V1.6-B 九峰功能与关键资产布局 B1 正式版",
       "class": "TECH_CONTROL",
+      "status": "MERGED_INTO_BASE_CANON_BUT_RETAINED_FOR_ENGINEERING_DETAIL",
       "precision": "10m functional layout",
       "controls": ["peak functions", "population", "building coverage", "central assets", "traffic", "airspace"]
     },
@@ -26,12 +38,14 @@
       "id": "C1",
       "name": "玄天宗 V1.6-C 视觉与高阶神兽出镜控制书 C1 正式版",
       "class": "VISUAL_CONTROL",
-      "controls": ["visual hierarchy", "materials", "brightness", "xianxia atmosphere", "beast appearance rules", "image/video acceptance"]
+      "status": "MERGED_INTO_BASE_CANON_BUT_RETAINED_FOR_ENGINEERING_DETAIL",
+      "controls": ["visual hierarchy", "materials", "brightness", "xianxia atmosphere", "image/video acceptance", "high-tier beast filming policy"]
     },
     {
       "id": "E1",
       "name": "玄天宗 V1.6-E V12固定相机与视线控制书 E1 总确认稿",
       "class": "CAMERA_CONTROL",
+      "status": "ACTIVE_TECH_CONTROL",
       "controls": ["V12 strategic camera", "composition anchors", "visibility", "rear-zone occlusion", "strategic-view QC"],
       "not_for": ["real DJI single-lens flight path"]
     },
@@ -39,16 +53,35 @@
       "id": "F1",
       "name": "玄天宗 V1.6-F 三维灰模与比例控制书 F1 总确认稿",
       "class": "GRAYBOX_CONTROL",
+      "status": "ACTIVE_TECH_CONTROL",
       "basis": ["V1.6.1", "A1", "B1", "C1", "E1"],
-      "controls": ["100m terrain massing", "continuous ridge chains", "central valley", "rear ridge massing", "heavy inverted Xuantian Peak envelope", "B1 envelope blocks", "E1 graybox fit"]
+      "controls": ["100m terrain massing", "continuous ridge chains", "central valley", "rear ridge massing", "heavy inverted Xuantian Peak envelope", "B1 envelope blocks", "E1 graybox fit"],
+      "binary_evidence": {"obj":"DIRECT_FOUND","glb":"REFERENCED_ONLY"}
+    },
+    {
+      "id": "BEAST_V2_GATE",
+      "name": "玄天宗 神兽创作强制门禁 V2.0 / 当前生效标准",
+      "class": "ASSET_CONTROL",
+      "status": "LOCKED",
+      "controls": ["CANONICAL_BEASTS sole truth", "task contract", "preflight fail-closed", "reference hashes", "deprecated-field blocking"],
+      "package_sha256": "7b780a9b7bf948fef21b0e5c977e84593e46e1e7bebdc2a0be073fb3004d5866"
+    },
+    {
+      "id": "BEAST_REGISTRY_V1",
+      "name": "六兽正式资产注册表 V1.0 LOCKED",
+      "class": "POST_CANON_LOCKED_OVERRIDE_SOURCE",
+      "status": "LOCKED_USER_APPROVED",
+      "override_id": "OVR-BEAST-001"
     },
     {
       "id": "F2",
       "name": "玄天宗 V1.6-F2 六兽真实尺度植入",
       "class": "BEAST_SCALE_AND_PLACEMENT_CONTROL",
-      "status": "LOCKED",
+      "status": "LOCKED_USER_CONFIRMED",
+      "override_id": "OVR-BEAST-001",
       "verified_sources": ["F2_LOCK_RELEASE_NOTE.txt", "F2_六兽真实尺度植入_设计参数与验收.json", "MANIFEST_SHA256.json"],
-      "controls": ["canonical beast dimensions", "locked F2 placements", "world-scale occupancy", "1200m wingless Jiutian Xuanying Dragon body", "1800m dragon airspace envelope", "proxy volume not final sculpt"]
+      "controls": ["canonical beast dimensions", "locked F2 placements", "world-scale occupancy", "1200m wingless Jiutian Xuanying Dragon body", "1800m dragon normal occupancy envelope", "proxy volume not final sculpt"],
+      "derived_binaries": "MANIFEST_VERIFIED"
     },
     {
       "id": "F3",
@@ -57,23 +90,32 @@
       "source_status": "REVIEW",
       "downstream_status": "PASSED_BY_G1",
       "verified_sources": ["F3_形态深化与V12套合_设计参数.json", "玄天宗_V1.6-G1_正式母图生成控制稿_已锁定记录.json"],
-      "controls": ["LOD1.5 species recognition proxies", "V12 projection", "visibility selection", "must not alter F2 locked coordinates or canonical dimensions"],
-      "status_note": "Do not rewrite the standalone F3 source as LOCKED unless a separate F3 lock/release record is verified; G1 explicitly records F3 as passed."
+      "controls": ["LOD1.5 species recognition proxies", "V12 projection", "visibility selection", "must not alter F2 locked coordinates or current canonical dimensions"],
+      "derived_binaries": "REFERENCED_ONLY"
     },
     {
       "id": "G1",
       "name": "玄天宗 V1.6-G1 正式母图生成控制稿",
       "class": "FUTURE_HERO_IMAGE_CONTROL",
       "status": "LOCKED",
-      "basis": ["E1", "F2_LOCKED", "F3_PASSED"],
+      "basis": ["E1", "F2_LOCKED", "F3_PASSED", "current visual rules"],
       "controls": ["formal master-image generation", "Xuantian Peak remains inverted", "Xuantian Hall first visual subject", "no moving locked assets for composition", "no AI-invented large landmarks", "composition-scale-beast triple acceptance"]
     }
+  ],
+  "verified_no_post_canon_override_required": [
+    "sacred_tree_scales_and_ruomu_position",
+    "xuantian_peak_envelope_and_vertical_limits",
+    "xuanyue_gate_dimensions",
+    "twin_sword_dimensions_and_V10_identity",
+    "nine_peak_macro_topology",
+    "ancient_road_and_nine_stage_axis",
+    "rear_zone_and_water_system"
   ],
   "historical_reference": [
     "V1.6 D1 preliminary design",
     "V1.6 full-audit locked version",
     "V1.5 V12 visual master integration",
-    "V1.4 / V1.3 / V1.2 / V1.1 world-bible history",
+    "V1.4 / V1.3 / V1.2 / V1.1 / V1.0 world-bible history",
     "older strategic maps and concept images"
   ],
   "deprecated": [
@@ -85,7 +127,9 @@
     "dark western castle visual language",
     "global blue/neon treatment",
     "uniform all-jade natural/production materials",
-    "treating E1 stitched camera as a real DJI single-lens shot"
+    "treating E1 stitched camera as a real DJI single-lens shot",
+    "Xuanlei Kui thunder-horn fields",
+    "winged Jiutian Xuanying Dragon"
   ],
   "engineering_labels": [
     "LOCKED_DESIGN",
