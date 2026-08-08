@@ -40,7 +40,7 @@ def load_preview_path() -> dict:
     return data["paths"][0]
 
 
-def write_manifest(scene, peak_count: int, frame_end: int):
+def write_manifest(scene, peak_count: int, frame_end: int, gate_data: dict, axis_data: dict):
     out = repo_root() / "build" / "digital_twin_v0.1_manifest.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     manifest = {
@@ -48,6 +48,13 @@ def write_manifest(scene, peak_count: int, frame_end: int):
         "milestone": "Digital Twin V0.1",
         "canon": scene["xtz_canon"],
         "peak_count": peak_count,
+        "gate_anchor_status": gate_data["world_anchor"]["status"],
+        "gate_anchor": {
+            "center_km": gate_data["world_anchor"]["center_km"],
+            "ground_elevation_m": gate_data["world_anchor"]["ground_elevation_m"],
+        },
+        "central_axis_status": axis_data["status"],
+        "central_axis_control_nodes": len(axis_data["axis_nodes_km"]),
         "frame_start": scene.frame_start,
         "frame_end": frame_end,
         "fps": scene.render.fps,
@@ -71,9 +78,10 @@ def build():
     add_world_envelope(width_km, depth_km)
     peak_objects = build_peaks(peaks)
 
-    # Engineering placeholders only until canonical absolute A1 waypoints are imported.
-    build_gate(gate, anchor=(0.0, 2000.0, 0.0))
-    _, axis_points = build_axis(axis, start=(0.0, 2000.0, 2.0))
+    # World anchors/control nodes are read directly from locked A1 data.
+    # Meshes are still proxy geometry and must not be mistaken for final asset art.
+    gate_result = build_gate(gate)
+    axis_obj, axis_points = build_axis(axis)
     camera_result = build_cameras(cameras, axis_points)
 
     frame_end = animate_camera_from_path(camera_result["drone"], preview_path)
@@ -82,17 +90,21 @@ def build():
     scene["xtz_project"] = "Xuantianzong Virtual Studio"
     scene["xtz_milestone"] = "Digital Twin V0.1"
     scene["xtz_canon"] = peaks["canon"]
+    scene["xtz_gate_anchor_status"] = gate["world_anchor"]["status"]
+    scene["xtz_axis_status"] = axis["status"]
     scene["xtz_warning"] = (
-        "Graybox prototype. NON_CANON_PROXY objects/paths must not be promoted "
-        "to production Canon without an explicit locked spec."
+        "A1 world anchors/control nodes are locked. Graybox meshes, E1 preview rig and DJI preview path "
+        "remain engineering proxies unless explicitly promoted by a later approved specification."
     )
 
-    write_manifest(scene, len(peak_objects), frame_end)
+    write_manifest(scene, len(peak_objects), frame_end, gate, axis)
 
     print(
-        f"[XTZ] Built {len(peak_objects)} peaks, gate proxy, axis preview, "
+        f"[XTZ] Built {len(peak_objects)} peak proxies, gate proxy at A1 anchor {tuple(gate_result['anchor'])}, "
+        f"A1 axis with {len(axis_points)} locked control nodes, "
         f"{1 + len(camera_result['e1'])} cameras and preview animation."
     )
+    print(f"[XTZ] Axis object status: {axis_obj['xtz_geometry_status']}")
 
     if os.environ.get("XTZ_SAVE_BLEND") == "1":
         out = repo_root() / "build" / "xuantianzong_digital_twin_v0.1.blend"
