@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 import bpy
+from mathutils import Vector
 
 THIS_DIR = Path(__file__).resolve().parent
 if str(THIS_DIR) not in sys.path:
@@ -19,6 +20,7 @@ from builders import (
     build_axis,
     build_cameras,
     build_gate,
+    build_key_assets,
     build_peaks,
     clear_xtz_scene,
 )
@@ -44,10 +46,12 @@ def load_preview_path() -> dict:
 def write_manifest(
     scene,
     peak_count: int,
+    key_asset_count: int,
     frame_end: int,
     gate_data: dict,
     road_data: dict,
     axis_data: dict,
+    key_assets_data: dict,
 ):
     out = repo_root() / "build" / "digital_twin_v0.1_manifest.json"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -67,7 +71,9 @@ def write_manifest(
         "central_axis_status": axis_data["status"],
         "central_axis_control_nodes": len(axis_data["axis_nodes_km"]),
         "central_axis_actual_length_km": axis_data["actual_length_km"],
-        "continuous_entry_route": "接引院 → 十二里入山古道 → 玄岳关 → 九段玄阶 → 接天阵台",
+        "key_assets_status": key_assets_data["status"],
+        "v0_1_key_asset_proxy_count": key_asset_count,
+        "continuous_entry_route": "接引院 → 十二里入山古道 → 玄岳关 → 九段玄阶 → 接天阵台 → 玄天峰核心建筑群",
         "frame_start": scene.frame_start,
         "frame_end": frame_end,
         "fps": scene.render.fps,
@@ -85,6 +91,7 @@ def build():
     gate = load_world_json("xuanyue_gate.json")
     ancient_road = load_world_json("ancient_road.json")
     axis = load_world_json("central_axis.json")
+    key_assets = load_world_json("key_assets.json")
     cameras = load_world_json("camera_e1.json")
     preview_path = load_preview_path()
 
@@ -92,16 +99,23 @@ def build():
     add_world_envelope(width_km, depth_km)
     peak_objects = build_peaks(peaks)
 
-    # A1 anchors/control points are read directly from locked Canon data.
-    # Road/axis curves are control guides; detailed edges, stairs and platforms are later-stage assets.
+    # A1/B1 anchors and control points are read directly from locked Canon data.
+    # Meshes remain proxy geometry until detailed asset design is approved.
     gate_result = build_gate(gate)
     road_obj, road_points = build_ancient_road(ancient_road)
     axis_obj, axis_points = build_axis(axis)
+    key_asset_objects = build_key_assets(key_assets)
 
     road_end = Vector(road_points[-1])
     axis_start = Vector(axis_points[0])
     if (road_end - axis_start).length > 0.01:
         raise ValueError("Ancient-road A8 and central-axis start are not spatially continuous")
+
+    expected_asset_names = {"接天阵台", "接天阵门", "礼制等候院", "玄天殿", "祖师堂", "掌门院", "魂灯殿"}
+    built_asset_names = {obj["xtz_name"] for obj in key_asset_objects}
+    if not expected_asset_names.issubset(built_asset_names):
+        missing = sorted(expected_asset_names - built_asset_names)
+        raise ValueError(f"Missing required B1 V0.1 key-asset proxies: {missing}")
 
     camera_result = build_cameras(cameras, axis_points)
     frame_end = animate_camera_from_path(camera_result["drone"], preview_path)
@@ -113,18 +127,28 @@ def build():
     scene["xtz_gate_anchor_status"] = gate["world_anchor"]["status"]
     scene["xtz_ancient_road_status"] = ancient_road["status"]
     scene["xtz_axis_status"] = axis["status"]
+    scene["xtz_key_assets_status"] = key_assets["status"]
     scene["xtz_warning"] = (
-        "A1 world anchors/control points are locked. Graybox meshes, detailed road/stair geometry, "
-        "E1 preview rig and DJI preview path remain engineering proxies unless explicitly promoted "
-        "by a later approved specification."
+        "A1/B1 world anchors, control points and approved envelopes are locked. Graybox meshes, detailed road/stair geometry, "
+        "E1 preview rig and DJI preview path remain engineering proxies unless explicitly promoted by a later approved specification."
     )
 
-    write_manifest(scene, len(peak_objects), frame_end, gate, ancient_road, axis)
+    write_manifest(
+        scene,
+        len(peak_objects),
+        len(key_asset_objects),
+        frame_end,
+        gate,
+        ancient_road,
+        axis,
+        key_assets,
+    )
 
     print(
         f"[XTZ] Built {len(peak_objects)} peak proxies, gate proxy at A1 anchor {tuple(gate_result['anchor'])}, "
         f"ancient road with {len(road_points)} locked A1 control points, "
         f"central axis with {len(axis_points)} locked A1 control nodes, "
+        f"{len(key_asset_objects)} B1 core asset proxies, "
         f"{1 + len(camera_result['e1'])} cameras and preview animation."
     )
     print(f"[XTZ] Ancient-road status: {road_obj['xtz_geometry_status']}")
