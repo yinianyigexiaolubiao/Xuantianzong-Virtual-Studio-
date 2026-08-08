@@ -23,6 +23,7 @@ def approx_equal(a: float, b: float, tol: float = 1e-9) -> bool:
 def main():
     peaks = load("peaks.json")
     gate = load("xuanyue_gate.json")
+    road = load("ancient_road.json")
     axis = load("central_axis.json")
     cameras = load("camera_e1.json")
     preview = load("preview_camera_paths.json")
@@ -35,6 +36,22 @@ def main():
     floating = [p for p in peaks["peaks"] if p.get("floating")]
     if len(floating) != 1 or floating[0]["name"] != "玄天峰":
         fail("玄天峰 must be the only large floating main peak")
+
+    xuan = floating[0]
+    if xuan.get("status") != "CANON_A1_LOCKED":
+        fail("玄天峰 A1 envelope must remain locked")
+    if xuan["center_km"] != [0.0, 9.35]:
+        fail("玄天峰 center must remain (0.00, 9.35km)")
+    if xuan["summit_elevation_m"] != 1680:
+        fail("玄天峰 summit must remain 1680m")
+    if xuan["deepest_inverted_spire_elevation_m"] != 1210:
+        fail("玄天峰 deepest inverted spire must remain 1210m")
+    if xuan["main_vertical_body_depth_m"] != [400, 470]:
+        fail("玄天峰 main vertical body depth must remain 400-470m")
+    if xuan["main_palace_terrace_elevation_m"] != [1605, 1615]:
+        fail("玄天峰 main palace terrace must remain 1605-1615m")
+    if xuan["central_clearance_m"] != [180, 250]:
+        fail("玄天峰 central clearance must remain 180-250m")
 
     ids = [p["id"] for p in peaks["peaks"]]
     if len(ids) != len(set(ids)):
@@ -57,6 +74,37 @@ def main():
     if gate["twin_swords"]["axes_local_x_m"] != [-34, 34]:
         fail("双阙剑 local X axes must remain -34m/+34m")
 
+    expected_road = [
+        ("A0", [0.05, 1.22], 445),
+        ("A1", [-0.40, 1.50], 458),
+        ("A2", [0.45, 1.80], 475),
+        ("A3", [-0.50, 2.15], 495),
+        ("A4", [0.40, 2.45], 520),
+        ("A5", [-0.40, 2.80], 545),
+        ("A6", [0.30, 3.10], 570),
+        ("A7", [-0.20, 3.35], 592),
+        ("A8", [0.00, 3.70], 610),
+    ]
+    if road["status"] != "CANON_A1_LOCKED":
+        fail("twelve-li ancient road must remain CANON_A1_LOCKED")
+    if len(road["control_points"]) != 9:
+        fail("ancient road must contain A0-A8 control points")
+    for actual, expected in zip(road["control_points"], expected_road):
+        exp_id, exp_coord, exp_elev = expected
+        if actual["id"] != exp_id or actual["coord_km"] != exp_coord or actual["elev_m"] != exp_elev:
+            fail(f"ancient-road control point {exp_id} changed")
+    if not approx_equal(road["actual_length_km"], 6.0):
+        fail("ancient road actual length must remain 6.0km")
+    if road["total_climb_m"] != 165:
+        fail("ancient road climb must remain 165m")
+    if road["major_switchbacks"] != 7:
+        fail("ancient road major switchbacks must remain 7")
+    if road["final_jade_approach_length_m"] != 180:
+        fail("final jade approach must remain 180m")
+    road_end = road["control_points"][-1]
+    if road_end["coord_km"] != gate["world_anchor"]["center_km"] or road_end["elev_m"] != gate["world_anchor"]["ground_elevation_m"]:
+        fail("ancient-road A8 must coincide with Xuanyue Gate A1 anchor")
+
     expected_nodes = [
         [0.0, 3.7], [-0.38, 4.25], [0.34, 4.83], [-0.45, 5.42], [0.37, 5.98],
         [-0.31, 6.57], [0.24, 7.17], [-0.18, 7.78], [0.12, 8.42], [0.0, 9.1],
@@ -75,6 +123,8 @@ def main():
         fail("central-axis start/end coordinates changed")
     if axis["start"]["elevation_m"] != 610 or axis["end"]["elevation_m"] != 1270:
         fail("central-axis start/end elevations changed")
+    if road_end["coord_km"] != axis["start"]["coord_km"] or road_end["elev_m"] != axis["start"]["elevation_m"]:
+        fail("ancient road and central axis must join exactly at Xuanyue Gate")
     if len(axis["stages"]) != 9:
         fail("中央登宗主轴 must contain nine stages")
     if sum(stage["steps"] for stage in axis["stages"]) != 3600:
@@ -109,7 +159,7 @@ def main():
             fail("preview camera crosses at/above the central opening top")
 
     print("[XTZ] world data validation: PASS")
-    print("[XTZ] 9 peaks / 1 floating main peak / locked gate anchor / 10 A1 axis nodes / 3600 stairs verified")
+    print("[XTZ] nine peaks / Xuantian vertical envelope / ancient road A0-A8 / gate / 10 A1 axis nodes / 3600 stairs verified")
 
 
 if __name__ == "__main__":
