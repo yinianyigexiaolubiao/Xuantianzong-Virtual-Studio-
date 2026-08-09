@@ -124,7 +124,7 @@ def main():
         peak_details.append({"id": source["id"], "actual": actual, "expected": expected})
     check(peak_transform_ok, "canon_peak_anchor_transforms", peak_details, results)
 
-    xuan_objects = [bpy.data.objects["XTZ_V02_XUANTIAN_HEAVY_INVERTED_BODY"]] + [o for o in bpy.data.objects if o.name.startswith("XTZ_V02_XUANTIAN_NATURAL_CROWN_")]
+    xuan_objects = [o for o in bpy.data.objects if o.type == "MESH" and o.name.startswith("XTZ_V02_XUANTIAN_")]
     xuan_low, xuan_high, xuan_dims = dimensions_of(xuan_objects)
     check(close(xuan_low[2], 1210.0, 0.1) and close(xuan_high[2], 1680.0, 0.1) and xuan_dims[0] <= 1450.01 and xuan_dims[1] <= 1050.01, "xuantian_locked_envelope", {"min": xuan_low, "max": xuan_high, "dimensions": xuan_dims}, results)
 

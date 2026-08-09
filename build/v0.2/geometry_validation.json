@@ -54,12 +54,12 @@
       "details": {
         "low": [
           -38.0,
-          3695.100098,
+          3694.899902,
           612.200012
         ],
         "high": [
           -30.0,
-          3696.899902,
+          3697.100098,
           656.200012
         ],
         "height_m": 44.0,
@@ -72,12 +72,12 @@
       "details": {
         "low": [
           30.0,
-          3695.100098,
+          3694.899902,
           612.200012
         ],
         "high": [
           38.0,
-          3696.899902,
+          3697.100098,
           656.200012
         ],
         "height_m": 44.0,
@@ -274,18 +274,18 @@
       "status": "PASS",
       "details": {
         "min": [
-          -725.0,
-          8825.0,
+          -560.0,
+          8984.875977,
           1210.0
         ],
         "max": [
-          725.0,
-          9875.0,
+          560.0,
+          9745.663086,
           1680.0
         ],
         "dimensions": [
-          1450.0,
-          1050.0,
+          1120.0,
+          760.787109,
           470.0
         ]
       }
@@ -391,23 +391,23 @@
       "name": "camera_no_terrain_collision",
       "status": "PASS",
       "details": {
-        "minimum_clearance_m": 8.018671
+        "minimum_clearance_m": 8.460342
       }
     },
     {
       "name": "camera_no_gate_or_lintel_collision",
       "status": "PASS",
       "details": {
-        "inside_frames": 25,
+        "inside_frames": 56,
         "first": [
-          -0.018852,
-          3691.349996,
-          620.497975
+          -0.0,
+          3691.125,
+          620.391864
         ],
         "last": [
-          -0.108821,
-          3708.408294,
-          620.528717
+          -0.085313,
+          3708.943393,
+          620.4273
         ]
       }
     },
@@ -422,14 +422,14 @@
       "name": "camera_path_continuity",
       "status": "PASS",
       "details": {
-        "max_frame_displacement_m": 0.986891
+        "max_frame_displacement_m": 0.51355
       }
     },
     {
       "name": "camera_max_speed_mps",
       "status": "PASS",
       "details": {
-        "actual": 23.68538,
+        "actual": 12.325201,
         "limit": 27.0
       }
     },
@@ -437,7 +437,7 @@
       "name": "camera_max_acceleration_mps2",
       "status": "PASS",
       "details": {
-        "actual": 4.970197,
+        "actual": 4.106832,
         "limit": 6.0
       }
     },
@@ -445,7 +445,7 @@
       "name": "camera_max_jerk_mps3",
       "status": "PASS",
       "details": {
-        "actual": 12.310105,
+        "actual": 7.637864,
         "limit": 18.0
       }
     },
@@ -453,7 +453,7 @@
       "name": "camera_max_yaw_rate_deg_s",
       "status": "PASS",
       "details": {
-        "actual": 10.574948,
+        "actual": 19.745224,
         "limit": 20.0
       }
     }
@@ -463,43 +463,43 @@
     "fps": 24,
     "frames": 360,
     "duration_s": 15.0,
-    "max_speed_mps": 23.68538,
-    "average_speed_mps": 16.838024,
-    "max_acceleration_mps2": 4.970197,
-    "max_jerk_mps3": 12.310105,
-    "max_yaw_rate_deg_s": 10.574948,
+    "max_speed_mps": 12.325201,
+    "average_speed_mps": 9.706955,
+    "max_acceleration_mps2": 4.106832,
+    "max_jerk_mps3": 7.637864,
+    "max_yaw_rate_deg_s": 19.745224,
     "speed_profile": [
       [
         0.0,
-        4.0
+        8.0
       ],
       [
         3.0,
-        12.0
+        10.5
       ],
       [
         6.0,
-        20.0
+        11.5
       ],
       [
-        9.0,
-        22.0
+        8.5,
+        10.0
       ],
       [
-        10.8,
-        18.0
+        10.0,
+        8.8
       ],
       [
-        12.5,
-        18.0
+        11.0,
+        8.0
       ],
       [
-        13.5,
-        15.5
+        13.0,
+        7.6
       ],
       [
         15.0,
-        18.0
+        8.5
       ]
     ],
     "separation": [
@@ -515,6 +515,6 @@
       "max_yaw_rate_deg_s": 20.0
     }
   },
-  "non_canon_proxy_count": 47,
+  "non_canon_proxy_count": 59,
   "locked_design_not_visually_validated": []
 }

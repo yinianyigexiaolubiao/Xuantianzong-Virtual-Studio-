@@ -1,12 +1,16 @@
 {
   "project": "Xuantianzong Virtual Studio",
-  "milestone": "Digital Twin V0.2 Mini Spatial Proof",
+  "milestone": "Digital Twin V0.2.1 Visual Acceptance Repair",
   "authority": "V1.6.1 BASE_WORLD_CANON + registered scoped overrides",
   "scope": "final 800-1000m ancient road / Xuanyue mountain pass / gate+swords / first 300-500m interior / distant Xuantian silhouette",
   "formal_peak_count": 9,
   "large_floating_main_peak_count": 1,
   "b1_core_asset_count": 7,
   "qc_camera_count": 12,
+  "xuantian_peak_qc_camera_count": 4,
+  "twin_sword_fixed_qc_camera_count": 4,
+  "twin_sword_dji_keyframe_qc_count": 2,
+  "dji_keyframe_qc_count": 9,
   "camera_frame_count": 360,
   "fps": 24,
   "duration_s": 15.0,
@@ -33,6 +37,7 @@
     ]
   },
   "proxy_policy": "NON_CANON_PROXY",
+  "visual_acceptance_policy": "PENDING_HUMAN_REVIEW unless explicitly approved by a human",
   "non_canon_proxy_objects": [
     "XTZ_CAM_QC_01_ROAD_TO_GATE",
     "XTZ_CAM_QC_02_GATE_FRONT",
@@ -46,6 +51,14 @@
     "XTZ_CAM_QC_10_MINI_AERIAL",
     "XTZ_CAM_QC_11_GATE_AND_DISTANT_PEAK",
     "XTZ_CAM_QC_12_F1_STRATEGIC",
+    "XTZ_CAM_SWORD_QC_01_VALLEY_LONG",
+    "XTZ_CAM_SWORD_QC_02_GATE_FRONT",
+    "XTZ_CAM_SWORD_QC_03_LEFT_MID",
+    "XTZ_CAM_SWORD_QC_04_RIGHT_MID",
+    "XTZ_CAM_XTPEAK_QC_01_GATE_LONG",
+    "XTZ_CAM_XTPEAK_QC_02_INTERIOR_LONG",
+    "XTZ_CAM_XTPEAK_QC_03_FRONT_45",
+    "XTZ_CAM_XTPEAK_QC_04_LOW_ANGLE",
     "XTZ_V02_ANCIENT_ROAD_SMOOTH_PROXY",
     "XTZ_V02_B1_XTZ-BLD-002_玄天殿",
     "XTZ_V02_B1_XTZ-BLD-010_接天阵门",
@@ -80,7 +93,11 @@
     "XTZ_V02_XUANTIAN_HEAVY_INVERTED_BODY",
     "XTZ_V02_XUANTIAN_NATURAL_CROWN_01",
     "XTZ_V02_XUANTIAN_NATURAL_CROWN_02",
-    "XTZ_V02_XUANTIAN_NATURAL_CROWN_03"
+    "XTZ_V02_XUANTIAN_NATURAL_CROWN_03",
+    "XTZ_V02_XUANTIAN_NATURAL_CROWN_04",
+    "XTZ_V02_XUANTIAN_NATURAL_CROWN_05",
+    "XTZ_V02_XUANTIAN_SECONDARY_SPIRE_01",
+    "XTZ_V02_XUANTIAN_SECONDARY_SPIRE_02"
   ],
   "locked_design_not_visually_validated": []
 }

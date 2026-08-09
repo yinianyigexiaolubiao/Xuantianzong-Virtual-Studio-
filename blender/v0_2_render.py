@@ -9,6 +9,9 @@ import bpy
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "build" / "v0.2"
 QC_OUTPUT = OUTPUT / "qc"
+PEAK_QC_OUTPUT = QC_OUTPUT / "xuantian_peak"
+SWORD_QC_OUTPUT = QC_OUTPUT / "twin_swords"
+DJI_QC_OUTPUT = QC_OUTPUT / "dji_keyframes"
 
 
 def configure_workbench(width: int, height: int):
@@ -44,12 +47,41 @@ def render_still(scene, camera_name: str, path: Path, width=960, height=540):
 
 def render_qc(scene):
     QC_OUTPUT.mkdir(parents=True, exist_ok=True)
+    scene.frame_set(1)
     cameras = sorted(obj.name for obj in bpy.data.objects if obj.name.startswith("XTZ_CAM_QC_"))
     if len(cameras) < 10:
         raise RuntimeError(f"Expected >=10 QC cameras, found {len(cameras)}")
     for index, camera_name in enumerate(cameras, 1):
         render_still(scene, camera_name, QC_OUTPUT / f"qc_{index:02d}_{camera_name.removeprefix('XTZ_CAM_QC_').lower()}.png")
     render_still(scene, "XTZ_CAM_QC_12_F1_STRATEGIC", OUTPUT / "xuantianzong_mini_v0.2_global.png", 1600, 900)
+
+    PEAK_QC_OUTPUT.mkdir(parents=True, exist_ok=True)
+    peak_cameras = sorted(obj.name for obj in bpy.data.objects if obj.name.startswith("XTZ_CAM_XTPEAK_QC_"))
+    if len(peak_cameras) < 4:
+        raise RuntimeError(f"Expected >=4 Xuantian Peak QC cameras, found {len(peak_cameras)}")
+    for index, camera_name in enumerate(peak_cameras, 1):
+        render_still(scene, camera_name, PEAK_QC_OUTPUT / f"xtpeak_qc_{index:02d}.png")
+
+    SWORD_QC_OUTPUT.mkdir(parents=True, exist_ok=True)
+    sword_cameras = sorted(obj.name for obj in bpy.data.objects if obj.name.startswith("XTZ_CAM_SWORD_QC_"))
+    if len(sword_cameras) < 4:
+        raise RuntimeError(f"Expected >=4 fixed sword QC cameras, found {len(sword_cameras)}")
+    reveal_rock = bpy.data.objects.get("XTZ_V02_PASS_ROCK_REVEAL_EAST")
+    if reveal_rock:
+        reveal_rock.hide_render = True
+    for index, camera_name in enumerate(sword_cameras, 1):
+        render_still(scene, camera_name, SWORD_QC_OUTPUT / f"sword_qc_{index:02d}.png")
+    if reveal_rock:
+        reveal_rock.hide_render = False
+    for index, (frame, label) in enumerate(((145, "06s"), (193, "08s")), 5):
+        scene.frame_set(frame)
+        render_still(scene, "XTZ_V02_CAM_DJI_28MM", SWORD_QC_OUTPUT / f"sword_qc_{index:02d}_dji_{label}.png")
+
+    DJI_QC_OUTPUT.mkdir(parents=True, exist_ok=True)
+    keyframes = ((1, "00s"), (73, "03s"), (145, "06s"), (193, "08s"), (241, "10s"), (277, "11p5s"), (301, "12p5s"), (325, "13p5s"), (360, "15s"))
+    for frame, label in keyframes:
+        scene.frame_set(frame)
+        render_still(scene, "XTZ_V02_CAM_DJI_28MM", DJI_QC_OUTPUT / f"dji_qc_{label}.png")
 
 
 def render_video(scene):

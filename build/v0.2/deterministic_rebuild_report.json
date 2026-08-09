@@ -10,19 +10,19 @@
   "inputs": {
     "a_snapshot": {
       "path": "build\\v0.2\\_deterministic\\A_snapshot.json",
-      "sha256": "241c89ff6b547975f14f23f6391a55af522b7f43f4898aa0e92f146f6899fd5c"
+      "sha256": "bce4c24bc148f9476694e58d7d3126621bf093c3fe1597266fd34979c269add4"
     },
     "b_snapshot": {
       "path": "build\\v0.2\\_deterministic\\B_snapshot.json",
-      "sha256": "241c89ff6b547975f14f23f6391a55af522b7f43f4898aa0e92f146f6899fd5c"
+      "sha256": "bce4c24bc148f9476694e58d7d3126621bf093c3fe1597266fd34979c269add4"
     },
     "a_manifest": {
       "path": "build\\v0.2\\manifest.json",
-      "sha256": "4d56a4cd7ba7d9f9ffd95650b60275d8e115aa7a763f305da24d851314998f62"
+      "sha256": "0c0d033202f8be90eab3a0c51c20e829df13d9ebcb2041c0a8bfba527116c79b"
     },
     "b_manifest": {
       "path": "build\\v0.2\\_deterministic\\B_manifest.json",
-      "sha256": "4d56a4cd7ba7d9f9ffd95650b60275d8e115aa7a763f305da24d851314998f62"
+      "sha256": "0c0d033202f8be90eab3a0c51c20e829df13d9ebcb2041c0a8bfba527116c79b"
     }
   },
   "note": "Independent clean Blender builds compared at rounded machine-readable state level; .blend container bytes are not required to match."

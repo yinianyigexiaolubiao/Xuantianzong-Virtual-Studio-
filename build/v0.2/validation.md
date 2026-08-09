@@ -1,13 +1,20 @@
-# Digital Twin V0.2 Validation Report
+# Digital Twin V0.2.1 Visual Acceptance Repair — Validation Report
 
-Overall: **PASS**
+ENGINEERING_STATUS: **PASS**
+VISUAL_ACCEPTANCE_STATUS: **PENDING_HUMAN_REVIEW**
+CAMERA_VISUAL_ACCEPTANCE_STATUS: **PENDING_HUMAN_REVIEW**
+OVERALL_STATUS: **PENDING_HUMAN_REVIEW**
 
 ## Machine validation
 
 - Geometry: PASS (22 checks)
-- DJI camera metrics: PASS — max speed 23.685 m/s, max acceleration 4.970 m/s², max jerk 12.310 m/s³, max yaw rate 10.575°/s
+- DJI camera metrics: PASS — max speed 12.325 m/s, max acceleration 4.107 m/s², max jerk 7.638 m/s³, max yaw rate 19.745°/s
 - Deterministic rebuild: PASS
 - QC stills: 12 required render views present
+- Xuantian Peak silhouette QC: 4 images
+- Twin-sword QC: 6 images
+- DJI keyframe QC: 9 images
+- Render output presence is not treated as human visual acceptance.
 - Missing/empty deliverables: none
 
 ## NON_CANON_PROXY
@@ -26,6 +33,14 @@ All items below are temporary graybox/proof objects and are not promoted to Cano
 - XTZ_CAM_QC_10_MINI_AERIAL
 - XTZ_CAM_QC_11_GATE_AND_DISTANT_PEAK
 - XTZ_CAM_QC_12_F1_STRATEGIC
+- XTZ_CAM_SWORD_QC_01_VALLEY_LONG
+- XTZ_CAM_SWORD_QC_02_GATE_FRONT
+- XTZ_CAM_SWORD_QC_03_LEFT_MID
+- XTZ_CAM_SWORD_QC_04_RIGHT_MID
+- XTZ_CAM_XTPEAK_QC_01_GATE_LONG
+- XTZ_CAM_XTPEAK_QC_02_INTERIOR_LONG
+- XTZ_CAM_XTPEAK_QC_03_FRONT_45
+- XTZ_CAM_XTPEAK_QC_04_LOW_ANGLE
 - XTZ_V02_ANCIENT_ROAD_SMOOTH_PROXY
 - XTZ_V02_B1_XTZ-BLD-002_玄天殿
 - XTZ_V02_B1_XTZ-BLD-010_接天阵门
@@ -61,6 +76,10 @@ All items below are temporary graybox/proof objects and are not promoted to Cano
 - XTZ_V02_XUANTIAN_NATURAL_CROWN_01
 - XTZ_V02_XUANTIAN_NATURAL_CROWN_02
 - XTZ_V02_XUANTIAN_NATURAL_CROWN_03
+- XTZ_V02_XUANTIAN_NATURAL_CROWN_04
+- XTZ_V02_XUANTIAN_NATURAL_CROWN_05
+- XTZ_V02_XUANTIAN_SECONDARY_SPIRE_01
+- XTZ_V02_XUANTIAN_SECONDARY_SPIRE_02
 
 ## LOCKED_DESIGN_NOT_VISUALLY_VALIDATED
 

@@ -154,7 +154,16 @@ def catmull_rom(points: list[tuple[float, float, float]], samples_per_segment: i
     return result
 
 
-SPEED_KNOTS = [(0.0, 4.0), (3.0, 12.0), (6.0, 20.0), (9.0, 22.0), (10.8, 18.0), (12.5, 18.0), (13.5, 15.5), (15.0, 18.0)]
+SPEED_KNOTS = [
+    (0.0, 8.0),
+    (3.0, 10.5),
+    (6.0, 11.5),
+    (8.5, 10.0),
+    (10.0, 8.8),
+    (11.0, 8.0),
+    (13.0, 7.6),
+    (15.0, 8.5),
+]
 
 
 def speed_at_time(t: float) -> float:
@@ -164,14 +173,14 @@ def speed_at_time(t: float) -> float:
         return SPEED_KNOTS[-1][1]
     for (t0, v0), (t1, v1) in zip(SPEED_KNOTS, SPEED_KNOTS[1:]):
         if t0 <= t <= t1:
-            return cosine_mix(v0, v1, (t - t0) / (t1 - t0))
+            return v0 + (v1 - v0) * smootherstep01((t - t0) / (t1 - t0))
     raise AssertionError("unreachable speed interval")
 
 
 def camera_samples() -> list[dict]:
     samples: list[dict] = []
     distance = 0.0
-    start_y = 3492.0
+    start_y = 3581.0
     for frame in range(FRAME_START, FRAME_END + 1):
         t = (frame - FRAME_START) * DT
         if frame > FRAME_START:
@@ -180,27 +189,46 @@ def camera_samples() -> list[dict]:
         y = start_y + distance
         progress_to_gate = clamp((y - start_y) / (3700.0 - start_y), 0.0, 1.0)
         if y <= 3700.0:
-            x = -52.0 * (1.0 - smootherstep01(progress_to_gate)) + 3.0 * math.sin(progress_to_gate * math.pi) * (1.0 - progress_to_gate)
+            # Hold the road's left side through the discovery beat, then make one
+            # long, inertial correction to centre before the six-second hero view.
+            turn = smootherstep01((t - 1.0) / 5.0)
+            x = -17.0 * (1.0 - turn)
         else:
-            post = clamp((y - 3700.0) / 95.0, 0.0, 1.0)
-            x = -18.0 * smootherstep01(post)
-        ground = terrain_height(x, y)
+            post = clamp((y - 3700.0) / 70.0, 0.0, 1.0)
+            x = -5.0 * smootherstep01(post)
         rise = smootherstep01((y - start_y) / (3700.0 - start_y))
         post_rise = smootherstep01((y - 3700.0) / 70.0)
-        z = 617.5 + 3.0 * rise + 2.0 * post_rise
+        z = 618.2 + 2.2 * rise + 1.6 * post_rise
         # Body yaw follows the flight tangent; gimbal target follows the visual beat independently.
-        probe_y = y + 0.5
-        probe_progress = clamp((probe_y - start_y) / (3700.0 - start_y), 0.0, 1.0)
-        probe_x = -52.0 * (1.0 - smootherstep01(probe_progress)) + 3.0 * math.sin(probe_progress * math.pi) * (1.0 - probe_progress) if probe_y <= 3700.0 else -18.0 * smootherstep01((probe_y - 3700.0) / 95.0)
+        probe_t = t + 0.05
+        probe_y = y + speed_at_time(t) * 0.05
+        probe_x = -17.0 * (1.0 - smootherstep01((probe_t - 1.0) / 5.0)) if probe_y <= 3700.0 else -5.0 * smootherstep01((probe_y - 3700.0) / 70.0)
         yaw = math.atan2(probe_x - x, probe_y - y)
-        if t < 9.0:
-            target = (0.0, 3700.0, 622.0 + 5.0 * smoothstep01(t / 9.0))
-        elif t < 12.8:
-            u = smoothstep01((t - 9.0) / 3.8)
-            target = (0.0, 3700.0 + 25.0 * u, 621.0 + 4.0 * u)
+        if t < 3.0:
+            # Begin on the left V10 sword, then widen toward the complete gate.
+            # This is a gimbal-only reveal; the airframe keeps its inertial path.
+            u = smootherstep01(t / 3.0)
+            target = (-34.0 + 4.0 * u, 3696.0 + 2.0 * u, 640.0 - 3.0 * u)
+        elif t < 6.0:
+            u = smootherstep01((t - 3.0) / 3.0)
+            target = (-30.0 * (1.0 - u), 3698.0 + 2.0 * u, 637.0 - 12.0 * u)
+        elif t < 8.0:
+            u = smootherstep01((t - 6.0) / 2.0)
+            target = (34.0 * u, 3700.0 - 4.0 * u, 625.0 + 15.0 * u)
+        elif t < 10.0:
+            u = smootherstep01((t - 8.0) / 2.0)
+            target = (34.0 * (1.0 - u), 3696.0 + 8.0 * u, 640.0 - 16.0 * u)
+        elif t < 11.0:
+            u = smootherstep01((t - 10.0) / 1.0)
+            target = (0.0, 3704.0 + 2.0 * u, 624.0 - u)
+        elif t < 12.7:
+            u = smootherstep01((t - 11.0) / 1.7)
+            target = (0.0, 3720.0 + 110.0 * u, 624.0 + 25.0 * u)
+        elif t < 13.25:
+            u = smootherstep01((t - 12.7) / 0.55)
+            target = (-30.0 * u, 3830.0 + 5520.0 * u, 649.0 + 831.0 * u)
         else:
-            u = smoothstep01((t - 12.8) / 2.2)
-            target = (-40.0 * u, 4050.0 + 5300.0 * u, 680.0 + 780.0 * u)
+            target = (-30.0, 9350.0, 1480.0)
         samples.append({"frame": frame, "t": t, "position": [x, y, z], "body_yaw_rad": yaw, "gimbal_target": list(target)})
     return samples
 

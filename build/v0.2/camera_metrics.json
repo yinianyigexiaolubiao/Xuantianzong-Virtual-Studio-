@@ -3,43 +3,43 @@
   "fps": 24,
   "frames": 360,
   "duration_s": 15.0,
-  "max_speed_mps": 23.68538,
-  "average_speed_mps": 16.838024,
-  "max_acceleration_mps2": 4.970197,
-  "max_jerk_mps3": 12.310105,
-  "max_yaw_rate_deg_s": 10.574948,
+  "max_speed_mps": 12.325201,
+  "average_speed_mps": 9.706955,
+  "max_acceleration_mps2": 4.106832,
+  "max_jerk_mps3": 7.637864,
+  "max_yaw_rate_deg_s": 19.745224,
   "speed_profile": [
     [
       0.0,
-      4.0
+      8.0
     ],
     [
       3.0,
-      12.0
+      10.5
     ],
     [
       6.0,
-      20.0
+      11.5
     ],
     [
-      9.0,
-      22.0
+      8.5,
+      10.0
     ],
     [
-      10.8,
-      18.0
+      10.0,
+      8.8
     ],
     [
-      12.5,
-      18.0
+      11.0,
+      8.0
     ],
     [
-      13.5,
-      15.5
+      13.0,
+      7.6
     ],
     [
       15.0,
-      18.0
+      8.5
     ]
   ],
   "separation": [
