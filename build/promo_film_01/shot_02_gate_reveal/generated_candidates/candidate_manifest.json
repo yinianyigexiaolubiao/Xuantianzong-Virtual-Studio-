@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "shot_id": "shot_02_gate_reveal",
+  "model": "doubao-seedance-2-0-260128",
+  "resolution": "1080p",
+  "aspect_ratio": "16:9",
+  "duration_s": 6,
+  "fps": 24,
+  "prompt": "Promo Film 01《玄天宗·入宗》镜头 02：古道发现玄岳关。\n\n画面任务：沿山谷古道推进，利用已验收遮挡关系逐步发现玄岳关和双阙剑。\n画面风格：明亮清透的国风仙侠，玉白、淡金、少量朱红层级，宏大、庄严、神圣、真实存在；真实自然光、清晰空气透视，不是黑暗西幻、纪录片、游戏演示或静态概念图轮播。\n相机：继承 V0.2 已通过的 DJI Gate Reveal 时间段；受控前推、轻升、缓慢揭示。\n必须保持：玄岳关 52×18×34m；双阙剑 44m、68m 轴距、V10 双刃直剑；不重新设计已验收 Gate Reveal。\n\n参考视频1中的 Blender 预演，严格学习相机路径、节奏、镜头方向和 reveal 时机。\n参考图片1中的起始关键帧、图片2中的中段关键帧、图片3中的结束关键帧，保持建筑、峰体、道路和遮挡关系连续。\n禁止：空间瞬移、山峰或建筑变形、额外大型浮岛、穿墙、FPV 横滚、鱼眼、无惯性自由摄像机、全局冷蓝霓虹、随机人物/神兽/飞舟。\n输出：16:9，24fps，时长 6 秒，连续单镜头。\n",
+  "reference_images": [
+    "build/promo_film_01/shot_02_gate_reveal/keyframes/start.png",
+    "build/promo_film_01/shot_02_gate_reveal/keyframes/middle.png",
+    "build/promo_film_01/shot_02_gate_reveal/keyframes/end.png"
+  ],
+  "reference_video": "build/promo_film_01/shot_02_gate_reveal/blender_previz.mp4",
+  "candidates": [
+    {
+      "candidate_index": 1,
+      "task_id": "cgt-20260810132937-mm77b",
+      "model": "doubao-seedance-2-0-260128",
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "duration_s": 6,
+      "fps": 24,
+      "generation_timestamp": "2026-08-10T05:29:37Z",
+      "api_status": "succeeded",
+      "result_path": "build/promo_film_01/shot_02_gate_reveal/generated_candidates/candidate_seedance_01.mp4",
+      "error": null,
+      "completed_timestamp": "2026-08-10T05:33:21Z",
+      "actual": {
+        "resolution": "1080p",
+        "ratio": "16:9",
+        "duration_s": 6,
+        "fps": 24,
+        "seed": 72457
+      }
+    },
+    {
+      "candidate_index": 2,
+      "task_id": "cgt-20260810134606-tgc7v",
+      "model": "doubao-seedance-2-0-260128",
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "duration_s": 6,
+      "fps": 24,
+      "generation_timestamp": "2026-08-10T05:46:16.705089Z",
+      "api_status": "succeeded",
+      "result_path": "build/promo_film_01/shot_02_gate_reveal/generated_candidates/candidate_seedance_02.mp4",
+      "error": null,
+      "completed_timestamp": "2026-08-10T05:52:46.931841Z",
+      "actual": {
+        "resolution": "1080p",
+        "ratio": "16:9",
+        "duration_s": 6,
+        "fps": 24,
+        "seed": 71959
+      }
+    }
+  ]
+}

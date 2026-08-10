@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "shot_id": "shot_05_xuantian_peak",
+  "model": "doubao-seedance-2-0-260128",
+  "resolution": "1080p",
+  "aspect_ratio": "16:9",
+  "duration_s": 7,
+  "fps": 24,
+  "prompt": "Promo Film 01《玄天宗·入宗》镜头 05：玄天峰揭幕。\n\n画面任务：从内部高处逐步揭开玄天峰完整悬浮体量，形成第一视觉高潮。\n画面风格：明亮清透的国风仙侠，玉白、淡金、少量朱红层级，宏大、庄严、神圣、真实存在；真实自然光、清晰空气透视，不是黑暗西幻、纪录片、游戏演示或静态概念图轮播。\n相机：32mm 等效 DJI，克制侧向漂移、缓慢上升，最终稳定保持峰体完整可读。\n必须保持：当前 V0.2.2 玄天峰悬浮体量、主要轮廓和视觉身份为 LOCKED_VISUALLY_VALIDATED，禁止换形。\n\n参考视频1中的 Blender 预演，严格学习相机路径、节奏、镜头方向和 reveal 时机。\n参考图片1中的起始关键帧、图片2中的中段关键帧、图片3中的结束关键帧，保持建筑、峰体、道路和遮挡关系连续。\n禁止：空间瞬移、山峰或建筑变形、额外大型浮岛、穿墙、FPV 横滚、鱼眼、无惯性自由摄像机、全局冷蓝霓虹、随机人物/神兽/飞舟。\n输出：16:9，24fps，时长 7 秒，连续单镜头。\n",
+  "reference_images": [
+    "build/promo_film_01/shot_05_xuantian_peak/keyframes/start.png",
+    "build/promo_film_01/shot_05_xuantian_peak/keyframes/middle.png",
+    "build/promo_film_01/shot_05_xuantian_peak/keyframes/end.png"
+  ],
+  "reference_video": "build/promo_film_01/shot_05_xuantian_peak/blender_previz.mp4",
+  "candidates": [
+    {
+      "candidate_index": 1,
+      "task_id": "cgt-20260810134722-kk5mc",
+      "model": "doubao-seedance-2-0-260128",
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "duration_s": 7,
+      "fps": 24,
+      "generation_timestamp": "2026-08-10T05:47:33.215101Z",
+      "api_status": "succeeded",
+      "result_path": "build/promo_film_01/shot_05_xuantian_peak/generated_candidates/candidate_seedance_01.mp4",
+      "error": null,
+      "completed_timestamp": "2026-08-10T05:52:50.828060Z",
+      "actual": {
+        "resolution": "1080p",
+        "ratio": "16:9",
+        "duration_s": 7,
+        "fps": 24,
+        "seed": 76662
+      }
+    },
+    {
+      "candidate_index": 2,
+      "task_id": "cgt-20260810134736-mtfvq",
+      "model": "doubao-seedance-2-0-260128",
+      "resolution": "1080p",
+      "aspect_ratio": "16:9",
+      "duration_s": 7,
+      "fps": 24,
+      "generation_timestamp": "2026-08-10T05:47:48.688570Z",
+      "api_status": "succeeded",
+      "result_path": "build/promo_film_01/shot_05_xuantian_peak/generated_candidates/candidate_seedance_02.mp4",
+      "error": null,
+      "completed_timestamp": "2026-08-10T05:56:07.126716Z",
+      "actual": {
+        "resolution": "1080p",
+        "ratio": "16:9",
+        "duration_s": 7,
+        "fps": 24,
+        "seed": 10166
+      }
+    }
+  ]
+}
