@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "production_mode": "SHOT-FIRST VIRTUAL PRODUCTION",
+  "base_blender_scene": "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+  "production_blender_scene": "build/promo_film_01/promo_film_01_production.blend",
+  "timeline_duration_s": 39.0,
+  "shots": [
+    {
+      "shot_id": "shot_01_establishing",
+      "title": "云海发现玄天宗",
+      "duration_s": 6.0,
+      "fps": "24/1",
+      "frames": 144,
+      "resolution": [
+        960,
+        540
+      ],
+      "previz": "build/promo_film_01/shot_01_establishing/blender_previz.mp4",
+      "previz_sha256": "7d8bb7aac44c93821a5f2f247fd9bc07a8e431bf408f9af71fba253580eeccfe",
+      "keyframes": [
+        "build/promo_film_01/shot_01_establishing/keyframes/start.png",
+        "build/promo_film_01/shot_01_establishing/keyframes/middle.png",
+        "build/promo_film_01/shot_01_establishing/keyframes/end.png"
+      ],
+      "timeline_in_s": 0.0,
+      "timeline_out_s": 6.0
+    },
+    {
+      "shot_id": "shot_02_gate_reveal",
+      "title": "古道发现玄岳关",
+      "duration_s": 6.0,
+      "fps": "24/1",
+      "frames": 144,
+      "resolution": [
+        960,
+        540
+      ],
+      "previz": "build/promo_film_01/shot_02_gate_reveal/blender_previz.mp4",
+      "previz_sha256": "36fea883593bdb0ae58ba6d1db2905ddc2b80f04dc4e335c2da27277bb4f5aa8",
+      "keyframes": [
+        "build/promo_film_01/shot_02_gate_reveal/keyframes/start.png",
+        "build/promo_film_01/shot_02_gate_reveal/keyframes/middle.png",
+        "build/promo_film_01/shot_02_gate_reveal/keyframes/end.png"
+      ],
+      "timeline_in_s": 6.0,
+      "timeline_out_s": 12.0
+    },
+    {
+      "shot_id": "shot_03_gate_crossing",
+      "title": "穿越玄岳关",
+      "duration_s": 6.0,
+      "fps": "24/1",
+      "frames": 144,
+      "resolution": [
+        960,
+        540
+      ],
+      "previz": "build/promo_film_01/shot_03_gate_crossing/blender_previz.mp4",
+      "previz_sha256": "1fcde0f3a6ac0cd5d2f8feb0c3e723efb6070ba7605253463404cf28c06b4108",
+      "keyframes": [
+        "build/promo_film_01/shot_03_gate_crossing/keyframes/start.png",
+        "build/promo_film_01/shot_03_gate_crossing/keyframes/middle.png",
+        "build/promo_film_01/shot_03_gate_crossing/keyframes/end.png"
+      ],
+      "timeline_in_s": 12.0,
+      "timeline_out_s": 18.0
+    },
+    {
+      "shot_id": "shot_04_inner_axis",
+      "title": "宗门内部主轴推进 / 九段玄阶代表段",
+      "duration_s": 7.0,
+      "fps": "24/1",
+      "frames": 168,
+      "resolution": [
+        960,
+        540
+      ],
+      "previz": "build/promo_film_01/shot_04_inner_axis/blender_previz.mp4",
+      "previz_sha256": "308f7beff5a3f67d0c027b129f458b7e8dbd446caec11297ec1b9472f3315d05",
+      "keyframes": [
+        "build/promo_film_01/shot_04_inner_axis/keyframes/start.png",
+        "build/promo_film_01/shot_04_inner_axis/keyframes/middle.png",
+        "build/promo_film_01/shot_04_inner_axis/keyframes/end.png"
+      ],
+      "timeline_in_s": 18.0,
+      "timeline_out_s": 25.0
+    },
+    {
+      "shot_id": "shot_05_xuantian_peak",
+      "title": "玄天峰揭幕",
+      "duration_s": 7.0,
+      "fps": "24/1",
+      "frames": 168,
+      "resolution": [
+        960,
+        540
+      ],
+      "previz": "build/promo_film_01/shot_05_xuantian_peak/blender_previz.mp4",
+      "previz_sha256": "bc4ed7773ae5978f77cd6ae11bcb296475dc1dbd42575254e517e87d96ddffac",
+      "keyframes": [
+        "build/promo_film_01/shot_05_xuantian_peak/keyframes/start.png",
+        "build/promo_film_01/shot_05_xuantian_peak/keyframes/middle.png",
+        "build/promo_film_01/shot_05_xuantian_peak/keyframes/end.png"
+      ],
+      "timeline_in_s": 25.0,
+      "timeline_out_s": 32.0
+    },
+    {
+      "shot_id": "shot_06_xuantian_hall",
+      "title": "玄天殿终极揭幕",
+      "duration_s": 7.0,
+      "fps": "24/1",
+      "frames": 168,
+      "resolution": [
+        960,
+        540
+      ],
+      "previz": "build/promo_film_01/shot_06_xuantian_hall/blender_previz.mp4",
+      "previz_sha256": "f2d3af4a8e068023f1f63208bb974512e84c166d36691ef0358974f5d04a2062",
+      "keyframes": [
+        "build/promo_film_01/shot_06_xuantian_hall/keyframes/start.png",
+        "build/promo_film_01/shot_06_xuantian_hall/keyframes/middle.png",
+        "build/promo_film_01/shot_06_xuantian_hall/keyframes/end.png"
+      ],
+      "timeline_in_s": 32.0,
+      "timeline_out_s": 39.0
+    }
+  ],
+  "final_outputs": {
+    "silent_roughcut": "build/promo_film_01/final_edit/promo_film_01_roughcut.mp4",
+    "temporary_music_candidate": "build/promo_film_01/final_edit/promo_film_01_publish_candidate.mp4",
+    "temporary_score": "build/promo_film_01/final_edit/promo_film_01_temp_score.wav"
+  },
+  "canon_policy": "V0.2 accepted geometry/camera relationships are inherited. Shot-local art remains NON_CANON_PROXY."
+}

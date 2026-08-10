@@ -1,0 +1,63 @@
+{
+  "status": "PASS_WITH_RELEASE_GAPS",
+  "total_duration_s": 39.0,
+  "target_duration_range_s": [
+    35,
+    45
+  ],
+  "fps": 24,
+  "shot_count": 6,
+  "all_previz_present": true,
+  "all_keyframes_present": true,
+  "all_seedance_packages_present": true,
+  "all_wan_packages_present": true,
+  "direct_generated_candidates": false,
+  "direct_generation_blocker": "Seedance service requires explicit 720p/1080p selection; Wan 2.2 executor unavailable.",
+  "roughcut": {
+    "path": "build/promo_film_01/final_edit/promo_film_01_roughcut.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 960,
+          "height": 540,
+          "r_frame_rate": "24/1",
+          "nb_frames": "936"
+        }
+      ],
+      "format": {
+        "duration": "39.000000",
+        "size": "1950702"
+      }
+    },
+    "sha256": "006cceb642d2de1535d6c45852ef1f4c092502dc1da87ae7cefab9badf004f64"
+  },
+  "publish_candidate": {
+    "path": "build/promo_film_01/final_edit/promo_film_01_publish_candidate.mp4",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "24/1",
+          "nb_frames": "936"
+        },
+        {
+          "codec_name": "aac",
+          "r_frame_rate": "0/0",
+          "nb_frames": "1829"
+        }
+      ],
+      "format": {
+        "duration": "39.000000",
+        "size": "6146507"
+      }
+    },
+    "sha256": "b43d65cd23f1c1065a60f9de2af0a69ccc8928b4b88f7c19506be7048cb17328"
+  }
+}

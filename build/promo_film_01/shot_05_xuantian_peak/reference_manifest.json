@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "shot_id": "shot_05_xuantian_peak",
+  "title": "玄天峰揭幕",
+  "duration_s": 7,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "blender_source": "build/promo_film_01/promo_film_01_production.blend",
+  "source_references": [
+    "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+    "build/v0.2/qc/xuantian_peak/xtpeak_qc_05.png",
+    "data/world/peaks.json"
+  ],
+  "generated_outputs": {
+    "previz": "build/promo_film_01/shot_05_xuantian_peak/blender_previz.mp4",
+    "keyframes": [
+      "build/promo_film_01/shot_05_xuantian_peak/keyframes/start.png",
+      "build/promo_film_01/shot_05_xuantian_peak/keyframes/middle.png",
+      "build/promo_film_01/shot_05_xuantian_peak/keyframes/end.png"
+    ],
+    "candidates": "build/promo_film_01/shot_05_xuantian_peak/generated_candidates/"
+  },
+  "canon_non_drift": "当前 V0.2.2 玄天峰悬浮体量、主要轮廓和视觉身份为 LOCKED_VISUALLY_VALIDATED，禁止换形。",
+  "proxy_policy": "All shot-local art additions are NON_CANON_PROXY and cannot update Canon."
+}

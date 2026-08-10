@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "shot_id": "shot_03_gate_crossing",
+  "title": "穿越玄岳关",
+  "duration_s": 6,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "blender_source": "build/promo_film_01/promo_film_01_production.blend",
+  "source_references": [
+    "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+    "build/v0.2/xuantianzong_mini_v0.2_gate_preview.mp4",
+    "build/v0.2/qc/dji_keyframes/dji_qc_11p5s.png",
+    "data/world/preview_camera_paths.json"
+  ],
+  "generated_outputs": {
+    "previz": "build/promo_film_01/shot_03_gate_crossing/blender_previz.mp4",
+    "keyframes": [
+      "build/promo_film_01/shot_03_gate_crossing/keyframes/start.png",
+      "build/promo_film_01/shot_03_gate_crossing/keyframes/middle.png",
+      "build/promo_film_01/shot_03_gate_crossing/keyframes/end.png"
+    ],
+    "candidates": "build/promo_film_01/shot_03_gate_crossing/generated_candidates/"
+  },
+  "canon_non_drift": "必须从中央门洞通过，不穿墙、不撞门楣；门后空间奖励和已验收 Camera 逻辑不得回退。",
+  "proxy_policy": "All shot-local art additions are NON_CANON_PROXY and cannot update Canon."
+}

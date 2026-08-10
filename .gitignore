@@ -4,5 +4,8 @@ build/*.blend1
 build/qa_frames/
 build/v0.2/_deterministic/
 build/v0.2/*.blend1
+build/promo_film_01/*.blend1
+build/promo_film_01/final_edit/concat_list.txt
+build/promo_film_01/final_edit/verify/
 build/v0.2/qc/qc_03_03_left_45.png
 build/v0.2/qc/qc_04_04_right_45.png

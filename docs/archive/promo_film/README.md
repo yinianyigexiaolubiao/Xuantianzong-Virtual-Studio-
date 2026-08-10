@@ -10,6 +10,12 @@ This file preserves production decisions that were developed in project conversa
 - Camera motion must remain physically plausible. The camera cannot teleport, orbit through walls, ignore inertia or use impossible fantasy-camera paths merely because an AI model permits it.
 - The sect itself is the subject: scale, hierarchy, approach, reveal and spatial continuity are more important than character drama.
 
+## Active fast line — Promo Film 01《玄天宗·入宗》
+
+The current production strategy is **SHOT-FIRST VIRTUAL PRODUCTION**: six formal shots, only the visible Shot Island/Hero Zone for each shot, real Blender camera previz, three keyframes per shot, then Seedance/Wan candidates and a 35–45 second edit.
+
+The first executable package is under `build/promo_film_01/` and currently contains a 39-second six-shot Blender roughcut plus a temporary-score publish candidate. It inherits the approved V0.2 gate reveal/crossing logic and preserves the Xuantian Peak `LOCKED_VISUALLY_VALIDATED` silhouette. It does not wait for a complete V0.3–V0.5 build and does not promote shot-local art proxies to Canon.
+
 ## Current Canon imaging boundary
 
 From C1/E1/current Canon:
@@ -100,4 +106,4 @@ No more empty-sky/flat-ground ending.
 - Production decisions: `CHAT_RECORDED_SPEC` + C1/E1 controls.
 - Exact old standalone 小云雀 prompts: **not directly recovered as files**.
 - Historical early still binaries: not currently mirrored to GitHub and remain reference-only unless recovered separately.
-- Current executable camera work lives in the Digital Twin branch and Issue #2.
+- V0.2 executable gate-camera proof is complete; active executable promotional-film work now lives under `build/promo_film_01/`.

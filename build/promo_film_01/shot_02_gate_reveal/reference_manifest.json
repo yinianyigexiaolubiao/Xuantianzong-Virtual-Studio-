@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "shot_id": "shot_02_gate_reveal",
+  "title": "古道发现玄岳关",
+  "duration_s": 6,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "blender_source": "build/promo_film_01/promo_film_01_production.blend",
+  "source_references": [
+    "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+    "build/v0.2/xuantianzong_mini_v0.2_gate_preview.mp4",
+    "build/v0.2/qc/qc_01_01_road_to_gate.png",
+    "data/world/xuanyue_gate.json"
+  ],
+  "generated_outputs": {
+    "previz": "build/promo_film_01/shot_02_gate_reveal/blender_previz.mp4",
+    "keyframes": [
+      "build/promo_film_01/shot_02_gate_reveal/keyframes/start.png",
+      "build/promo_film_01/shot_02_gate_reveal/keyframes/middle.png",
+      "build/promo_film_01/shot_02_gate_reveal/keyframes/end.png"
+    ],
+    "candidates": "build/promo_film_01/shot_02_gate_reveal/generated_candidates/"
+  },
+  "canon_non_drift": "玄岳关 52×18×34m；双阙剑 44m、68m 轴距、V10 双刃直剑；不重新设计已验收 Gate Reveal。",
+  "proxy_policy": "All shot-local art additions are NON_CANON_PROXY and cannot update Canon."
+}

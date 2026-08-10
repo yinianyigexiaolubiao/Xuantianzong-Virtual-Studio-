@@ -1,0 +1,13 @@
+Wan 2.2 First/Last Frame Video Package — Promo Film 01 Shot 04
+
+首帧：keyframes/start.png
+尾帧：keyframes/end.png
+中间构图锚点：keyframes/middle.png
+运动参考：blender_previz.mp4
+
+在 7 秒连续单镜头内，从首帧自然过渡到尾帧。在 300–500m Hero Zone 中呈现山路、白玉玄阶、平台、礼制山门和转折后的远景展开。
+相机运动必须遵循：32mm 等效 DJI，沿地形前推并缓升；速度有惯性，转折温和，避免轨道匀速感。
+风格统一为明亮清透国风仙侠，玉白+淡金+少量朱红，真实 DJI 拍摄真实存在的仙门宗派。
+锁定不漂移：九段总计 3600 级、7.2km 且随山势回折；镜头岛为 NON_CANON_PROXY，不移动 A1 控制节点。
+不要增加人物、神兽、飞舟或新建筑；不要改变山体轮廓、门洞、道路方向和相对尺度；不要瞬移、穿墙、横滚或产生橡皮形变。
+输出：16:9，24fps，7 秒。

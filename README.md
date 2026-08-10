@@ -119,6 +119,8 @@ Archive guide: `docs/archive/visual_assets/README.md`.
 
 The approved direction is **宣传片，不是纪录片**, with no invented protagonist and a real-DJI physical-flight premise.
 
+Active fast line: `Promo Film 01《玄天宗·入宗》` uses **SHOT-FIRST VIRTUAL PRODUCTION**. Six bounded shot packages, real Blender camera previz, start/middle/end keyframes, Seedance/Wan production prompts, a 39-second silent roughcut and a temporary-score publish candidate live under `build/promo_film_01/`. These are current production proofs; shot-local materials, atmosphere, vegetation, inner-axis detail and Xuantian Hall art remain `NON_CANON_PROXY`.
+
 Archive guide: `docs/archive/promo_film/README.md`.
 
 ### Phone-content / spirit-stone lineage

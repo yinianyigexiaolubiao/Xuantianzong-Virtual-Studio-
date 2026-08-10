@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "shot_id": "shot_04_inner_axis",
+  "title": "宗门内部主轴推进 / 九段玄阶代表段",
+  "duration_s": 7,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "blender_source": "build/promo_film_01/promo_film_01_production.blend",
+  "source_references": [
+    "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+    "data/world/central_axis.json",
+    "docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md"
+  ],
+  "generated_outputs": {
+    "previz": "build/promo_film_01/shot_04_inner_axis/blender_previz.mp4",
+    "keyframes": [
+      "build/promo_film_01/shot_04_inner_axis/keyframes/start.png",
+      "build/promo_film_01/shot_04_inner_axis/keyframes/middle.png",
+      "build/promo_film_01/shot_04_inner_axis/keyframes/end.png"
+    ],
+    "candidates": "build/promo_film_01/shot_04_inner_axis/generated_candidates/"
+  },
+  "canon_non_drift": "九段总计 3600 级、7.2km 且随山势回折；镜头岛为 NON_CANON_PROXY，不移动 A1 控制节点。",
+  "proxy_policy": "All shot-local art additions are NON_CANON_PROXY and cannot update Canon."
+}

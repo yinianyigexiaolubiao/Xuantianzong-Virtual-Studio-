@@ -100,7 +100,8 @@
         {"id":"PF-DJI-RULES","title":"真实DJI镜头边界：24–35mm等效、中轴前推、缓升、低角度、适量偏航、真实惯性","source":"E1+C1+PROJECT_CONVERSATION","class":"ACTIVE_CAMERA_RULE","sync_state":"GITHUB_MIRRORED","github_path":"docs/archive/promo_film/README.md"},
         {"id":"PF-XIAOYUNQUE","title":"小云雀/视频模型协作提示词工作流","source":"PROJECT_CONVERSATION","class":"CHAT_RECORDED_WORKFLOW","sync_state":"CHAT_RECORDED_SPEC","github_path":"docs/archive/promo_film/README.md"},
         {"id":"PF-OLD-45S","title":"旧45秒三段式宣传片镜头意图","source":"PROJECT_CONVERSATION","class":"SUPERSEDED_GEOMETRY_RETAIN_CINEMATIC_INTENT","sync_state":"CHAT_RECORDED_SPEC","github_path":"docs/archive/promo_film/README.md"},
-        {"id":"PF-10-STILLS","title":"早期无人机宣传片前10张参考图批次","source":"PROJECT_CONVERSATION/HISTORICAL_SANDBOX","class":"CONCEPT_SHOT_EXPLORATION","sync_state":"REFERENCED_ONLY","note":"Historical references only; five-peak/straight-axis readings are superseded."}
+        {"id":"PF-10-STILLS","title":"早期无人机宣传片前10张参考图批次","source":"PROJECT_CONVERSATION/HISTORICAL_SANDBOX","class":"CONCEPT_SHOT_EXPLORATION","sync_state":"REFERENCED_ONLY","note":"Historical references only; five-peak/straight-axis readings are superseded."},
+        {"id":"PF-PROMO-01","title":"Promo Film 01《玄天宗·入宗》","source":"GITHUB+BLENDER_V0.2_ACCEPTED_BASE","class":"ACTIVE_SHOT_FIRST_FAST_LINE","sync_state":"GITHUB_MIRRORED","github_path":"build/promo_film_01/","production_status":"BLENDER_PREVIZ_ROUGHCUT_READY","shot_count":6,"duration_s":39,"direct_generated_candidates":false,"release_gap":"Seedance requires explicit 720p/1080p choice; Wan 2.2 executor unavailable."}
       ]
     },
     {

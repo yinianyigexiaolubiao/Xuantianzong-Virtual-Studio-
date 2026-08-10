@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "shot_id": "shot_01_establishing",
+  "title": "云海发现玄天宗",
+  "duration_s": 6,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "blender_source": "build/promo_film_01/promo_film_01_production.blend",
+  "source_references": [
+    "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+    "build/v0.2/xuantianzong_mini_v0.2_global.png",
+    "data/world/peaks.json"
+  ],
+  "generated_outputs": {
+    "previz": "build/promo_film_01/shot_01_establishing/blender_previz.mp4",
+    "keyframes": [
+      "build/promo_film_01/shot_01_establishing/keyframes/start.png",
+      "build/promo_film_01/shot_01_establishing/keyframes/middle.png",
+      "build/promo_film_01/shot_01_establishing/keyframes/end.png"
+    ],
+    "candidates": "build/promo_film_01/shot_01_establishing/generated_candidates/"
+  },
+  "canon_non_drift": "九峰宏观拓扑不漂移；只有玄天峰是大型悬浮主峰；玄天峰当前整体轮廓保持 LOCKED_VISUALLY_VALIDATED。",
+  "proxy_policy": "All shot-local art additions are NON_CANON_PROXY and cannot update Canon."
+}

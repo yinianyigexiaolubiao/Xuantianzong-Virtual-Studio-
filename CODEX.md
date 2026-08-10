@@ -96,6 +96,12 @@ V0.1 is preserved as `Engineering Proof`: it demonstrated `Canon/Data → JSON �
 
 The completed V0.2 implementation inherits `docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md`; future work must not reinterpret its accepted proxy geometry as permission to redesign Canon.
 
+## Active production — Promo Film 01
+
+`Promo Film 01《玄天宗·入宗》` is the active **SHOT-FIRST VIRTUAL PRODUCTION** fast line under `build/promo_film_01/`. It uses six bounded Shot Islands/Hero Zones and a 39-second sequence; it does not wait for a complete V0.3–V0.5 world build.
+
+The accepted V0.2 Xuanyue Gate/Twin Sword/terrain relationship and gate-camera logic are inherited. The Xuantian Peak mesh and `LOCKED_VISUALLY_VALIDATED` silhouette/massing must remain unchanged. New shot-local materials, clouds, vegetation, representative inner-axis construction, architecture art, lights and camera paths remain `NON_CANON_PROXY` and cannot update Canon.
+
 ## Required spatial invariants
 
 - Exactly nine formal peaks.

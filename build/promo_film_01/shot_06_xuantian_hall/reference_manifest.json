@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "film": "Promo Film 01《玄天宗·入宗》",
+  "shot_id": "shot_06_xuantian_hall",
+  "title": "玄天殿终极揭幕",
+  "duration_s": 7,
+  "fps": 24,
+  "aspect_ratio": "16:9",
+  "blender_source": "build/promo_film_01/promo_film_01_production.blend",
+  "source_references": [
+    "build/v0.2/xuantianzong_mini_digital_twin_v0.2.blend",
+    "data/world/key_assets.json",
+    "data/world/peaks.json"
+  ],
+  "generated_outputs": {
+    "previz": "build/promo_film_01/shot_06_xuantian_hall/blender_previz.mp4",
+    "keyframes": [
+      "build/promo_film_01/shot_06_xuantian_hall/keyframes/start.png",
+      "build/promo_film_01/shot_06_xuantian_hall/keyframes/middle.png",
+      "build/promo_film_01/shot_06_xuantian_hall/keyframes/end.png"
+    ],
+    "candidates": "build/promo_film_01/shot_06_xuantian_hall/generated_candidates/"
+  },
+  "canon_non_drift": "玄天殿保持 S 级终极视觉中心；锚点 (0,9.31km)、标高 1610m、98×76×45m 包络不移动；建筑美术仍为 NON_CANON_PROXY。",
+  "proxy_policy": "All shot-local art additions are NON_CANON_PROXY and cannot update Canon."
+}

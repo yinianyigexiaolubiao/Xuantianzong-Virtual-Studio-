@@ -84,6 +84,12 @@ V12 is preserved as a repeatedly referenced strategic visual skeleton through V1
 
 GitHub Digital Twin V0.1 produced real `.blend`, render and 15s MP4. Visual QC exposed the flat-board/cone/UFO/camera issues. Digital Twin V0.2 Mini Spatial Proof was completed after V0.2.2 passed engineering, human visual and camera-visual acceptance; its Xuantian Peak overall silhouette/massing is `LOCKED_VISUALLY_VALIDATED`.
 
+### 2026-08-10 — Promo Film 01 fast line
+
+`Promo Film 01《玄天宗·入宗》` started as a SHOT-FIRST production branch rather than waiting for a complete V0.3–V0.5 world build. The repository now contains six shot briefs, six real Blender previz clips, eighteen start/middle/end keyframes, Seedance 2.0 and Wan 2.2 production packages, a 39-second silent roughcut and a temporary-score publish candidate under `build/promo_film_01/`.
+
+This is a production proof, not a Canon expansion. Shot-local materials, atmosphere, vegetation, representative inner-axis geometry and Xuantian Hall art remain `NON_CANON_PROXY`; the accepted V0.2 gate/camera relationship and `LOCKED_VISUALLY_VALIDATED` Xuantian Peak silhouette remain protected.
+
 ## Important preserved visual assets
 
 The machine registry contains the complete recovered named set. High-value anchors include:

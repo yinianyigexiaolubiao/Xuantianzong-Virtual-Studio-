@@ -1,0 +1,306 @@
+{
+  "schema_version": "1.0",
+  "fps": 24,
+  "shots": {
+    "shot_01_establishing": {
+      "duration_s": 6,
+      "lens_equivalent_mm": 28.0,
+      "camera": "XTZ_PROMO_CAM_SHOT_01_ESTABLISHING",
+      "inheritance": "authored real-DJI shot path proxy",
+      "samples": [
+        {
+          "frame": 1,
+          "location_m": [
+            2500.0,
+            900.0,
+            2050.0
+          ],
+          "rotation_quaternion": [
+            0.7376098,
+            0.64972097,
+            0.12151086,
+            0.13794783
+          ]
+        },
+        {
+          "frame": 72,
+          "location_m": [
+            1968.0642,
+            2083.0051,
+            2187.9373
+          ],
+          "rotation_quaternion": [
+            0.74853367,
+            0.64219493,
+            0.10755235,
+            0.12536165
+          ]
+        },
+        {
+          "frame": 144,
+          "location_m": [
+            1350.0,
+            3300.0,
+            2310.0
+          ],
+          "rotation_quaternion": [
+            0.76118761,
+            0.63531995,
+            0.08345377,
+            0.09998739
+          ]
+        }
+      ]
+    },
+    "shot_02_gate_reveal": {
+      "duration_s": 6,
+      "lens_equivalent_mm": 28.0,
+      "camera": "XTZ_PROMO_CAM_SHOT_02_GATE_REVEAL",
+      "inheritance": "direct world-transform resample of accepted V0.2 camera frames 1-193",
+      "samples": [
+        {
+          "frame": 1,
+          "location_m": [
+            -18.0,
+            3581.0,
+            618.2
+          ],
+          "rotation_quaternion": [
+            0.657893,
+            0.74163592,
+            0.09797549,
+            0.08691245
+          ]
+        },
+        {
+          "frame": 72,
+          "location_m": [
+            -10.4029,
+            3618.6318,
+            618.6073
+          ],
+          "rotation_quaternion": [
+            0.64181602,
+            0.76422238,
+            -0.0486508,
+            -0.0408586
+          ]
+        },
+        {
+          "frame": 144,
+          "location_m": [
+            0.0,
+            3663.6133,
+            620.0242
+          ],
+          "rotation_quaternion": [
+            0.6472795,
+            0.76225275,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "shot_03_gate_crossing": {
+      "duration_s": 6,
+      "lens_equivalent_mm": 28.0,
+      "camera": "XTZ_PROMO_CAM_SHOT_03_GATE_CROSSING",
+      "inheritance": "direct world-transform resample of accepted V0.2 camera frames 193-337",
+      "samples": [
+        {
+          "frame": 1,
+          "location_m": [
+            0.0,
+            3663.6133,
+            620.0242
+          ],
+          "rotation_quaternion": [
+            0.6472795,
+            0.76225275,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "frame": 72,
+          "location_m": [
+            0.0,
+            3690.7671,
+            620.3909
+          ],
+          "rotation_quaternion": [
+            0.75695956,
+            0.65346175,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "frame": 144,
+          "location_m": [
+            0.0,
+            3714.4658,
+            620.501
+          ],
+          "rotation_quaternion": [
+            0.65162301,
+            0.75853831,
+            0.00201897,
+            0.0017344
+          ]
+        }
+      ]
+    },
+    "shot_04_inner_axis": {
+      "duration_s": 7,
+      "lens_equivalent_mm": 32.0,
+      "camera": "XTZ_PROMO_CAM_SHOT_04_INNER_AXIS",
+      "inheritance": "authored real-DJI shot path proxy",
+      "samples": [
+        {
+          "frame": 1,
+          "location_m": [
+            25.0,
+            3830.0,
+            675.0
+          ],
+          "rotation_quaternion": [
+            0.68314278,
+            0.66913396,
+            0.20469835,
+            0.20898393
+          ]
+        },
+        {
+          "frame": 84,
+          "location_m": [
+            -78.5981,
+            4007.6694,
+            702.621
+          ],
+          "rotation_quaternion": [
+            0.68207186,
+            0.65038568,
+            0.23079896,
+            0.24188519
+          ]
+        },
+        {
+          "frame": 168,
+          "location_m": [
+            -205.0,
+            4180.0,
+            738.0
+          ],
+          "rotation_quaternion": [
+            0.70268708,
+            0.6247732,
+            0.22619911,
+            0.25440788
+          ]
+        }
+      ]
+    },
+    "shot_05_xuantian_peak": {
+      "duration_s": 7,
+      "lens_equivalent_mm": 32.0,
+      "camera": "XTZ_PROMO_CAM_SHOT_05_XUANTIAN_PEAK",
+      "inheritance": "authored real-DJI shot path proxy",
+      "samples": [
+        {
+          "frame": 1,
+          "location_m": [
+            -900.0,
+            6800.0,
+            1420.0
+          ],
+          "rotation_quaternion": [
+            0.68992949,
+            0.70456755,
+            -0.11866102,
+            -0.11619579
+          ]
+        },
+        {
+          "frame": 84,
+          "location_m": [
+            -603.5291,
+            7492.8369,
+            1474.2743
+          ],
+          "rotation_quaternion": [
+            0.69386017,
+            0.70332766,
+            -0.11002751,
+            -0.10854559
+          ]
+        },
+        {
+          "frame": 168,
+          "location_m": [
+            -300.0,
+            8100.0,
+            1540.0
+          ],
+          "rotation_quaternion": [
+            0.70493442,
+            0.69947213,
+            -0.08276157,
+            -0.08340789
+          ]
+        }
+      ]
+    },
+    "shot_06_xuantian_hall": {
+      "duration_s": 7,
+      "lens_equivalent_mm": 35.0,
+      "camera": "XTZ_PROMO_CAM_SHOT_06_XUANTIAN_HALL",
+      "inheritance": "authored real-DJI shot path proxy",
+      "samples": [
+        {
+          "frame": 1,
+          "location_m": [
+            260.0,
+            8820.0,
+            1560.0
+          ],
+          "rotation_quaternion": [
+            0.64167565,
+            0.72656614,
+            0.18413913,
+            0.16262472
+          ]
+        },
+        {
+          "frame": 84,
+          "location_m": [
+            166.3959,
+            9037.6445,
+            1594.6576
+          ],
+          "rotation_quaternion": [
+            0.63544482,
+            0.72308761,
+            0.20344476,
+            0.17878614
+          ]
+        },
+        {
+          "frame": 168,
+          "location_m": [
+            70.0,
+            9165.0,
+            1622.0
+          ],
+          "rotation_quaternion": [
+            0.6543349,
+            0.7225799,
+            0.16528931,
+            0.14967835
+          ]
+        }
+      ]
+    }
+  }
+}
