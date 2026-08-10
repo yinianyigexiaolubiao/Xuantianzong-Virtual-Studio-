@@ -47,7 +47,7 @@
     {
       "id": "DIGITAL_TWIN",
       "title": "AI Virtual Studio / Blender Digital Twin",
-      "current_stage": "V0.2 Mini Spatial Proof",
+      "current_stage": "V0.2 Mini Spatial Proof — COMPLETED",
       "github_sync": "GITHUB_MIRRORED",
       "assets": [
         {"id":"DT-CODE","title":"Blender deterministic builders and world-data projection","source":"GITHUB","class":"ACTIVE_ENGINEERING","sync_state":"GITHUB_MIRRORED","github_path":"blender/"},
@@ -55,7 +55,7 @@
         {"id":"DT-V01-BLEND","title":"xuantianzong_digital_twin_v0.1.blend","source":"GITHUB","class":"ENGINEERING_PROOF","sync_state":"GITHUB_MIRRORED","github_path":"build/xuantianzong_digital_twin_v0.1.blend"},
         {"id":"DT-V01-MP4","title":"xuantianzong_digital_twin_v0.1_gate_preview.mp4","source":"GITHUB","class":"ENGINEERING_PROOF","sync_state":"GITHUB_MIRRORED","github_path":"build/xuantianzong_digital_twin_v0.1_gate_preview.mp4"},
         {"id":"DT-V01-PNG","title":"xuantianzong_digital_twin_v0.1_global_graybox.png","source":"GITHUB","class":"ENGINEERING_PROOF","sync_state":"GITHUB_MIRRORED","github_path":"build/xuantianzong_digital_twin_v0.1_global_graybox.png"},
-        {"id":"DT-V02","title":"Digital Twin V0.2 Mini Spatial Proof","source":"GITHUB_ISSUE","class":"ACTIVE_MILESTONE","sync_state":"GITHUB_MIRRORED","github_ref":"issue#2"}
+        {"id":"DT-V02","title":"Digital Twin V0.2 Mini Spatial Proof","source":"GITHUB_ISSUE","class":"COMPLETED_MILESTONE","sync_state":"GITHUB_MIRRORED","github_ref":"issue#2","engineering_acceptance":"PASS","human_visual_acceptance":"PASS","camera_visual_acceptance":"PASS","xuantian_peak_massing_status":"LOCKED_VISUALLY_VALIDATED"}
       ]
     },
     {

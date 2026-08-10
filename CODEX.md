@@ -86,13 +86,15 @@ Preserve the production branches in:
 
 Do not convert promotional-film work into documentary narration, invent a hero, or lose the real-DJI physical-flight premise.
 
-## Current milestone
+## Completed milestone
 
-`Digital Twin V0.2 — Mini Spatial Proof`
+`Digital Twin V0.2 — Mini Spatial Proof — COMPLETED`
+
+V0.2.2 passed engineering, human visual and camera-visual acceptance. The current Xuantian Peak floating mass, primary silhouette and visual identity are `LOCKED_VISUALLY_VALIDATED`. Future material, rock-detail, architecture, vegetation, waterfall, cloud and mist art passes must preserve that overall form unless the user explicitly requests a change.
 
 V0.1 is preserved as `Engineering Proof`: it demonstrated `Canon/Data → JSON → Blender → Render → MP4`, but its flat base plane, isolated cone peaks, hard-polyline road reading and disk-like Xuantian Peak silhouette do not satisfy the mature F1/C1/E1 spatial-reading requirements.
 
-V0.2 MUST inherit `docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md` rather than invent a new terrain system from scratch.
+The completed V0.2 implementation inherits `docs/architecture/F1_INHERITANCE_AND_V0.2_RULES.md`; future work must not reinterpret its accepted proxy geometry as permission to redesign Canon.
 
 ## Required spatial invariants
 

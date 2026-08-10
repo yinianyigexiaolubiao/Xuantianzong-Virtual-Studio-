@@ -1,8 +1,9 @@
 {
-  "status": "PENDING_HUMAN_REVIEW",
-  "real_dji_feel": "PENDING",
-  "approach_pacing": "PENDING",
-  "gate_crossing_pacing": "PENDING",
-  "reveal_timing": "PENDING",
-  "post_gate_readability": "PENDING"
+  "status": "PASS",
+  "real_dji_feel": "PASS",
+  "approach_pacing": "PASS",
+  "gate_crossing_pacing": "PASS",
+  "reveal_timing": "PASS",
+  "post_gate_readability": "PASS",
+  "approved_by": "user/project director"
 }

@@ -1,8 +1,11 @@
 {
-  "status": "PENDING_HUMAN_REVIEW",
-  "xuantian_peak_silhouette": "PENDING",
-  "twin_sword_visual_scale": "PENDING",
-  "gate_reveal": "PENDING",
-  "post_gate_reveal": "PENDING",
-  "terrain_readability": "PENDING"
+  "status": "PASS",
+  "xuantian_peak_silhouette": "PASS",
+  "twin_sword_visual_scale": "PASS",
+  "gate_reveal": "PASS",
+  "post_gate_reveal": "PASS",
+  "terrain_readability": "PASS",
+  "xuantian_peak_massing_status": "LOCKED_VISUALLY_VALIDATED",
+  "xuantian_peak_lock_scope": "Current V0.2.2 floating mass, primary silhouette and visual identity are locked. Future material, rock-detail, architecture, vegetation, waterfall, cloud and mist art passes must preserve them unless the user explicitly requests a change.",
+  "approved_by": "user/project director"
 }

@@ -82,7 +82,7 @@ V12 is preserved as a repeatedly referenced strategic visual skeleton through V1
 
 ### 2026-08-08 — Virtual Studio engineering archive
 
-GitHub Digital Twin V0.1 produced real `.blend`, render and 15s MP4. Visual QC exposed the flat-board/cone/UFO/camera issues. V0.2 Mini Spatial Proof is the active engineering milestone.
+GitHub Digital Twin V0.1 produced real `.blend`, render and 15s MP4. Visual QC exposed the flat-board/cone/UFO/camera issues. Digital Twin V0.2 Mini Spatial Proof was completed after V0.2.2 passed engineering, human visual and camera-visual acceptance; its Xuantian Peak overall silhouette/massing is `LOCKED_VISUALLY_VALIDATED`.
 
 ## Important preserved visual assets
 
