@@ -106,7 +106,7 @@ def configure_scene():
     scene.render.film_transparent = False
     scene.world.color = (0.80, 0.84, 0.88)
     scene["xtz_project"] = "Xuantianzong Virtual Studio"
-    scene["xtz_milestone"] = "Digital Twin V0.2.1 Visual Acceptance Repair"
+    scene["xtz_milestone"] = "Digital Twin V0.2.2 Final Human Visual Repair"
     scene["xtz_proxy_policy"] = PROXY
     scene["xtz_f1_inheritance"] = "continuous terrain / west-east ridge chains / central valley / heavy inverted Xuantian Peak"
 
@@ -172,105 +172,103 @@ def build_xuantian_peak(peaks_data):
     data = next(p for p in peaks_data["peaks"] if p.get("floating"))
     target = collection("XTZ_V02_XuantianPeak")
     cx, cy = (data["center_km"][0] * 1000.0, data["center_km"][1] * 1000.0)
-    ring_specs = [
-        (1210.0, 38.0, 28.0, 30.0, -12.0),
-        (1270.0, 110.0, 82.0, 48.0, -18.0),
-        (1335.0, 205.0, 155.0, -42.0, 20.0),
-        (1400.0, 325.0, 245.0, 42.0, -24.0),
-        (1460.0, 450.0, 330.0, -24.0, 18.0),
-        (1515.0, 560.0, 410.0, 0.0, 0.0),
+    # One watertight mass carries the crown, shoulders and inverted underside.
+    # The upper heads are height-field features joined by ridges and saddles,
+    # never separate cone objects.  All dimensions stay inside the locked A1
+    # 1.45 km x 1.05 km / 1210--1680 m envelope.
+    count = 48
+    rx, ry = 725.0, 525.0
+    top_radii = [1.0, 0.88, 0.74, 0.60, 0.46, 0.32, 0.18]
+    peak_fields = [
+        (-0.55, -0.04, 185.0, 0.16, 0.21),
+        (-0.20, 0.10, 170.0, 0.15, 0.19),
+        (0.16, 0.16, 220.0, 0.16, 0.19),
+        (0.51, 0.01, 178.0, 0.17, 0.22),
+        (0.02, -0.29, 105.0, 0.28, 0.20),
     ]
-    count = 28
+
+    def crown_raw(r, angle):
+        nx, ny = r * math.cos(angle), r * math.sin(angle)
+        height = 1490.0 + 68.0 * (1.0 - r ** 1.35)
+        for px, py, amplitude, sx, sy in peak_fields:
+            distance = ((nx - px) / sx) ** 2 + ((ny - py) / sy) ** 2
+            height += amplitude * math.exp(-0.5 * distance)
+        height += (7.0 * math.sin(3.0 * angle + 0.4) + 4.0 * math.sin(7.0 * angle - 0.7)) * r
+        height += (82.0 * math.sin(2.0 * angle + 0.25) + 42.0 * math.sin(5.0 * angle - 0.8) + 24.0 * math.cos(7.0 * angle)) * r ** 5
+        return height
+
+    raw_top = [[crown_raw(r, 2.0 * math.pi * i / count) for i in range(count)] for r in top_radii]
+    raw_center = crown_raw(0.0, 0.0)
+    raw_max = max(raw_center, *(max(ring) for ring in raw_top))
+    height_scale = (1680.0 - 1460.0) / (raw_max - 1460.0)
+
+    def scaled_height(value):
+        return 1460.0 + (value - 1460.0) * height_scale
+
+    def plan_edge(angle):
+        return min(1.0, 0.93 + 0.04 * math.sin(3.0 * angle + 0.35) + 0.03 * math.sin(7.0 * angle - 0.6))
+
+    top_heights = [[scaled_height(value) for value in ring] for ring in raw_top]
+    center_height = scaled_height(raw_center)
+
     verts = []
-    for ring_index, (z, rx, ry, ox, oy) in enumerate(ring_specs):
+    faces = []
+    tip_index = len(verts)
+    verts.append((cx + 18.0, cy - 12.0, 1210.0))
+    lower_specs = [
+        (0.12, 1280.0, 20.0, -12.0),
+        (0.29, 1345.0, -26.0, 16.0),
+        (0.52, 1400.0, 24.0, -16.0),
+        (0.78, 1450.0, -14.0, 12.0),
+        (1.00, None, 0.0, 0.0),
+    ]
+    lower_starts = []
+    for ring_index, (radius, base_z, ox, oy) in enumerate(lower_specs):
+        lower_starts.append(len(verts))
         for i in range(count):
             angle = 2.0 * math.pi * i / count
-            irregular = 0.82 + 0.11 * math.sin(i * 2.17 + ring_index * 0.61) + 0.06 * math.sin(i * 0.83 - ring_index)
-            if ring_index == len(ring_specs) - 1 and i in (0, count // 2):
-                irregular = 1.0
-            local_z = z + (0.0 if ring_index == 0 else 13.0 * math.sin(i * 1.43 + ring_index * 0.8))
-            verts.append((cx + ox + rx * irregular * math.cos(angle), cy + oy + ry * irregular * math.sin(angle), local_z))
-    faces = []
-    for ring in range(len(ring_specs) - 1):
-        base = ring * count
-        nxt = (ring + 1) * count
+            edge = 0.91 + 0.055 * math.sin(3.0 * angle + ring_index * 0.7) + 0.025 * math.sin(7.0 * angle - 0.4)
+            if ring_index == len(lower_specs) - 1:
+                edge = plan_edge(angle)
+            z = top_heights[0][i] if base_z is None else base_z + 10.0 * math.sin(2.0 * angle + ring_index) + 5.0 * math.sin(5.0 * angle)
+            verts.append((cx + ox + rx * radius * edge * math.cos(angle), cy + oy + ry * radius * edge * math.sin(angle), z))
+    for i in range(count):
+        faces.append((tip_index, lower_starts[0] + (i + 1) % count, lower_starts[0] + i))
+    for ring in range(len(lower_starts) - 1):
+        a, b = lower_starts[ring], lower_starts[ring + 1]
         for i in range(count):
             j = (i + 1) % count
-            faces.append((base + i, base + j, nxt + j, nxt + i))
-    top_center = len(verts)
-    verts.append((cx - 35.0, cy + 20.0, 1582.0))
-    base = (len(ring_specs) - 1) * count
+            faces.append((a + i, a + j, b + j, b + i))
+
+    top_starts = [lower_starts[-1]]
+    for radius_index, radius in enumerate(top_radii[1:], 1):
+        top_starts.append(len(verts))
+        for i in range(count):
+            angle = 2.0 * math.pi * i / count
+            edge = 1.0 - (1.0 - plan_edge(angle)) * radius ** 3
+            verts.append((cx + rx * radius * edge * math.cos(angle), cy + ry * radius * edge * math.sin(angle), top_heights[radius_index][i]))
+    for ring in range(len(top_starts) - 1):
+        a, b = top_starts[ring], top_starts[ring + 1]
+        for i in range(count):
+            j = (i + 1) % count
+            faces.append((a + i, b + i, b + j, a + j))
+    center_index = len(verts)
+    verts.append((cx, cy, center_height))
+    inner = top_starts[-1]
     for i in range(count):
-        faces.append((base + i, base + (i + 1) % count, top_center))
+        faces.append((inner + i, center_index, inner + (i + 1) % count))
     mesh = bpy.data.meshes.new("XTZ_V02_XUANTIAN_HEAVY_INVERTED_BODY_MESH")
     mesh.from_pydata(verts, [], faces)
     mesh.update()
     body = bpy.data.objects.new("XTZ_V02_XUANTIAN_HEAVY_INVERTED_BODY", mesh)
     target.objects.link(body)
-    tag(body, PROXY, "Heavy irregular inverted silhouette inside locked Xuantian envelope")
+    tag(body, PROXY, "Single continuous heavy inverted mountain with fused crown ridges and integrated lower convergence")
     body["xtz_asset_id"] = data["id"]
     body["xtz_plan_envelope_m"] = "1450x1050"
     body["xtz_deepest_spire_m"] = 1210.0
     body.data.materials.append(MATS["xuan"])
 
-    def crag_mesh(name, center, base_z, rx, ry, shoulder_z, top_z, sides, phase):
-        x, y = center
-        crag_verts = []
-        for level, (z, factor) in enumerate(((base_z, 1.0), (shoulder_z, 0.52))):
-            for i in range(sides):
-                angle = 2.0 * math.pi * i / sides
-                irregular = 0.78 + 0.16 * math.sin(i * 1.71 + phase + level) + 0.05 * math.sin(i * 3.13 - phase)
-                crag_verts.append((x + rx * factor * irregular * math.cos(angle), y + ry * factor * irregular * math.sin(angle), z + 8.0 * math.sin(i * 1.27 + phase)))
-        apex = len(crag_verts)
-        crag_verts.append((x + rx * 0.13 * math.sin(phase), y + ry * 0.11 * math.cos(phase), top_z))
-        crag_faces = []
-        for i in range(sides):
-            j = (i + 1) % sides
-            crag_faces.append((i, j, sides + j, sides + i))
-            crag_faces.append((sides + i, sides + j, apex))
-        crag_mesh_data = bpy.data.meshes.new(name + "_MESH")
-        crag_mesh_data.from_pydata(crag_verts, [], crag_faces)
-        crag_mesh_data.update()
-        obj = bpy.data.objects.new(name, crag_mesh_data)
-        target.objects.link(obj)
-        tag(obj, PROXY, "Asymmetric natural crown crag; locked Xuantian envelope unchanged")
-        obj["xtz_asset_id"] = data["id"]
-        obj["xtz_formal_peak"] = False
-        obj.data.materials.append(MATS["xuan"])
-        return obj
-
-    crown_specs = [
-        ((cx - 365.0, cy - 45.0), 1448.0, 210.0, 165.0, 1555.0, 1628.0, 11, 0.4),
-        ((cx - 175.0, cy + 35.0), 1445.0, 245.0, 190.0, 1578.0, 1670.0, 13, 1.2),
-        ((cx + 65.0, cy + 105.0), 1440.0, 270.0, 210.0, 1585.0, 1680.0, 15, 2.0),
-        ((cx + 285.0, cy - 25.0), 1450.0, 220.0, 175.0, 1565.0, 1652.0, 12, 2.8),
-        ((cx + 445.0, cy + 85.0), 1460.0, 125.0, 125.0, 1545.0, 1615.0, 9, 3.6),
-    ]
-    crowns = [crag_mesh(f"XTZ_V02_XUANTIAN_NATURAL_CROWN_{index:02d}", *spec) for index, spec in enumerate(crown_specs, 1)]
-
-    def secondary_spire(name, tip, ring_center, rx, ry, ring_z, phase):
-        sides = 11
-        spire_verts = [tip]
-        for i in range(sides):
-            angle = 2.0 * math.pi * i / sides
-            irregular = 0.78 + 0.16 * math.sin(i * 1.83 + phase)
-            spire_verts.append((ring_center[0] + rx * irregular * math.cos(angle), ring_center[1] + ry * irregular * math.sin(angle), ring_z + 9.0 * math.sin(i * 1.19 + phase)))
-        faces = [(0, 1 + i, 1 + (i + 1) % sides) for i in range(sides)]
-        spire_mesh = bpy.data.meshes.new(name + "_MESH")
-        spire_mesh.from_pydata(spire_verts, [], faces)
-        spire_mesh.update()
-        obj = bpy.data.objects.new(name, spire_mesh)
-        target.objects.link(obj)
-        tag(obj, PROXY, "Secondary inverted rock convergence; Xuantian Canon envelope unchanged")
-        obj["xtz_asset_id"] = data["id"]
-        obj.data.materials.append(MATS["xuan"])
-        return obj
-
-    secondary = [
-        secondary_spire("XTZ_V02_XUANTIAN_SECONDARY_SPIRE_01", (cx - 300.0, cy - 10.0, 1288.0), (cx - 205.0, cy, 0.0), 220.0, 180.0, 1475.0, 0.7),
-        secondary_spire("XTZ_V02_XUANTIAN_SECONDARY_SPIRE_02", (cx + 330.0, cy + 35.0, 1322.0), (cx + 220.0, cy + 20.0, 0.0), 205.0, 165.0, 1482.0, 2.1),
-    ]
-    return body, crowns + secondary
+    return body
 
 
 def add_rock(name, location, scale, rotation, target):
@@ -294,6 +292,7 @@ def build_gate_pass_massing():
         ("EAST_B", (205.0, 3790.0, 678.0), (145.0, 225.0, 105.0), (0.05, -0.18, 0.15)),
         ("WEST_FORE", (-265.0, 3480.0, 635.0), (190.0, 300.0, 100.0), (0.12, 0.05, 0.1)),
         ("EAST_FORE", (290.0, 3500.0, 640.0), (210.0, 320.0, 110.0), (-0.1, 0.08, -0.12)),
+        ("REVEAL_WEST", (-34.0, 3628.0, 635.0), (25.0, 14.0, 27.0), (0.02, -0.10, 0.16)),
     ]
     return [add_rock(f"XTZ_V02_PASS_ROCK_{label}", loc, scale, rot, target) for label, loc, scale, rot in specs]
 
@@ -376,7 +375,7 @@ def build_gate(gate_data):
 def sword_blade_mesh(name, x, y, base_z, data, target):
     height = float(data["height_m"])
     blade_len = float(data["blade_length_m"])
-    width = sum(data["blade_max_width_m"]) / 2.0
+    width = float(max(data["blade_max_width_m"]))
     thickness = float(data["body_max_thickness_m"])
     blade_bottom = base_z + height - blade_len
     levels = [
@@ -542,10 +541,12 @@ def build_qc_cameras():
 
 def build_specialized_qc_cameras():
     peak_specs = [
-        ("XTZ_CAM_XTPEAK_QC_01_GATE_LONG", (0.0, 3920.0, 735.0), (0.0, 9350.0, 1480.0), 62.0, None),
-        ("XTZ_CAM_XTPEAK_QC_02_INTERIOR_LONG", (-180.0, 4300.0, 815.0), (0.0, 9350.0, 1480.0), 58.0, None),
-        ("XTZ_CAM_XTPEAK_QC_03_FRONT_45", (1850.0, 6100.0, 1320.0), (0.0, 9350.0, 1480.0), 52.0, None),
-        ("XTZ_CAM_XTPEAK_QC_04_LOW_ANGLE", (0.0, 7600.0, 1115.0), (0.0, 9350.0, 1480.0), 35.0, None),
+        ("XTZ_CAM_XTPEAK_QC_01_FRONT_FAR", (0.0, 5200.0, 950.0), (0.0, 9350.0, 1480.0), 58.0, None),
+        ("XTZ_CAM_XTPEAK_QC_02_POST_GATE_FAR", (0.0, 4050.0, 710.0), (0.0, 9350.0, 1480.0), 62.0, None),
+        ("XTZ_CAM_XTPEAK_QC_03_LEFT_FRONT_45", (-1900.0, 6100.0, 1280.0), (0.0, 9350.0, 1480.0), 52.0, None),
+        ("XTZ_CAM_XTPEAK_QC_04_RIGHT_FRONT_45", (1900.0, 6100.0, 1280.0), (0.0, 9350.0, 1480.0), 52.0, None),
+        ("XTZ_CAM_XTPEAK_QC_05_LOW_ANGLE", (0.0, 7600.0, 1090.0), (0.0, 9350.0, 1480.0), 38.0, None),
+        ("XTZ_CAM_XTPEAK_QC_06_SIDE", (-2600.0, 9000.0, 1480.0), (0.0, 9350.0, 1480.0), 55.0, None),
     ]
     sword_specs = [
         ("XTZ_CAM_SWORD_QC_01_VALLEY_LONG", (-45.0, 3490.0, 665.0), (0.0, 3700.0, 634.0), 48.0, None),
@@ -594,7 +595,7 @@ def build_manifest(anchors, core, qc, peak_qc, sword_qc, samples):
     proxies = sorted(obj.name for obj in bpy.data.objects if obj.get("xtz_status") == PROXY)
     return {
         "project": "Xuantianzong Virtual Studio",
-        "milestone": "Digital Twin V0.2.1 Visual Acceptance Repair",
+        "milestone": "Digital Twin V0.2.2 Final Human Visual Repair",
         "authority": "V1.6.1 BASE_WORLD_CANON + registered scoped overrides",
         "scope": "final 800-1000m ancient road / Xuanyue mountain pass / gate+swords / first 300-500m interior / distant Xuantian silhouette",
         "formal_peak_count": len(anchors),
@@ -603,8 +604,8 @@ def build_manifest(anchors, core, qc, peak_qc, sword_qc, samples):
         "qc_camera_count": len(qc),
         "xuantian_peak_qc_camera_count": len(peak_qc),
         "twin_sword_fixed_qc_camera_count": len(sword_qc),
-        "twin_sword_dji_keyframe_qc_count": 2,
-        "dji_keyframe_qc_count": 9,
+        "twin_sword_dji_keyframe_qc_count": 4,
+        "dji_keyframe_qc_count": 13,
         "camera_frame_count": len(samples),
         "fps": FPS,
         "duration_s": FRAME_END / FPS,

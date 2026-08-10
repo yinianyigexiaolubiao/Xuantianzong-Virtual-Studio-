@@ -49,7 +49,7 @@ def main():
         not missing
         and len(qc) >= expected_qc_count >= 10
         and len(peak_qc) >= int(manifest["xuantian_peak_qc_camera_count"])
-        and len(sword_qc) >= 6
+        and len(sword_qc) >= int(manifest["twin_sword_fixed_qc_camera_count"]) + int(manifest["twin_sword_dji_keyframe_qc_count"])
         and len(dji_qc) >= int(manifest["dji_keyframe_qc_count"])
     )
     engineering = "PASS" if outputs_present and geometry["status"] == camera["status"] == deterministic["status"] == "PASS" else "FAIL"
@@ -62,7 +62,7 @@ def main():
     proxies = manifest["non_canon_proxy_objects"]
     not_visual = manifest.get("locked_design_not_visually_validated", [])
     lines = [
-        "# Digital Twin V0.2.1 Visual Acceptance Repair — Validation Report",
+        "# Digital Twin V0.2.2 Final Human Visual Repair — Validation Report",
         "",
         f"ENGINEERING_STATUS: **{engineering}**",
         f"VISUAL_ACCEPTANCE_STATUS: **{visual.get('status', 'INVALID')}**",

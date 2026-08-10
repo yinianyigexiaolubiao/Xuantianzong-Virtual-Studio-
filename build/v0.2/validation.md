@@ -1,4 +1,4 @@
-# Digital Twin V0.2.1 Visual Acceptance Repair — Validation Report
+# Digital Twin V0.2.2 Final Human Visual Repair — Validation Report
 
 ENGINEERING_STATUS: **PASS**
 VISUAL_ACCEPTANCE_STATUS: **PENDING_HUMAN_REVIEW**
@@ -7,13 +7,13 @@ OVERALL_STATUS: **PENDING_HUMAN_REVIEW**
 
 ## Machine validation
 
-- Geometry: PASS (22 checks)
-- DJI camera metrics: PASS — max speed 12.325 m/s, max acceleration 4.107 m/s², max jerk 7.638 m/s³, max yaw rate 19.745°/s
+- Geometry: PASS (23 checks)
+- DJI camera metrics: PASS — max speed 12.047 m/s, max acceleration 2.314 m/s², max jerk 4.537 m/s³, max yaw rate 9.138°/s
 - Deterministic rebuild: PASS
 - QC stills: 12 required render views present
-- Xuantian Peak silhouette QC: 4 images
-- Twin-sword QC: 6 images
-- DJI keyframe QC: 9 images
+- Xuantian Peak silhouette QC: 6 images
+- Twin-sword QC: 8 images
+- DJI keyframe QC: 13 images
 - Render output presence is not treated as human visual acceptance.
 - Missing/empty deliverables: none
 
@@ -37,10 +37,12 @@ All items below are temporary graybox/proof objects and are not promoted to Cano
 - XTZ_CAM_SWORD_QC_02_GATE_FRONT
 - XTZ_CAM_SWORD_QC_03_LEFT_MID
 - XTZ_CAM_SWORD_QC_04_RIGHT_MID
-- XTZ_CAM_XTPEAK_QC_01_GATE_LONG
-- XTZ_CAM_XTPEAK_QC_02_INTERIOR_LONG
-- XTZ_CAM_XTPEAK_QC_03_FRONT_45
-- XTZ_CAM_XTPEAK_QC_04_LOW_ANGLE
+- XTZ_CAM_XTPEAK_QC_01_FRONT_FAR
+- XTZ_CAM_XTPEAK_QC_02_POST_GATE_FAR
+- XTZ_CAM_XTPEAK_QC_03_LEFT_FRONT_45
+- XTZ_CAM_XTPEAK_QC_04_RIGHT_FRONT_45
+- XTZ_CAM_XTPEAK_QC_05_LOW_ANGLE
+- XTZ_CAM_XTPEAK_QC_06_SIDE
 - XTZ_V02_ANCIENT_ROAD_SMOOTH_PROXY
 - XTZ_V02_B1_XTZ-BLD-002_玄天殿
 - XTZ_V02_B1_XTZ-BLD-010_接天阵门
@@ -59,6 +61,7 @@ All items below are temporary graybox/proof objects and are not promoted to Cano
 - XTZ_V02_PASS_ROCK_EAST_A
 - XTZ_V02_PASS_ROCK_EAST_B
 - XTZ_V02_PASS_ROCK_EAST_FORE
+- XTZ_V02_PASS_ROCK_REVEAL_WEST
 - XTZ_V02_PASS_ROCK_WEST_A
 - XTZ_V02_PASS_ROCK_WEST_B
 - XTZ_V02_PASS_ROCK_WEST_FORE
@@ -73,13 +76,6 @@ All items below are temporary graybox/proof objects and are not promoted to Cano
 - XTZ_V02_SWORD_WEST_GUARD
 - XTZ_V02_SWORD_WEST_POMMEL
 - XTZ_V02_XUANTIAN_HEAVY_INVERTED_BODY
-- XTZ_V02_XUANTIAN_NATURAL_CROWN_01
-- XTZ_V02_XUANTIAN_NATURAL_CROWN_02
-- XTZ_V02_XUANTIAN_NATURAL_CROWN_03
-- XTZ_V02_XUANTIAN_NATURAL_CROWN_04
-- XTZ_V02_XUANTIAN_NATURAL_CROWN_05
-- XTZ_V02_XUANTIAN_SECONDARY_SPIRE_01
-- XTZ_V02_XUANTIAN_SECONDARY_SPIRE_02
 
 ## LOCKED_DESIGN_NOT_VISUALLY_VALIDATED
 

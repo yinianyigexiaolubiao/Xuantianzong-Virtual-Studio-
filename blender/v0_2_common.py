@@ -181,49 +181,44 @@ def camera_samples() -> list[dict]:
     samples: list[dict] = []
     distance = 0.0
     start_y = 3581.0
+
+    def lateral_position(t):
+        # One slow reveal arc.  It settles completely before the gate run so
+        # there is no late correction, wall scrape or compound body/gimbal yaw.
+        u = smootherstep01((t - 0.5) / 7.5)
+        return -18.0 * (1.0 - u)
+
     for frame in range(FRAME_START, FRAME_END + 1):
         t = (frame - FRAME_START) * DT
         if frame > FRAME_START:
             prev_t = t - DT
             distance += 0.5 * (speed_at_time(prev_t) + speed_at_time(t)) * DT
         y = start_y + distance
-        progress_to_gate = clamp((y - start_y) / (3700.0 - start_y), 0.0, 1.0)
-        if y <= 3700.0:
-            # Hold the road's left side through the discovery beat, then make one
-            # long, inertial correction to centre before the six-second hero view.
-            turn = smootherstep01((t - 1.0) / 5.0)
-            x = -17.0 * (1.0 - turn)
-        else:
-            post = clamp((y - 3700.0) / 70.0, 0.0, 1.0)
-            x = -5.0 * smootherstep01(post)
+        x = lateral_position(t)
         rise = smootherstep01((y - start_y) / (3700.0 - start_y))
         post_rise = smootherstep01((y - 3700.0) / 70.0)
         z = 618.2 + 2.2 * rise + 1.6 * post_rise
         # Body yaw follows the flight tangent; gimbal target follows the visual beat independently.
         probe_t = t + 0.05
         probe_y = y + speed_at_time(t) * 0.05
-        probe_x = -17.0 * (1.0 - smootherstep01((probe_t - 1.0) / 5.0)) if probe_y <= 3700.0 else -5.0 * smootherstep01((probe_y - 3700.0) / 70.0)
+        probe_x = lateral_position(probe_t)
         yaw = math.atan2(probe_x - x, probe_y - y)
         if t < 3.0:
-            # Begin on the left V10 sword, then widen toward the complete gate.
-            # This is a gimbal-only reveal; the airframe keeps its inertial path.
             u = smootherstep01(t / 3.0)
-            target = (-34.0 + 4.0 * u, 3696.0 + 2.0 * u, 640.0 - 3.0 * u)
-        elif t < 6.0:
-            u = smootherstep01((t - 3.0) / 3.0)
-            target = (-30.0 * (1.0 - u), 3698.0 + 2.0 * u, 637.0 - 12.0 * u)
-        elif t < 8.0:
-            u = smootherstep01((t - 6.0) / 2.0)
-            target = (34.0 * u, 3700.0 - 4.0 * u, 625.0 + 15.0 * u)
-        elif t < 10.0:
-            u = smootherstep01((t - 8.0) / 2.0)
-            target = (34.0 * (1.0 - u), 3696.0 + 8.0 * u, 640.0 - 16.0 * u)
-        elif t < 11.0:
-            u = smootherstep01((t - 10.0) / 1.0)
-            target = (0.0, 3704.0 + 2.0 * u, 624.0 - u)
+            target = (-50.0 * (1.0 - u), 3700.0, 633.0)
+        elif t < 7.5:
+            # Hold a symmetric gate+swords composition while the west shoulder
+            # creates the discovery/reveal through parallax.
+            target = (0.0, 3700.0, 633.0)
+        elif t < 8.5:
+            u = smootherstep01((t - 7.5) / 1.0)
+            target = (0.0, 3700.0, 633.0 - 14.0 * u)
+        elif t < 11.5:
+            # Door centre is the stable target through the entire final approach.
+            target = (0.0, 3700.0, 619.0)
         elif t < 12.7:
-            u = smootherstep01((t - 11.0) / 1.7)
-            target = (0.0, 3720.0 + 110.0 * u, 624.0 + 25.0 * u)
+            u = smootherstep01((t - 11.5) / 1.2)
+            target = (0.0, 3720.0 + 110.0 * u, 621.0 + 28.0 * u)
         elif t < 13.25:
             u = smootherstep01((t - 12.7) / 0.55)
             target = (-30.0 * u, 3830.0 + 5520.0 * u, 649.0 + 831.0 * u)
@@ -251,9 +246,13 @@ def camera_metrics(samples: list[dict]) -> dict:
     accelerations = [vector_scale(vector_sub(b, a), FPS) for a, b in zip(velocities, velocities[1:])]
     jerks = [vector_scale(vector_sub(b, a), FPS) for a, b in zip(accelerations, accelerations[1:])]
     yaw_rates = []
+    local_gate_yaw_rates = []
     for a, b in zip(samples, samples[1:]):
         delta = (b["body_yaw_rad"] - a["body_yaw_rad"] + math.pi) % (2.0 * math.pi) - math.pi
-        yaw_rates.append(abs(math.degrees(delta) * FPS))
+        rate = abs(math.degrees(delta) * FPS)
+        yaw_rates.append(rate)
+        if 8.0 <= b["t"] <= 11.5:
+            local_gate_yaw_rates.append(rate)
     speeds = [vector_length(v) for v in velocities]
     accels = [vector_length(v) for v in accelerations]
     jerk_values = [vector_length(v) for v in jerks]
@@ -267,9 +266,10 @@ def camera_metrics(samples: list[dict]) -> dict:
         "max_acceleration_mps2": max(accels),
         "max_jerk_mps3": max(jerk_values),
         "max_yaw_rate_deg_s": max(yaw_rates),
+        "max_yaw_rate_8_11_5_deg_s": max(local_gate_yaw_rates),
         "speed_profile": SPEED_KNOTS,
         "separation": ["position_curve", "body_yaw_curve", "gimbal_target_curve", "speed_profile"],
-        "limits": {"max_speed_mps": 27.0, "max_acceleration_mps2": 6.0, "max_jerk_mps3": 18.0, "max_yaw_rate_deg_s": 20.0},
+        "limits": {"max_speed_mps": 27.0, "max_acceleration_mps2": 6.0, "max_jerk_mps3": 18.0, "max_yaw_rate_deg_s": 12.0, "max_yaw_rate_8_11_5_deg_s": 8.0},
     }
 
 

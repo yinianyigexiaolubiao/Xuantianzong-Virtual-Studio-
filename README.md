@@ -141,7 +141,7 @@ V0.1 is not the visual-spatial target: its flat base, isolated cone massing and 
 
 ### V0.2 — Mini Spatial Proof
 
-Engineering validation is complete, but human visual acceptance remains open. V0.2.1 repairs the Xuantian Peak silhouette, twin-sword scale reading, DJI pacing and acceptance-state handling under `build/v0.2/`.
+Engineering validation is complete, but human visual acceptance remains open. V0.2.2 uses a single continuous Xuantian mountain mesh, local terrain-occlusion gate discovery, stronger neutral twin-sword projection and a settled centreline gate run under `build/v0.2/`.
 
 Primary scope:
 - final 800–1000m of 十二里入山古道;
@@ -163,4 +163,4 @@ Primary scope:
 
 ## Downstream boundary
 
-V0.2.1 engineering checks pass, while both visual and camera-visual acceptance remain `PENDING_HUMAN_REVIEW`. Its `NON_CANON_PROXY` graybox geometry is not automatically promoted to Canon or final high-detail art, and GitHub Issue #2 remains open until explicit human approval.
+V0.2.2 engineering checks pass, while both visual and camera-visual acceptance remain `PENDING_HUMAN_REVIEW`. Its `NON_CANON_PROXY` graybox geometry is not automatically promoted to Canon or final high-detail art, and GitHub Issue #2 remains open until explicit human approval.

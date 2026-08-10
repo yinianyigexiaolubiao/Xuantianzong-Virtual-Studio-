@@ -161,6 +161,7 @@ def main():
     check(max_step < 1.2, "camera_path_continuity", {"max_frame_displacement_m": max_step}, results)
     for field, limit_field in (("max_speed_mps", "max_speed_mps"), ("max_acceleration_mps2", "max_acceleration_mps2"), ("max_jerk_mps3", "max_jerk_mps3"), ("max_yaw_rate_deg_s", "max_yaw_rate_deg_s")):
         check(metrics[field] <= metrics["limits"][limit_field], f"camera_{field}", {"actual": metrics[field], "limit": metrics["limits"][limit_field]}, results)
+    check(metrics["max_yaw_rate_8_11_5_deg_s"] <= metrics["limits"]["max_yaw_rate_8_11_5_deg_s"], "camera_gate_run_local_yaw_rate", {"actual": metrics["max_yaw_rate_8_11_5_deg_s"], "limit": metrics["limits"]["max_yaw_rate_8_11_5_deg_s"]}, results)
 
     payload = rounded({
         "status": "PASS",
